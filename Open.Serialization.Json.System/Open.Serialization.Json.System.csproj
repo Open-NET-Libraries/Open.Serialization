@@ -16,7 +16,8 @@
 		<PackageProjectUrl>https://github.com/electricessence/Open.Serialization</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/electricessence/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>serialization json stj</PackageTags>	</PropertyGroup>
+		<PackageTags>serialization json stj</PackageTags>
+		<Version>1.0.1</Version>	</PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Open.Serialization.Json" Version="1.0.1" />
