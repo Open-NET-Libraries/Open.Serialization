@@ -19,11 +19,8 @@
 		<PackageTags>serialization json stj</PackageTags>	</PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Open.Serialization.Json" Version="1.0.1" />
     <PackageReference Include="System.Text.Json" Version="4.6.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Open.Serialization.Json\Open.Serialization.Json.csproj" />
   </ItemGroup>
 
   <ItemGroup>

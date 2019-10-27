@@ -15,14 +15,17 @@ namespace Open.Serialization.Json.System
 		public static Func<T, string> GetSerialize<T>(this JsonSerializerOptions options)
 			=> item => JsonSerializer.Serialize(item, options);
 
+		public static Func<object, string> GetSerialize(this JsonSerializerOptions options)
+			=> item => JsonSerializer.Serialize(item, options);
+
 		public static IJsonSerializer GetSerializer(this JsonSerializerOptions options)
 			=> new JsonSerializerInternal(options);
 
-		public static IJsonSerializerFactory GetSerializerFactory(this JsonSerializerOptions options)
-			=> new JsonSerializerFactory(options);
-
 		public static IJsonSerializer<T> GetSerializer<T>(this JsonSerializerOptions options)
 			=> new JsonSerializerInternal<T>(options);
+
+		public static IJsonSerializerFactory GetSerializerFactory(this JsonSerializerOptions options)
+			=> new JsonSerializerFactory(options);
 
 		public static string Serialize<TValue>(this JsonSerializerOptions options, TValue value)
 			=> JsonSerializer.Serialize(value, options);

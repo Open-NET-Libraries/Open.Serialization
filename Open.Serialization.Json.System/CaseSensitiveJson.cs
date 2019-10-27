@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace Open.Serialization.Json.System.Converters
+namespace Open.Serialization.Json.System
 {
 	public static class CaseSensitiveJson
 	{

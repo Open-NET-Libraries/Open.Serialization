@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace Open.Serialization.Json.System
 {
-	public class JsonSerializerFactory : IJsonSerializerFactory
+	public class JsonSerializerFactory : JsonSerializerFactoryBase
 	{
 		static readonly JsonSerializerOptions DefaultOptions = RelaxedJson.Options();
 		readonly JsonSerializerOptions _options;
@@ -16,20 +16,14 @@ namespace Open.Serialization.Json.System
 		JsonSerializerInternal _caseSensitive;
 		JsonSerializerInternal _ignoreCase;
 
-		JsonSerializerInternal GetSerializerCore(bool caseSensitive)
+		protected override SerializerBase GetDeserializerInternal(bool caseSensitive)
 			=> caseSensitive
 				? LazyInitializer.EnsureInitialized(ref _caseSensitive,
 					() => new JsonSerializerInternal(_options.Clone().SetPropertyNameCaseInsensitive(false)))
 				: LazyInitializer.EnsureInitialized(ref _ignoreCase,
 					() => new JsonSerializerInternal(_options.Clone().SetPropertyNameCaseInsensitive(true)));
 		
-		public IDeserialize GetDeserializer(bool caseSensitive = false)
-			=> GetSerializerCore(caseSensitive);
-
-		public IDeserializeAsync GetAsyncDeserializer(bool caseSensitive = false)
-			=> GetSerializerCore(caseSensitive);
-
-		JsonSerializerInternal GetSerializerCore(IJsonSerializationOptions options)
+		protected override SerializerBase GetSerializerInternal(IJsonSerializationOptions options)
 		{
 			if (options == null)
 				return LazyInitializer.EnsureInitialized(ref _default, () => new JsonSerializerInternal(_options));
@@ -42,11 +36,5 @@ namespace Open.Serialization.Json.System
 
 			return new JsonSerializerInternal(o);
 		}
-
-		public ISerialize GetSerializer(IJsonSerializationOptions options = null)
-			=> GetSerializerCore(options);
-
-		public ISerializeAsync GetAsyncSerializer(IJsonSerializationOptions options = null)
-			=> GetSerializerCore(options);
 	}
 }

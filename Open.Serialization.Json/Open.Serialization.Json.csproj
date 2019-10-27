@@ -7,9 +7,9 @@
 		<Authors>electricessence</Authors>
 		<Company>electricessence</Company>
 		<Description>
-			DI/IoC agnostic interfaces for injecting any JSON serialization library.
+DI/IoC agnostic interfaces for injecting any JSON serialization library.
 
-			Part of the "Open" set of libraries.
+Part of the "Open" set of libraries.
 		</Description>
 		<Copyright>https://github.com/electricessence/Open.Serialization/blob/master/LICENSE</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -17,6 +17,7 @@
 		<RepositoryUrl>https://github.com/electricessence/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>serialization json</PackageTags>
+		<Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
