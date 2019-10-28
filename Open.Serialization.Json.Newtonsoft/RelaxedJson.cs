@@ -1,10 +1,11 @@
 ﻿using Newtonsoft.Json;
+using Open.Serialization.Json.Newtonsoft.Converters;
 
 namespace Open.Serialization.Json.Newtonsoft
 {
 	public static class RelaxedJson
 	{
-		internal static JsonSerializerSettings settings(
+		internal static JsonSerializerSettings Options(
 			bool indent = false)
 			=> new JsonSerializerSettings()
 			{

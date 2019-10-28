@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace Open.Serialization.Json.System.Converters
 {
-	public class JsonDecimalConverter : JsonTypeConverterBase<decimal>
+	public class JsonDecimalConverter : JsonValueConverterBase<decimal>
 	{
 		protected JsonDecimalConverter()
 		{

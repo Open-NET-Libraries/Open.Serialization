@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
-using Open.Serialization.Json.Newtonsoft;
+using Open.Serialization.Json.Newtonsoft.Converters;
 
 namespace Open.Serialization.Json.Newtonsoft
 {
@@ -67,7 +67,7 @@ namespace Open.Serialization.Json.Newtonsoft
 				CheckAdditionalContent = settings.CheckAdditionalContent
 			};
 
-			settings.Converters = settings.Converters ?? new List<JsonConverter>();
+			settings.Converters ??= new List<JsonConverter>();
 			foreach (var converter in settings.Converters)
 				clone.Converters.Add(converter);
 

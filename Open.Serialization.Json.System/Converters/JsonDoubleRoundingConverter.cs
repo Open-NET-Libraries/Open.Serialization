@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace Open.Serialization.Json.System.Converters
 {
-	public class JsonDoubleRoundingConverter : JsonTypeConverterBase<double>
+	public class JsonDoubleRoundingConverter : JsonValueConverterBase<double>
 	{
 		public readonly int Maximum;
 		public JsonDoubleRoundingConverter(int maximum)

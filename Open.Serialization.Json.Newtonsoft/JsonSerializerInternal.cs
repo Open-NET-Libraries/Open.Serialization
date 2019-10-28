@@ -7,7 +7,7 @@ namespace Open.Serialization.Json.Newtonsoft
 		readonly JsonSerializerSettings _settings;
 		internal JsonSerializerInternal(JsonSerializerSettings settings)
 		{
-			_settings = options;
+			_settings = settings;
 		}
 
 		public override T Deserialize<T>(string value)
@@ -20,7 +20,7 @@ namespace Open.Serialization.Json.Newtonsoft
 	internal class JsonSerializerInternal<T> : Serializer<T>, IJsonSerializer<T>
 	{
 		internal JsonSerializerInternal(JsonSerializerSettings settings)
-			: base(options.GetDeserialize<T>(), options.GetSerialize<T>())
+			: base(settings.GetDeserialize<T>(), settings.GetSerialize<T>())
 		{
 		}
 	}

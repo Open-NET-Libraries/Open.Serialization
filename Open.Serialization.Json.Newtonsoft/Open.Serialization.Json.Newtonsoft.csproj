@@ -25,8 +25,4 @@ Part of the "Open" set of libraries.
 		<PackageReference Include="Open.Serialization.Json" Version="1.0.1" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Converters\" />
-	</ItemGroup>
-
 </Project>

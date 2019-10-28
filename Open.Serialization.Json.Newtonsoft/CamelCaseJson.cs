@@ -15,7 +15,7 @@ namespace Open.Serialization.Json.Newtonsoft
 		public static JsonSerializerSettings Minimal(bool indent = false)
 		{
 			var options = Default(indent);
-			options.Formatting = indent ? Formatting.Indented : Formatting.None;
+			options.NullValueHandling = NullValueHandling.Ignore;
 			return options;
 		}
 	}
