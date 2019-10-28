@@ -1,14 +1,15 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 
 namespace Open.Serialization
 {
 	public interface ISerializeAsync
 	{
-		ValueTask<string> SerializeAsync<T>(T item);
+		ValueTask SerializeAsync<T>(Stream stream, T item);
 	}
 
 	public interface ISerializeAsync<T>
 	{
-		ValueTask<string> SerializeAsync(T item);
+		ValueTask SerializeAsync(Stream stream, T item);
 	}
 }
