@@ -13,4 +13,10 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Open.Serialization.Json.Newtonsoft\Open.Serialization.Json.Newtonsoft.csproj" />
+    <ProjectReference Include="..\Open.Serialization.Json.System\Open.Serialization.Json.System.csproj" />
+    <ProjectReference Include="..\Open.Serialization.Json.Utf8Json\Open.Serialization.Json.Utf8Json.csproj" />
+  </ItemGroup>
+
 </Project>

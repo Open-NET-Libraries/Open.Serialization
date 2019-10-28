@@ -8,7 +8,10 @@ namespace Open.Serialization.Json.Newtonsoft
 		public static JsonSerializerSettings Default(bool indent = false)
 		{
 			var options = RelaxedJson.Options(indent);
-			options.ContractResolver = new CamelCasePropertyNamesContractResolver();
+			options.ContractResolver = new CamelCasePropertyNamesContractResolver()
+			{
+				NamingStrategy = new CamelCaseNamingStrategy() { ProcessDictionaryKeys = false }
+			};
 			return options;
 		}
 

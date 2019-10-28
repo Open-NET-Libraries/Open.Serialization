@@ -15,7 +15,7 @@ namespace Open.Serialization.Json.System.Converters
 			= new JsonNullableDoubleConverter();
 
 		public override bool CanConvert(Type objectType)
-			=> objectType == typeof(double?) || objectType == typeof(double);
+			=> objectType == typeof(double?);
 
 		public override double? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 			=> reader.TokenType switch

@@ -13,7 +13,7 @@ namespace Open.Serialization.Json.System
 			{
 				PropertyNameCaseInsensitive = !caseSensitive,
 				AllowTrailingCommas = true,
-				WriteIndented = indent,
+				WriteIndented = indent
 			}
 			.AddConverter(JsonNullableDoubleConverter.Instance)
 			.NormalizeDecimals();

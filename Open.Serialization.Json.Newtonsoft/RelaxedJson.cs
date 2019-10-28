@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Open.Serialization.Json.Newtonsoft.Converters;
 
 namespace Open.Serialization.Json.Newtonsoft
@@ -9,7 +10,11 @@ namespace Open.Serialization.Json.Newtonsoft
 			bool indent = false)
 			=> new JsonSerializerSettings()
 			{
-				Formatting = indent ? Formatting.Indented : Formatting.None
+				Formatting = indent ? Formatting.Indented : Formatting.None,
+				ContractResolver = new DefaultContractResolver()
+				{
+					NamingStrategy = new DefaultNamingStrategy() { ProcessDictionaryKeys = false }
+				}
 			}
 			.AddConverter(JsonNullableDoubleConverter.Instance)
 			.NormalizeDecimals();
