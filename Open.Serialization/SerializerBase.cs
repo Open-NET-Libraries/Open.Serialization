@@ -15,7 +15,6 @@ namespace Open.Serialization
 			return Deserialize<T>(text);
 		}
 
-
 		public abstract string Serialize<T>(T item);
 
 		public virtual async ValueTask SerializeAsync<T>(Stream stream, T item)
@@ -24,6 +23,12 @@ namespace Open.Serialization
 			using var writer = new StreamWriter(stream);
 			await writer.WriteAsync(text);
 		}
+
+		public Serializer<T> Cast<T>()
+			=> new Serializer<T>(Deserialize<T>, Serialize, DeserializeAsync<T>, SerializeAsync);
+
+		ISerializer<T> ISerializer.Cast<T>() => Cast<T>();
+		IAsyncSerializer<T> IAsyncSerializer.Cast<T>() => Cast<T>();
 	}
 
 	public abstract class SerializerBase<T> : ISerializer<T>, IAsyncSerializer<T>

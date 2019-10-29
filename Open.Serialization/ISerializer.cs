@@ -5,6 +5,7 @@
 	/// </summary>
 	public interface ISerializer : ISerialize, IDeserialize
 	{
+		ISerializer<T> Cast<T>();
 	}
 
 	/// <summary>
@@ -19,6 +20,7 @@
 	/// </summary>
 	public interface IAsyncSerializer : ISerializeAsync, IDeserializeAsync
 	{
+		IAsyncSerializer<T> Cast<T>();
 	}
 
 	/// <summary>

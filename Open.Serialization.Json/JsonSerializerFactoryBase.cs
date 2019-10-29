@@ -2,20 +2,20 @@
 {
 	public abstract class JsonSerializerFactoryBase : IJsonSerializerFactory
 	{
-		protected abstract SerializerBase GetDeserializerInternal(bool caseSensitive);
+		protected abstract JsonSerializerBase GetDeserializerInternal(bool caseSensitive);
 
-		public IDeserialize GetDeserializer(bool caseSensitive = false)
+		public IJsonDeserialize GetDeserializer(bool caseSensitive = false)
 			=> GetDeserializerInternal(caseSensitive);
 
-		public IDeserializeAsync GetAsyncDeserializer(bool caseSensitive = false)
+		public IJsonDeserializeAsync GetAsyncDeserializer(bool caseSensitive = false)
 			=> GetDeserializerInternal(caseSensitive);
 
-		protected abstract SerializerBase GetSerializerInternal(IJsonSerializationOptions options);
+		protected abstract JsonSerializerBase GetSerializerInternal(IJsonSerializationOptions options);
 
-		public ISerialize GetSerializer(IJsonSerializationOptions options = null)
+		public IJsonSerialize GetSerializer(IJsonSerializationOptions options = null)
 			=> GetSerializerInternal(options);
 
-		public ISerializeAsync GetAsyncSerializer(IJsonSerializationOptions options = null)
+		public IJsonSerializeAsync GetAsyncSerializer(IJsonSerializationOptions options = null)
 			=> GetSerializerInternal(options);
 	}
 }

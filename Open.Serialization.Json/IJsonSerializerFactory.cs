@@ -2,10 +2,10 @@
 {
 	public interface IJsonSerializerFactory
 	{
-		IDeserialize GetDeserializer(bool caseSensitive = false);
-		IDeserializeAsync GetAsyncDeserializer(bool caseSensitive = false);
+		IJsonDeserialize GetDeserializer(bool caseSensitive = false);
+		IJsonDeserializeAsync GetAsyncDeserializer(bool caseSensitive = false);
 
-		ISerialize GetSerializer(IJsonSerializationOptions options = null);
-		ISerializeAsync GetAsyncSerializer(IJsonSerializationOptions options = null);
+		IJsonSerialize GetSerializer(IJsonSerializationOptions options = null);
+		IJsonSerializeAsync GetAsyncSerializer(IJsonSerializationOptions options = null);
 	}
 }
