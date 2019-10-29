@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Serialization.Json", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Serialization.Json.System", "Open.Serialization.Json.System\Open.Serialization.Json.System.csproj", "{11C4DC58-266D-4C5B-8A15-1C2ADFB15C29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Open.Serialization.Json.Newtonsoft", "Open.Serialization.Json.Newtonsoft\Open.Serialization.Json.Newtonsoft.csproj", "{30179FC8-4270-4E4F-86CE-BEA03E9DC358}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Serialization.Json.Newtonsoft", "Open.Serialization.Json.Newtonsoft\Open.Serialization.Json.Newtonsoft.csproj", "{30179FC8-4270-4E4F-86CE-BEA03E9DC358}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Open.Serialization.Json.Utf8Json", "Open.Serialization.Json.Utf8Json\Open.Serialization.Json.Utf8Json.csproj", "{78695C58-3C3E-42DC-B588-9B9F2E9E400B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Serialization.Json.Utf8Json", "Open.Serialization.Json.Utf8Json\Open.Serialization.Json.Utf8Json.csproj", "{78695C58-3C3E-42DC-B588-9B9F2E9E400B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Open.Serialization.Tests", "Open.Serialization.Tests\Open.Serialization.Tests.csproj", "{A3278929-4835-4860-94C1-BA442CDEA3FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Open.Serialization.Tests", "Open.Serialization.Tests\Open.Serialization.Tests.csproj", "{A3278929-4835-4860-94C1-BA442CDEA3FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

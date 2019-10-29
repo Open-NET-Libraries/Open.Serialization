@@ -24,11 +24,8 @@ namespace Open.Serialization
 			await writer.WriteAsync(text);
 		}
 
-		public Serializer<T> Cast<T>()
+		public ISerializer<T> Cast<T>()
 			=> new Serializer<T>(Deserialize<T>, Serialize, DeserializeAsync<T>, SerializeAsync);
-
-		ISerializer<T> ISerializer.Cast<T>() => Cast<T>();
-		IAsyncSerializer<T> IAsyncSerializer.Cast<T>() => Cast<T>();
 	}
 
 	public abstract class SerializerBase<T> : ISerializer<T>, IAsyncSerializer<T>
