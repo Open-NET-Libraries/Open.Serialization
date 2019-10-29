@@ -17,13 +17,11 @@ namespace Open.Serialization.Json.Newtonsoft
 		JsonSerializerInternal _default;
 		JsonSerializerInternal Default => LazyInitializer.EnsureInitialized(ref _default, () => new JsonSerializerInternal(_settings));
 
-		protected override SerializerBase GetDeserializerInternal(bool caseSensitive)
-			=> caseSensitive
-			? throw new NotSupportedException("Newtonsoft does not support case-sensitive deserialization.")
-			: Default;
-
-		protected override SerializerBase GetSerializerInternal(IJsonSerializationOptions options)
+		public override IJsonSerializer GetSerializer(IJsonSerializationOptions options = null, bool caseSensitive = false)
 		{
+			if (caseSensitive)
+				throw new NotSupportedException("Newtonsoft does not support case-sensitive deserialization.");
+
 			if (options == null) return Default;
 
 			if (options.CamelCaseKeys && !options.CamelCaseProperties)

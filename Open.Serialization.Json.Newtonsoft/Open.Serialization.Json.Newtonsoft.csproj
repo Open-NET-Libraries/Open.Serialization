@@ -22,7 +22,7 @@ Part of the "Open" set of libraries.
 
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-		<PackageReference Include="Open.Serialization.Json" Version="1.0.1" />
+		<PackageReference Include="Open.Serialization.Json" Version="1.2.0" />
 	</ItemGroup>
 
 </Project>

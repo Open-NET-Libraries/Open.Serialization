@@ -33,8 +33,8 @@ namespace Open.Serialization.Tests
 			Assert.Equal(expectedSerializer.Serialize(SampleModel.DecimalLookup), actualSerializer.Serialize(SampleModel.DecimalLookup));
 			Assert.Equal(expectedSerializer.Serialize(SampleModel.DoubleLookup), actualSerializer.Serialize(SampleModel.DoubleLookup));
 
-			expectedFactory.GetDeserializer().Deserialize<SampleModel>(actualSerializer.Serialize(SampleModel.Instance));
-			actualFactory.GetDeserializer().Deserialize<SampleModel>(expectedSerializer.Serialize(SampleModel.Instance));
+			expectedFactory.GetSerializer().Deserialize<SampleModel>(actualSerializer.Serialize(SampleModel.Instance));
+			actualFactory.GetSerializer().Deserialize<SampleModel>(expectedSerializer.Serialize(SampleModel.Instance));
 		}
 	}
 }
