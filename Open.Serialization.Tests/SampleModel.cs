@@ -12,8 +12,8 @@ namespace Open.Serialization.Tests
 
 		public int IntegerValue { get; set; } = 11;
 
-		public double DoubleValue { get; set; } = 1.2345678901234567891234;
-		public decimal DecimalValue1 { get; set; } = 1.2345678901234567891234m;
+		public double DoubleValue { get; set; } = 1.2345678901234567;
+		public decimal DecimalValue1 { get; set; } = 1.2345678901234567m;
 
 		public decimal DecimalValue2 { get; set; } = 1.2345000m;
 		public decimal DecimalValue3 { get; set; } = 11.000m;
@@ -26,8 +26,8 @@ namespace Open.Serialization.Tests
 
 		public double? NullableDoubleNull { get; set; } = null;
 
-		public double? NullableDoubleValue { get; set; } = 1.2345678901234567891234;
-		public decimal? NullableDecimalValue { get; set; } = 1.2345678901234567891234m;
+		public double? NullableDoubleValue { get; set; } = 1.2345678901234567;
+		public decimal? NullableDecimalValue { get; set; } = 1.2345678901234567m;
 		public decimal? NullableDecimalNull { get; set; } = null;
 
 		public SampleModel Child { get; set; }

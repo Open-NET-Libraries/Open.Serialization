@@ -1,4 +1,5 @@
 ﻿using Open.Serialization.Json;
+using Open.Serialization.Json.Utf8Json;
 using Xunit;
 
 namespace Open.Serialization.Tests
@@ -11,6 +12,13 @@ namespace Open.Serialization.Tests
 			{
 				var newtonsoftFactory = new Json.Newtonsoft.JsonSerializerFactory(Json.Newtonsoft.CamelCaseJson.Minimal(true));
 				var systemFactory = new Json.System.JsonSerializerFactory(Json.System.CamelCaseJson.Minimal(true));
+
+				CompareFactories(newtonsoftFactory, systemFactory);
+			}
+
+			{
+				var newtonsoftFactory = new Json.Newtonsoft.JsonSerializerFactory(Json.Newtonsoft.CamelCaseJson.Minimal(true));
+				var systemFactory = new JsonSerializerFactory(Utf8Json.Resolvers.StandardResolver.ExcludeNullCamelCase, true);
 
 				CompareFactories(newtonsoftFactory, systemFactory);
 			}
