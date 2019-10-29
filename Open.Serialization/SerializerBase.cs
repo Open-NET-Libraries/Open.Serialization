@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Open.Serialization
@@ -7,7 +8,7 @@ namespace Open.Serialization
 	{
 		public abstract T Deserialize<T>(string value);
 
-		public virtual async ValueTask<T> DeserializeAsync<T>(Stream stream)
+		public virtual async ValueTask<T> DeserializeAsync<T>(Stream stream, CancellationToken cancellationToken = default)
 		{
 			string text;
 			using(var reader = new StreamReader(stream))
@@ -17,7 +18,7 @@ namespace Open.Serialization
 
 		public abstract string Serialize<T>(T item);
 
-		public virtual async ValueTask SerializeAsync<T>(Stream stream, T item)
+		public virtual async ValueTask SerializeAsync<T>(Stream stream, T item, CancellationToken cancellationToken = default)
 		{
 			var text = Serialize(item);
 			using var writer = new StreamWriter(stream);
@@ -32,7 +33,7 @@ namespace Open.Serialization
 	{
 		public abstract T Deserialize(string value);
 
-		public virtual async ValueTask<T> DeserializeAsync(Stream stream)
+		public virtual async ValueTask<T> DeserializeAsync(Stream stream, CancellationToken cancellationToken = default)
 		{
 			string text;
 			using (var reader = new StreamReader(stream))
@@ -42,7 +43,7 @@ namespace Open.Serialization
 
 		public abstract string Serialize(T item);
 
-		public virtual async ValueTask SerializeAsync(Stream stream, T item)
+		public virtual async ValueTask SerializeAsync(Stream stream, T item, CancellationToken cancellationToken = default)
 		{
 			var text = Serialize(item);
 			using var writer = new StreamWriter(stream);

@@ -1,8 +1,10 @@
-﻿using System.Text.Json;
+﻿using System.IO;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Open.Serialization.Json.System
 {
-	internal class JsonSerializerInternal : SerializerBase, IJsonSerializer
+	internal class JsonSerializerInternal : JsonSerializerBase
 	{
 		readonly JsonSerializerOptions _options;
 		internal JsonSerializerInternal(JsonSerializerOptions options)
@@ -15,6 +17,9 @@ namespace Open.Serialization.Json.System
 
 		public override string Serialize<T>(T item)
 			=> JsonSerializer.Serialize(item, _options);
+
+		public override ValueTask<T> DeserializeAsync<T>(Stream stream)
+			=> JsonSerializer.DeserializeAsync<T>(stream, _options);
 	}
 
 	internal class JsonSerializerInternal<T> : Serializer<T>, IJsonSerializer<T>

@@ -12,21 +12,19 @@ namespace Open.Serialization.Json.System
 			_options = defaultOptions?.Clone() ?? DefaultOptions;
 		}
 
-		JsonSerializerInternal _default;
 		JsonSerializerInternal _caseSensitive;
 		JsonSerializerInternal _ignoreCase;
 
-		protected override SerializerBase GetDeserializerInternal(bool caseSensitive)
-			=> caseSensitive
-				? LazyInitializer.EnsureInitialized(ref _caseSensitive,
-					() => new JsonSerializerInternal(_options.Clone().SetPropertyNameCaseInsensitive(false)))
-				: LazyInitializer.EnsureInitialized(ref _ignoreCase,
-					() => new JsonSerializerInternal(_options.Clone().SetPropertyNameCaseInsensitive(true)));
-		
-		protected override SerializerBase GetSerializerInternal(IJsonSerializationOptions options)
+		public override IJsonSerializer GetSerializer(IJsonSerializationOptions options = null, bool caseSensitive = false)
 		{
 			if (options == null)
-				return LazyInitializer.EnsureInitialized(ref _default, () => new JsonSerializerInternal(_options));
+			{
+				return caseSensitive
+					? LazyInitializer.EnsureInitialized(ref _caseSensitive,
+						() => new JsonSerializerInternal(_options.Clone().SetPropertyNameCaseInsensitive(false)))
+					: LazyInitializer.EnsureInitialized(ref _ignoreCase,
+						() => new JsonSerializerInternal(_options.Clone().SetPropertyNameCaseInsensitive(true)));
+			}
 
 			var o = _options.Clone();
 			o.IgnoreNullValues = options.OmitNull;
