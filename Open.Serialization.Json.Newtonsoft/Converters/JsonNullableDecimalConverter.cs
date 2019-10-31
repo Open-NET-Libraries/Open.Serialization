@@ -17,7 +17,7 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 			=> reader.TokenType switch
 			{
 				JsonToken.Null => default,
-				JsonToken.Float => (decimal)reader.Value,
+				JsonToken.Float => Convert.ToDecimal(reader.Value),
 				_ => throw new JsonException("Unexpected token type."),
 			};
 
