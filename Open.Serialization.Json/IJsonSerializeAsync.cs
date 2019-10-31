@@ -4,7 +4,7 @@
 	{
 	}
 
-	public interface IJsonSerializeAsync<T> : ISerializeAsync<T>
+	public interface IJsonSerializeAsync<in T> : ISerializeAsync<T>
 	{
 	}
 }

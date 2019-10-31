@@ -19,6 +19,11 @@ namespace Open.Serialization.Json.Newtonsoft
 			.AddConverter(JsonNullableDoubleConverter.Instance)
 			.NormalizeDecimals();
 
+		public static IJsonDeserialize<TValue> GetDeserializer<TValue>()
+			=> DeserializerOptions.GetSerializer<TValue>();
+		public static IJsonDeserialize GetDeserializer()
+			=> DeserializerOptions.GetSerializer();
+
 		static readonly JsonSerializerSettings DeserializerOptions
 			= Options().SetNullValueHandling(NullValueHandling.Ignore);
 

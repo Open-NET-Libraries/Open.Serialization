@@ -4,7 +4,7 @@
 	{
 	}
 
-	public interface IJsonDeserialize<T> : IDeserialize<T>
+	public interface IJsonDeserialize<out T> : IDeserialize<T>
 	{
 	}
 }
