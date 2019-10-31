@@ -105,6 +105,32 @@ namespace Open.Serialization.Tests.Newtonsoft
 				}
 			}
 
+			{
+				var serializer = CamelCaseJson
+					.Default()
+					.GetSerializer();
+
+				var sample3 = 1;
+
+				{
+					var model = new SampleModel
+					{
+						DecimalValue1 = sample3
+					};
+					var json = serializer.Serialize(model);
+					Assert.Equal(sample3, serializer.Deserialize<SampleModel>(json).DecimalValue1);
+				}
+
+				{
+					var model = new SampleModel
+					{
+						NullableDecimalValue = sample3
+					};
+					var json = serializer.Serialize(model);
+					Assert.Equal(sample3, serializer.Deserialize<SampleModel>(json).NullableDecimalValue);
+				}
+			}
+
 		}
 
 	}
