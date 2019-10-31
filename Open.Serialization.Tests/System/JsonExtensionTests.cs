@@ -29,6 +29,11 @@ namespace Open.Serialization.Tests.System
 				.NormalizeDecimals()
 				.RoundDoubles(2)
 				.RoundDecimals(2);
+
+			var serializer = basic.GetSerializer();
+			var json = serializer.Serialize(SampleModel.Instance);
+			var obj = serializer.Deserialize<SampleModel>(json);
+			Assert.NotNull(obj);
 		}
 	}
 }

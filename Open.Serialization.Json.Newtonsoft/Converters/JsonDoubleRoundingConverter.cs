@@ -14,7 +14,7 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 		}
 
 		public override double ReadJson(JsonReader reader, Type objectType, double existingValue, bool hasExistingValue, JsonSerializer serializer)
-			=> Math.Round(hasExistingValue ? existingValue : double.Parse((string)reader.Value), Maximum);
+			=> Math.Round(hasExistingValue ? existingValue : (double)reader.Value, Maximum);
 
 		public override void WriteJson(JsonWriter writer, double value, JsonSerializer serializer)
 			=> writer.WriteValue(Math.Round(value, Maximum));

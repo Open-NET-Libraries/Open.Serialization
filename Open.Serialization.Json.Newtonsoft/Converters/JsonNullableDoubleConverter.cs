@@ -18,7 +18,7 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 			=> hasExistingValue ? existingValue : reader.TokenType switch
 			{
 				JsonToken.Null => default,
-				JsonToken.Float => double.Parse((string)reader.Value),
+				JsonToken.Float => (double)reader.Value,
 				_ => throw new JsonException("Unexpected token type."),
 			};
 
