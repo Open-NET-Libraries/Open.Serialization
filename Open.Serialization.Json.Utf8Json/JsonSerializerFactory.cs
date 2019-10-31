@@ -12,6 +12,8 @@ namespace Open.Serialization.Json.Utf8Json
 		public JsonSerializerFactory(IJsonFormatterResolver defaultResolver = null, bool indent = false)
 		{
 			_resolver = defaultResolver ?? StandardResolver.Default;
+			if (_resolver == StandardResolver.ExcludeNullSnakeCase || _resolver == StandardResolver.SnakeCase)
+				throw new ArgumentOutOfRangeException(nameof(defaultResolver), "Snake case is not supported.");
 			_indent = indent;
 		}
 
@@ -26,12 +28,15 @@ namespace Open.Serialization.Json.Utf8Json
 			if (options == null)
 				return Default;
 
-			if (options.CamelCaseKeys)
+			if (options.CamelCaseKeys == true)
 				throw new NotSupportedException("Utf8Json does not support camel casing keys.");
 
-			return options.CamelCaseProperties
-				? new JsonSerializerInternal(options.OmitNull ? StandardResolver.ExcludeNullCamelCase : StandardResolver.CamelCase, options.Indent)
-				: new JsonSerializerInternal(options.OmitNull ? StandardResolver.ExcludeNull : StandardResolver.Default, options.Indent);
+			var omitNull = options.OmitNull == true || _resolver == StandardResolver.ExcludeNull || _resolver == StandardResolver.ExcludeNullCamelCase;
+			var camelCase = options.CamelCaseProperties == true || _resolver == StandardResolver.CamelCase || _resolver == StandardResolver.ExcludeNullCamelCase;
+
+			return camelCase
+				? new JsonSerializerInternal(omitNull ? StandardResolver.ExcludeNullCamelCase : StandardResolver.CamelCase, options.Indent ?? _indent)
+				: new JsonSerializerInternal(omitNull ? StandardResolver.ExcludeNull : StandardResolver.Default, options.Indent ?? _indent);
 		}
 	}
 }

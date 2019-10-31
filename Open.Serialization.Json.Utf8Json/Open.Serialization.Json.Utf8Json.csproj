@@ -17,11 +17,11 @@ Part of the "Open" set of libraries.
 		<RepositoryUrl>https://github.com/electricessence/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>serialization json utf8json</PackageTags>
-		<Version>1.2.1</Version>
+		<Version>1.2.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Open.Serialization.Json" Version="1.2.1" />
+		<PackageReference Include="Open.Serialization.Json" Version="1.2.2" />
 		<PackageReference Include="Utf8Json" Version="1.3.7" />
 	</ItemGroup>
 

@@ -27,10 +27,10 @@ namespace Open.Serialization.Json.System
 			}
 
 			var o = _options.Clone();
-			o.IgnoreNullValues = options.OmitNull;
-			o.WriteIndented = options.Indent;
-			o.DictionaryKeyPolicy = options.CamelCaseKeys ? JsonNamingPolicy.CamelCase : null;
-			o.PropertyNamingPolicy = options.CamelCaseProperties ? JsonNamingPolicy.CamelCase : null;
+			o.IgnoreNullValues = options.OmitNull ?? o.IgnoreNullValues;
+			o.WriteIndented = options.Indent ?? o.WriteIndented;
+			o.DictionaryKeyPolicy = options.CamelCaseKeys == true ? JsonNamingPolicy.CamelCase : o.DictionaryKeyPolicy;
+			o.PropertyNamingPolicy = options.CamelCaseProperties == true ? JsonNamingPolicy.CamelCase : o.PropertyNamingPolicy;
 
 			return new JsonSerializerInternal(o);
 		}

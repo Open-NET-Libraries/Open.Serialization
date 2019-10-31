@@ -24,11 +24,11 @@ namespace Open.Serialization.Json.Newtonsoft
 
 			if (options == null) return Default;
 
-			if (options.CamelCaseKeys && !options.CamelCaseProperties)
+			if (options.CamelCaseKeys == true && options.CamelCaseProperties != true)
 				throw new NotSupportedException("Camel casing keys but not properties is not supported.");
 
 			var o = _settings.Clone();
-			if (options.CamelCaseKeys)
+			if (options.CamelCaseKeys == true)
 			{
 				o.ContractResolver = new DefaultContractResolver
 				{
@@ -38,18 +38,20 @@ namespace Open.Serialization.Json.Newtonsoft
 					}
 				};
 			}
-			else if (options.CamelCaseProperties)
+			else if (options.CamelCaseProperties == true)
 			{
 				o.ContractResolver = new CamelCasePropertyNamesContractResolver();
 			}
-			else
+			else if (options.CamelCaseProperties == false)
 			{
 				o.ContractResolver = new DefaultContractResolver();
 			}
 
+			if(options.OmitNull.HasValue)
+				o.NullValueHandling = options.OmitNull.Value ? NullValueHandling.Ignore : NullValueHandling.Include;
 
-			o.NullValueHandling = options.OmitNull ? NullValueHandling.Ignore : NullValueHandling.Include;
-			o.Formatting = options.Indent ? Formatting.Indented : Formatting.None;
+			if (options.OmitNull.HasValue)
+				o.Formatting = options.Indent.Value ? Formatting.Indented : Formatting.None;
 
 			return new JsonSerializerInternal(o);
 		}
