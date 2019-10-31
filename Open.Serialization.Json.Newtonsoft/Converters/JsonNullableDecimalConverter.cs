@@ -14,7 +14,7 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 			= new JsonNullableDecimalConverter();
 
 		public override decimal? ReadJson(JsonReader reader, Type objectType, decimal? existingValue, bool hasExistingValue, JsonSerializer serializer)
-			=> hasExistingValue ? existingValue : reader.TokenType switch
+			=> reader.TokenType switch
 			{
 				JsonToken.Null => default,
 				JsonToken.Float => (decimal)reader.Value,

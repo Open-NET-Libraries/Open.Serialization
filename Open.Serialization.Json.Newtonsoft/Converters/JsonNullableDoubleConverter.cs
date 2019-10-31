@@ -15,7 +15,7 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 
 
 		public override double? ReadJson(JsonReader reader, Type objectType, double? existingValue, bool hasExistingValue, JsonSerializer serializer)
-			=> hasExistingValue ? existingValue : reader.TokenType switch
+			=> reader.TokenType switch
 			{
 				JsonToken.Null => default,
 				JsonToken.Float => (double)reader.Value,

@@ -35,5 +35,33 @@ namespace Open.Serialization.Tests.System
 			var obj = serializer.Deserialize<SampleModel>(json);
 			Assert.NotNull(obj);
 		}
+
+		[Fact]
+		public static void ValidateDecimals()
+		{
+			const decimal sample = 1.234567890123456789012345m;
+			var basic = new JsonSerializerOptions() { IgnoreNullValues = true };
+			var serializer = basic
+				.NormalizeDecimals()
+				.GetSerializer();
+
+			{
+				var model = new SampleModel
+				{
+					DecimalValue1 = sample
+				};
+				var json = serializer.Serialize(model);
+				Assert.Equal(sample, serializer.Deserialize<SampleModel>(json).DecimalValue1);
+			}
+
+			{
+				var model = new SampleModel
+				{
+					NullableDecimalValue = sample
+				};
+				var json = serializer.Serialize(model);
+				Assert.Equal(sample, serializer.Deserialize<SampleModel>(json).NullableDecimalValue);
+			}
+		}
 	}
 }
