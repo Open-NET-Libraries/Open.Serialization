@@ -9,7 +9,7 @@ namespace Open.Serialization
 		ValueTask SerializeAsync<T>(Stream stream, T item, CancellationToken cancellationToken = default);
 	}
 
-	public interface ISerializeAsync<T>
+	public interface ISerializeAsync<in T>
 	{
 		ValueTask SerializeAsync(Stream stream, T item, CancellationToken cancellationToken = default);
 	}

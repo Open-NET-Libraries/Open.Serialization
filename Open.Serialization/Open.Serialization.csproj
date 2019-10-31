@@ -15,7 +15,7 @@ Part of the "Open" set of libraries.</Description>
 		<RepositoryUrl>https://github.com/electricessence/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>serialization json</PackageTags>
-		<Version>1.2.0</Version>
+		<Version>1.2.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">

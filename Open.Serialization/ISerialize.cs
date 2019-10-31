@@ -5,7 +5,7 @@
 		string Serialize<T>(T item);
 	}
 
-	public interface ISerialize<T>
+	public interface ISerialize<in T>
 	{
 		string Serialize(T item);
 	}

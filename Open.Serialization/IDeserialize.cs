@@ -5,7 +5,7 @@
 		T Deserialize<T>(string value);
 	}
 
-	public interface IDeserialize<T>
+	public interface IDeserialize<out T>
 	{
 		T Deserialize(string value);
 	}
