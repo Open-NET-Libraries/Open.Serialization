@@ -18,10 +18,10 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 			{
 				JsonToken.Null => default,
 				JsonToken.Float => Convert.ToDecimal(reader.Value),
-				_ => throw new JsonException("Unexpected token type."),
+				_ => throw new JsonException($"Unexpected token type: {reader.TokenType}, Actual: {reader.Value.GetType()}")
 			};
 
-		public override void WriteJson(JsonWriter writer, decimal? value, JsonSerializer serializer)
-			=> writer.WriteRawValue(JsonDecimalConverter.Normalize(value));
+	public override void WriteJson(JsonWriter writer, decimal? value, JsonSerializer serializer)
+		=> writer.WriteRawValue(JsonDecimalConverter.Normalize(value));
 	}
 }

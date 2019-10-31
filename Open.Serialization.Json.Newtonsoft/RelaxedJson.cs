@@ -11,6 +11,7 @@ namespace Open.Serialization.Json.Newtonsoft
 			=> new JsonSerializerSettings()
 			{
 				Formatting = indent ? Formatting.Indented : Formatting.None,
+				FloatParseHandling = FloatParseHandling.Decimal,
 				ContractResolver = new DefaultContractResolver()
 				{
 					NamingStrategy = new DefaultNamingStrategy() { ProcessDictionaryKeys = false }

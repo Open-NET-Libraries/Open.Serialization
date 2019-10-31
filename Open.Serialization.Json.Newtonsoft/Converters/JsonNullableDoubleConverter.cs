@@ -18,8 +18,8 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 			=> reader.TokenType switch
 			{
 				JsonToken.Null => default,
-				JsonToken.Float => (double)reader.Value,
-				_ => throw new JsonException("Unexpected token type."),
+				JsonToken.Float => Convert.ToDouble(reader.Value),
+				_ => throw new JsonException($"Unexpected token type: {reader.TokenType}, Actual: {reader.Value.GetType()}")
 			};
 
 		public override void WriteJson(JsonWriter writer, double? value, JsonSerializer serializer)

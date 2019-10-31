@@ -14,7 +14,9 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 		}
 
 		public override double ReadJson(JsonReader reader, Type objectType, double existingValue, bool hasExistingValue, JsonSerializer serializer)
-			=> Math.Round((double)reader.Value, Maximum);
+			=> reader.Value is decimal d
+				? Convert.ToDouble(Math.Round(d, Maximum))
+				: Math.Round(Convert.ToDouble(reader.Value), Maximum);
 
 		public override void WriteJson(JsonWriter writer, double value, JsonSerializer serializer)
 			=> writer.WriteValue(Math.Round(value, Maximum));
