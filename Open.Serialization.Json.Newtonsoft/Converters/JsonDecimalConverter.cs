@@ -13,10 +13,10 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 		public static readonly JsonDecimalConverter Instance
 			= new JsonDecimalConverter();
 
-		public static string Normalize(decimal? value)
+		public static string? Normalize(decimal? value)
 			=> Normalize(value?.ToString());
 
-		public static string Normalize(string decimalString)
+		public static string? Normalize(string? decimalString)
 			=> decimalString?.IndexOf('.') == -1 ? decimalString
 				: decimalString?.TrimEnd('0').TrimEnd('.');
 

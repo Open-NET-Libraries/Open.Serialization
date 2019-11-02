@@ -17,7 +17,9 @@ Part of the "Open" set of libraries.
 		<RepositoryUrl>https://github.com/electricessence/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>serialization json newtonsoft</PackageTags>
-		<Version>1.2.7</Version>
+		<Version>1.2.8</Version>
+
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>

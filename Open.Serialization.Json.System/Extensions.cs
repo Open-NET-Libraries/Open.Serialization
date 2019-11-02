@@ -95,7 +95,7 @@ namespace Open.Serialization.Json.System
 
 		static JsonSerializerOptions RoundNullableDoublesCore(this JsonSerializerOptions options, int maxDecimals)
 		{
-			var existing = options.Converters.FirstOrDefault(c => c is JsonConverter<double?>);
+			JsonConverter? existing = options.Converters.FirstOrDefault(c => c is JsonConverter<double?>);
 			if (existing is JsonNullableDoubleConverter && existing.GetType() == typeof(JsonNullableDoubleConverter))
 			{
 				options.Converters.Remove(existing);
@@ -115,7 +115,7 @@ namespace Open.Serialization.Json.System
 
 		public static JsonSerializerOptions NormalizeDecimals(this JsonSerializerOptions options)
 		{
-			var existing = options.Converters.FirstOrDefault(c => c is JsonConverter<decimal>);
+			JsonConverter? existing = options.Converters.FirstOrDefault(c => c is JsonConverter<decimal>);
 			var existingNullable = options.Converters.FirstOrDefault(c => c is JsonConverter<decimal?>);
 
 			if (existing is JsonDecimalConverter && existingNullable is JsonNullableDecimalConverter)
@@ -134,7 +134,7 @@ namespace Open.Serialization.Json.System
 
 		static JsonSerializerOptions RoundDecimalsCore(this JsonSerializerOptions options, int maxDecimals)
 		{
-			var existing = options.Converters.FirstOrDefault(c => c is JsonConverter<decimal>);
+			JsonConverter? existing = options.Converters.FirstOrDefault(c => c is JsonConverter<decimal>);
 			if (existing is JsonDecimalConverter && existing.GetType() == typeof(JsonDecimalConverter))
 			{
 				options.Converters.Remove(existing);
@@ -149,7 +149,7 @@ namespace Open.Serialization.Json.System
 
 		static JsonSerializerOptions RoundNullableDecimalsCore(this JsonSerializerOptions options, int maxDecimals)
 		{
-			var existing = options.Converters.FirstOrDefault(c => c is JsonConverter<decimal?>);
+			JsonConverter? existing = options.Converters.FirstOrDefault(c => c is JsonConverter<decimal?>);
 			if (existing is JsonNullableDecimalConverter && existing.GetType() == typeof(JsonNullableDecimalConverter))
 			{
 				options.Converters.Remove(existing);

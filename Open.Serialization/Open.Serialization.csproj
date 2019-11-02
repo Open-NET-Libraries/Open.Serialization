@@ -16,6 +16,8 @@ Part of the "Open" set of libraries.</Description>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>serialization json</PackageTags>
 		<Version>1.2.1</Version>
+
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">

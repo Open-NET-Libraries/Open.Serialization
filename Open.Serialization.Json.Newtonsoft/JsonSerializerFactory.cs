@@ -9,15 +9,17 @@ namespace Open.Serialization.Json.Newtonsoft
 	{
 		static readonly JsonSerializerSettings DefaultOptions = RelaxedJson.Options();
 		readonly JsonSerializerSettings _settings;
-		public JsonSerializerFactory(JsonSerializerSettings defaultOptions = null)
+		public JsonSerializerFactory(JsonSerializerSettings? defaultOptions = null)
 		{
 			_settings = defaultOptions?.Clone() ?? DefaultOptions;
 		}
 
-		JsonSerializerInternal _default;
+		JsonSerializerInternal? _default;
+#pragma warning disable CS8603 // Possible null reference return.
 		JsonSerializerInternal Default => LazyInitializer.EnsureInitialized(ref _default, () => new JsonSerializerInternal(_settings));
+#pragma warning restore CS8603 // Possible null reference return.
 
-		public override IJsonSerializer GetSerializer(IJsonSerializationOptions options = null, bool caseSensitive = false)
+		public override IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 		{
 			if (caseSensitive)
 				throw new NotSupportedException("Newtonsoft does not support case-sensitive deserialization.");
@@ -50,7 +52,7 @@ namespace Open.Serialization.Json.Newtonsoft
 			if(options.OmitNull.HasValue)
 				o.NullValueHandling = options.OmitNull.Value ? NullValueHandling.Ignore : NullValueHandling.Include;
 
-			if (options.OmitNull.HasValue)
+			if (options.Indent.HasValue)
 				o.Formatting = options.Indent.Value ? Formatting.Indented : Formatting.None;
 
 			return new JsonSerializerInternal(o);

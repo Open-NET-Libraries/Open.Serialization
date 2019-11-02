@@ -98,7 +98,7 @@ namespace Open.Serialization.Json.Newtonsoft
 
 		static JsonSerializerSettings RoundNullableDoublesCore(this JsonSerializerSettings settings, int maxDecimals)
 		{
-			var existing = settings.Converters.FirstOrDefault(c => c is JsonConverter<double?>);
+			JsonConverter? existing = settings.Converters.FirstOrDefault(c => c is JsonConverter<double?>);
 			if (existing is JsonNullableDoubleConverter && existing.GetType() == typeof(JsonNullableDoubleConverter))
 			{
 				settings.Converters.Remove(existing);
@@ -118,7 +118,7 @@ namespace Open.Serialization.Json.Newtonsoft
 
 		public static JsonSerializerSettings NormalizeDecimals(this JsonSerializerSettings settings)
 		{
-			var existing = settings.Converters.FirstOrDefault(c => c is JsonConverter<decimal>);
+			JsonConverter? existing = settings.Converters.FirstOrDefault(c => c is JsonConverter<decimal>);
 			var existingNullable = settings.Converters.FirstOrDefault(c => c is JsonConverter<decimal?>);
 
 			if (existing is JsonDecimalConverter && existingNullable is JsonNullableDecimalConverter)
@@ -137,7 +137,7 @@ namespace Open.Serialization.Json.Newtonsoft
 
 		static JsonSerializerSettings RoundDecimalsCore(this JsonSerializerSettings settings, int maxDecimals)
 		{
-			var existing = settings.Converters.FirstOrDefault(c => c is JsonConverter<decimal>);
+			JsonConverter? existing = settings.Converters.FirstOrDefault(c => c is JsonConverter<decimal>);
 			if (existing is JsonDecimalConverter && existing.GetType() == typeof(JsonDecimalConverter))
 			{
 				settings.Converters.Remove(existing);
@@ -152,7 +152,7 @@ namespace Open.Serialization.Json.Newtonsoft
 
 		static JsonSerializerSettings RoundNullableDecimalsCore(this JsonSerializerSettings settings, int maxDecimals)
 		{
-			var existing = settings.Converters.FirstOrDefault(c => c is JsonConverter<decimal?>);
+			JsonConverter? existing = settings.Converters.FirstOrDefault(c => c is JsonConverter<decimal?>);
 			if (existing is JsonNullableDecimalConverter && existing.GetType() == typeof(JsonNullableDecimalConverter))
 			{
 				settings.Converters.Remove(existing);
