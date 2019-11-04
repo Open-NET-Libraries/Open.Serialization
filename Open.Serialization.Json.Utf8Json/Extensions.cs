@@ -1,6 +1,5 @@
 ﻿using Open.Serialization.Json.Utf8Json;
 using System;
-using System.Linq;
 using Utf8Json;
 
 namespace Open.Serialization.Json.System

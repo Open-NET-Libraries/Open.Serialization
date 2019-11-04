@@ -1,7 +1,6 @@
 using Open.Serialization.Json.Newtonsoft;
 using Newtonsoft.Json;
 using Xunit;
-using System.Diagnostics;
 using System;
 
 namespace Open.Serialization.Tests.Newtonsoft
