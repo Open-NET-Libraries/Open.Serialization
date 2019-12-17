@@ -9,7 +9,7 @@ namespace Open.Serialization.Json.Utf8Json
 	{
 		readonly IJsonFormatterResolver _resolver;
 		readonly bool _indent;
-		public JsonSerializerFactory(IJsonFormatterResolver defaultResolver = null, bool indent = false)
+		public JsonSerializerFactory(IJsonFormatterResolver? defaultResolver = null, bool indent = false)
 		{
 			_resolver = defaultResolver ?? StandardResolver.Default;
 			if (_resolver == StandardResolver.ExcludeNullSnakeCase || _resolver == StandardResolver.SnakeCase)
@@ -17,10 +17,10 @@ namespace Open.Serialization.Json.Utf8Json
 			_indent = indent;
 		}
 
-		JsonSerializerInternal _default;
-		JsonSerializerInternal Default => LazyInitializer.EnsureInitialized(ref _default, () => new JsonSerializerInternal(_resolver, _indent));
+		JsonSerializerInternal? _default;
+		JsonSerializerInternal Default => LazyInitializer.EnsureInitialized(ref _default, () => new JsonSerializerInternal(_resolver, _indent))!;
 
-		public override IJsonSerializer GetSerializer(IJsonSerializationOptions options = null, bool caseSensitive = false)
+		public override IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 		{
 			if (caseSensitive)
 				throw new NotSupportedException("Utf8Json does not support case-sensitive deserialization.");

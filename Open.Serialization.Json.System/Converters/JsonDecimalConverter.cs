@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Text.Json;
 
 namespace Open.Serialization.Json.System.Converters
@@ -18,6 +19,9 @@ namespace Open.Serialization.Json.System.Converters
 
 		public override void Write(Utf8JsonWriter writer, decimal value, JsonSerializerOptions options)
 		{
+			if (writer is null) throw new ArgumentNullException(nameof(writer));
+			Contract.EndContractBlock();
+
 			var v = value / 1M;
 			var truncated = decimal.Truncate(v);
 			writer.WriteNumberValue(truncated == v ? truncated : v / 1.000000000000000000000000000000000m);

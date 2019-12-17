@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Diagnostics.Contracts;
 
 namespace Open.Serialization.Json.Newtonsoft.Converters
 {
@@ -17,13 +18,24 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 			=> Normalize(value?.ToString());
 
 		public static string? Normalize(string? decimalString)
-			=> decimalString?.IndexOf('.') == -1 ? decimalString
+			=> decimalString == null || decimalString.IndexOf('.') == -1
+				? decimalString
 				: decimalString?.TrimEnd('0').TrimEnd('.');
 
 		public override decimal ReadJson(JsonReader reader, Type objectType, decimal existingValue, bool hasExistingValue, JsonSerializer serializer)
-			=> Convert.ToDecimal(reader.Value);
+		{
+			if (reader is null) throw new ArgumentNullException(nameof(reader));
+			Contract.EndContractBlock();
+
+			return Convert.ToDecimal(reader.Value);
+		}
 
 		public override void WriteJson(JsonWriter writer, decimal value, JsonSerializer serializer)
-			=> writer.WriteRawValue(Normalize(value));			
+		{
+			if (writer is null) throw new ArgumentNullException(nameof(writer));
+			Contract.EndContractBlock();
+
+			writer.WriteRawValue(Normalize(value));
+		}
 	}
 }

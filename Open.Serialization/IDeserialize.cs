@@ -2,11 +2,11 @@
 {
 	public interface IDeserialize
 	{
-		T Deserialize<T>(string value);
+		T Deserialize<T>(string? value);
 	}
 
 	public interface IDeserialize<out T>
 	{
-		T Deserialize(string value);
+		T Deserialize(string? value);
 	}
 }

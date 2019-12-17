@@ -1,5 +1,6 @@
 ﻿using Open.Serialization.Json.System.Converters;
 using System;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -9,13 +10,13 @@ namespace Open.Serialization.Json.System
 {
 	public static class Extensions
 	{
-		public static Func<string, T> GetDeserialize<T>(this JsonSerializerOptions options)
+		public static Func<string?, T> GetDeserialize<T>(this JsonSerializerOptions options)
 			=> json => JsonSerializer.Deserialize<T>(json, options);
 
-		public static Func<T, string> GetSerialize<T>(this JsonSerializerOptions options)
+		public static Func<T, string?> GetSerialize<T>(this JsonSerializerOptions options)
 			=> item => JsonSerializer.Serialize(item, options);
 
-		public static Func<object, string> GetSerialize(this JsonSerializerOptions options)
+		public static Func<object?, string?> GetSerialize(this JsonSerializerOptions options)
 			=> item => JsonSerializer.Serialize(item, options);
 
 		public static IJsonSerializer GetSerializer(this JsonSerializerOptions options)
@@ -27,17 +28,20 @@ namespace Open.Serialization.Json.System
 		public static IJsonSerializerFactory GetSerializerFactory(this JsonSerializerOptions options)
 			=> new JsonSerializerFactory(options);
 
-		public static string Serialize<TValue>(this JsonSerializerOptions options, TValue value)
+		public static string? Serialize<TValue>(this JsonSerializerOptions options, TValue value)
 			=> JsonSerializer.Serialize(value, options);
-		public static string Serialize(this JsonSerializerOptions options, object value)
+		public static string? Serialize(this JsonSerializerOptions options, object? value)
 			=> JsonSerializer.Serialize(value, options);
-		public static TValue Deserialize<TValue>(this JsonSerializerOptions options, string value)
+		public static TValue Deserialize<TValue>(this JsonSerializerOptions options, string? value)
 			=> JsonSerializer.Deserialize<TValue>(value, options);
 		public static TValue Deserialize<TValue>(this JsonSerializerOptions options, ReadOnlySpan<byte> value)
 			=> JsonSerializer.Deserialize<TValue>(value, options);
 
 		public static JsonSerializerOptions Clone(this JsonSerializerOptions options)
 		{
+			if (options == null) throw new ArgumentNullException(nameof(options));
+			Contract.EndContractBlock();
+
 			var clone = new JsonSerializerOptions
 			{
 				AllowTrailingCommas = options.AllowTrailingCommas,
@@ -61,24 +65,36 @@ namespace Open.Serialization.Json.System
 
 		public static JsonSerializerOptions SetPropertyNameCaseInsensitive(this JsonSerializerOptions options, bool value)
 		{
+			if (options == null) throw new ArgumentNullException(nameof(options));
+			Contract.EndContractBlock();
+
 			options.PropertyNameCaseInsensitive = value;
 			return options;
 		}
 
 		public static JsonSerializerOptions SetIgnoreNullValues(this JsonSerializerOptions options, bool value = true)
 		{
+			if (options == null) throw new ArgumentNullException(nameof(options));
+			Contract.EndContractBlock();
+
 			options.IgnoreNullValues = value;
 			return options;
 		}
 
 		public static JsonSerializerOptions UseUnsafeEncoding(this JsonSerializerOptions options)
 		{
+			if (options is null) throw new ArgumentNullException(nameof(options));
+			Contract.EndContractBlock();
+
 			options.Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
 			return options;
 		}
 
 		public static JsonSerializerOptions AddConverter(this JsonSerializerOptions options, JsonConverter converter)
 		{
+			if (options == null) throw new ArgumentNullException(nameof(options));
+			Contract.EndContractBlock();
+
 			options.Converters.Add(converter);
 			return options;
 		}
@@ -109,12 +125,20 @@ namespace Open.Serialization.Json.System
 		}
 
 		public static JsonSerializerOptions RoundDoubles(this JsonSerializerOptions options, int maxDecimals)
-			=> options
+		{
+			if (options == null) throw new ArgumentNullException(nameof(options));
+			Contract.EndContractBlock();
+
+			return options
 				.RoundDoublesCore(maxDecimals)
 				.RoundNullableDoublesCore(maxDecimals);
+		}
 
 		public static JsonSerializerOptions NormalizeDecimals(this JsonSerializerOptions options)
 		{
+			if (options == null) throw new ArgumentNullException(nameof(options));
+			Contract.EndContractBlock();
+
 			JsonConverter? existing = options.Converters.FirstOrDefault(c => c is JsonConverter<decimal>);
 			var existingNullable = options.Converters.FirstOrDefault(c => c is JsonConverter<decimal?>);
 
@@ -163,8 +187,13 @@ namespace Open.Serialization.Json.System
 		}
 
 		public static JsonSerializerOptions RoundDecimals(this JsonSerializerOptions options, int maxDecimals)
-			=> options
+		{
+			if (options == null) throw new ArgumentNullException(nameof(options));
+			Contract.EndContractBlock();
+
+			return options
 				.RoundDecimalsCore(maxDecimals)
 				.RoundNullableDecimalsCore(maxDecimals);
+		}
 	}
 }

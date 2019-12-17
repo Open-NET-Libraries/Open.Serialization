@@ -1,11 +1,11 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Open.Serialization.Json.Newtonsoft.Converters
 {
 	public class JsonNullableDoubleRoundingConverter : JsonNullableDoubleConverter
 	{
-		public readonly int Maximum;
+		public int Maximum { get; }
 		public JsonNullableDoubleRoundingConverter(int maximum)
 		{
 			if (maximum < 0)

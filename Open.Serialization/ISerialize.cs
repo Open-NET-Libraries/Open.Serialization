@@ -2,11 +2,11 @@
 {
 	public interface ISerialize
 	{
-		string Serialize<T>(T item);
+		string? Serialize<T>(T item);
 	}
 
 	public interface ISerialize<in T>
 	{
-		string Serialize(T item);
+		string? Serialize(T item);
 	}
 }

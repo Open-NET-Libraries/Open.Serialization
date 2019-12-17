@@ -6,17 +6,17 @@ namespace Open.Serialization.Json.System
 {
 	public static class Extensions
 	{
-		public static Func<string, T> GetDeserialize<T>(this IJsonFormatterResolver options)
+		public static Func<string?, T> GetDeserialize<T>(this IJsonFormatterResolver options)
 			=> json => JsonSerializer.Deserialize<T>(json, options);
 
-		public static Func<T, string> GetSerialize<T>(this IJsonFormatterResolver options, bool indent = false)
+		public static Func<T, string?> GetSerialize<T>(this IJsonFormatterResolver options, bool indent = false)
 			=> item =>
 			{
 				var result = JsonSerializer.ToJsonString(item, options);
 				return indent ? JsonSerializer.PrettyPrint(result) : result;
 			};
 
-		public static Func<object, string> GetSerialize(this IJsonFormatterResolver options, bool indent = false)
+		public static Func<object?, string?> GetSerialize(this IJsonFormatterResolver options, bool indent = false)
 			=> item =>
 			{
 				var result = JsonSerializer.ToJsonString(item, options);
@@ -32,11 +32,11 @@ namespace Open.Serialization.Json.System
 		public static IJsonSerializerFactory GetSerializerFactory(this IJsonFormatterResolver options)
 			=> new JsonSerializerFactory(options);
 
-		public static string Serialize<TValue>(this IJsonFormatterResolver options, TValue value)
+		public static string? Serialize<TValue>(this IJsonFormatterResolver options, TValue value)
 			=> JsonSerializer.ToJsonString(value, options);
-		public static string Serialize(this IJsonFormatterResolver options, object value)
+		public static string? Serialize(this IJsonFormatterResolver options, object? value)
 			=> JsonSerializer.ToJsonString(value, options);
-		public static TValue Deserialize<TValue>(this IJsonFormatterResolver options, string value)
+		public static TValue Deserialize<TValue>(this IJsonFormatterResolver options, string? value)
 			=> JsonSerializer.Deserialize<TValue>(value, options);
 
 	}

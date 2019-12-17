@@ -49,7 +49,7 @@ namespace Open.Serialization.Json.Newtonsoft
 				o.ContractResolver = new DefaultContractResolver();
 			}
 
-			if(options.OmitNull.HasValue)
+			if (options.OmitNull.HasValue)
 				o.NullValueHandling = options.OmitNull.Value ? NullValueHandling.Ignore : NullValueHandling.Include;
 
 			if (options.Indent.HasValue)

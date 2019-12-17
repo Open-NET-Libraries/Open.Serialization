@@ -15,7 +15,7 @@ namespace Open.Serialization.Json.Utf8Json
 			_indent = indent;
 		}
 
-		public override T Deserialize<T>(string value)
+		public override T Deserialize<T>(string? value)
 			=> JsonSerializer.Deserialize<T>(value, _resolver);
 
 		public new Task<T> DeserializeAsync<T>(Stream stream, CancellationToken cancellationToken = default)
@@ -53,7 +53,7 @@ namespace Open.Serialization.Json.Utf8Json
 			_indent = indent;
 		}
 
-		public override T Deserialize(string value)
+		public override T Deserialize(string? value)
 			=> JsonSerializer.Deserialize<T>(value, _resolver);
 
 		public new Task SerializeAsync(Stream stream, T item, CancellationToken cancellationToken = default)

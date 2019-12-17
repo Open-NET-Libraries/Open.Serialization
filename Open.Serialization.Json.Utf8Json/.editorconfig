@@ -1,0 +1,10 @@
+﻿[*.cs]
+
+# CA1303: Do not pass literals as localized parameters
+dotnet_diagnostic.CA1303.severity = silent
+
+# IDE0022: Use block body for methods
+csharp_style_expression_bodied_methods = false:silent
+
+# IDE0060: Remove unused parameter
+dotnet_code_quality_unused_parameters = all:silent

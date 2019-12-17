@@ -10,10 +10,10 @@ namespace Open.Serialization.Json.Newtonsoft
 			_settings = settings;
 		}
 
-		public override T Deserialize<T>(string value)
+		public override T Deserialize<T>(string? value)
 			=> JsonConvert.DeserializeObject<T>(value, _settings);
 
-		public override string Serialize<T>(T item)
+		public override string? Serialize<T>(T item)
 			=> JsonConvert.SerializeObject(item, _settings);
 	}
 

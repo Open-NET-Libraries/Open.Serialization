@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -27,6 +28,9 @@ namespace Open.Serialization.Json.System.Converters
 
 		public override void Write(Utf8JsonWriter writer, decimal? value, JsonSerializerOptions options)
 		{
+			if (writer is null) throw new ArgumentNullException(nameof(writer));
+			Contract.EndContractBlock();
+
 			if (value.HasValue) JsonDecimalConverter.Instance.Write(writer, value.Value, options);
 			else writer.WriteNullValue();
 		}

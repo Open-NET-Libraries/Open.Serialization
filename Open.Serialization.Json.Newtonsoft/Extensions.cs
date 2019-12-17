@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Open.Serialization.Json.Newtonsoft.Converters;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Linq;
 
 namespace Open.Serialization.Json.Newtonsoft
 {
 	public static class Extensions
 	{
-		public static Func<string, T> GetDeserialize<T>(this JsonSerializerSettings settings)
+		public static Func<string?, T> GetDeserialize<T>(this JsonSerializerSettings settings)
 			=> json => JsonConvert.DeserializeObject<T>(json, settings);
 
-		public static Func<T, string> GetSerialize<T>(this JsonSerializerSettings settings)
+		public static Func<T, string?> GetSerialize<T>(this JsonSerializerSettings settings)
 			=> item => JsonConvert.SerializeObject(item, settings);
 
-		public static Func<object, string> GetSerialize(this JsonSerializerSettings settings)
+		public static Func<object?, string?> GetSerialize(this JsonSerializerSettings settings)
 			=> item => JsonConvert.SerializeObject(item, settings);
 
 		public static IJsonSerializer GetSerializer(this JsonSerializerSettings settings)
@@ -26,15 +27,18 @@ namespace Open.Serialization.Json.Newtonsoft
 		public static IJsonSerializerFactory GetSerializerFactory(this JsonSerializerSettings settings)
 			=> new JsonSerializerFactory(settings);
 
-		public static string Serialize<TValue>(this JsonSerializerSettings settings, TValue value)
+		public static string? Serialize<TValue>(this JsonSerializerSettings settings, TValue value)
 			=> JsonConvert.SerializeObject(value, settings);
-		public static string Serialize(this JsonSerializerSettings settings, object value)
+		public static string? Serialize(this JsonSerializerSettings settings, object? value)
 			=> JsonConvert.SerializeObject(value, settings);
-		public static TValue Deserialize<TValue>(this JsonSerializerSettings settings, string value)
+		public static TValue Deserialize<TValue>(this JsonSerializerSettings settings, string? value)
 			=> JsonConvert.DeserializeObject<TValue>(value, settings);
 
 		public static JsonSerializerSettings Clone(this JsonSerializerSettings settings)
 		{
+			if (settings == null) throw new ArgumentNullException(nameof(settings));
+			Contract.EndContractBlock();
+
 			var clone = new JsonSerializerSettings
 			{
 				StringEscapeHandling = settings.StringEscapeHandling,
@@ -76,12 +80,18 @@ namespace Open.Serialization.Json.Newtonsoft
 
 		public static JsonSerializerSettings SetNullValueHandling(this JsonSerializerSettings settings, NullValueHandling value)
 		{
+			if (settings == null) throw new ArgumentNullException(nameof(settings));
+			Contract.EndContractBlock();
+
 			settings.NullValueHandling = value;
 			return settings;
 		}
 
 		public static JsonSerializerSettings AddConverter(this JsonSerializerSettings settings, JsonConverter converter)
 		{
+			if (settings == null) throw new ArgumentNullException(nameof(settings));
+			Contract.EndContractBlock();
+
 			settings.Converters.Add(converter);
 			return settings;
 		}
@@ -112,12 +122,20 @@ namespace Open.Serialization.Json.Newtonsoft
 		}
 
 		public static JsonSerializerSettings RoundDoubles(this JsonSerializerSettings settings, int maxDecimals)
-			=> settings
+		{
+			if (settings == null) throw new ArgumentNullException(nameof(settings));
+			Contract.EndContractBlock();
+
+			return settings
 				.RoundDoublesCore(maxDecimals)
 				.RoundNullableDoublesCore(maxDecimals);
+		}
 
 		public static JsonSerializerSettings NormalizeDecimals(this JsonSerializerSettings settings)
 		{
+			if (settings == null) throw new ArgumentNullException(nameof(settings));
+			Contract.EndContractBlock();
+
 			JsonConverter? existing = settings.Converters.FirstOrDefault(c => c is JsonConverter<decimal>);
 			var existingNullable = settings.Converters.FirstOrDefault(c => c is JsonConverter<decimal?>);
 
@@ -166,8 +184,13 @@ namespace Open.Serialization.Json.Newtonsoft
 		}
 
 		public static JsonSerializerSettings RoundDecimals(this JsonSerializerSettings settings, int maxDecimals)
-			=> settings
+		{
+			if (settings == null) throw new ArgumentNullException(nameof(settings));
+			Contract.EndContractBlock();
+
+			return settings
 				.RoundDecimalsCore(maxDecimals)
 				.RoundNullableDecimalsCore(maxDecimals);
+		}
 	}
 }

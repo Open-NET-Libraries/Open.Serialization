@@ -7,9 +7,9 @@
 		<Authors>electricessence</Authors>
 		<Company>electricessence</Company>
 		<Description>
-Extentions and DI utilities for Newtonsoft.Json.
+			Extentions and DI utilities for Newtonsoft.Json.
 
-Part of the "Open" set of libraries.
+			Part of the "Open" set of libraries.
 		</Description>
 		<Copyright>https://github.com/electricessence/Open.Serialization/blob/master/LICENSE</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -17,14 +17,17 @@ Part of the "Open" set of libraries.
 		<RepositoryUrl>https://github.com/electricessence/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>serialization json newtonsoft</PackageTags>
-		<Version>1.2.8</Version>
-
+		<Version>1.4.0</Version>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-		<PackageReference Include="Open.Serialization.Json" Version="1.2.2" />
+		<PackageReference Include="Open.Serialization.Json" Version="1.4.0" />
 	</ItemGroup>
 
 </Project>

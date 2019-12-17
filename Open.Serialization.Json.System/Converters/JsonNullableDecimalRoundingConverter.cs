@@ -5,7 +5,7 @@ namespace Open.Serialization.Json.System.Converters
 {
 	public class JsonNullableDecimalRoundingConverter : JsonNullableDecimalConverter
 	{
-		public readonly int Maximum;
+		public int Maximum { get; }
 		public JsonNullableDecimalRoundingConverter(int maximum)
 		{
 			if (maximum < 0)

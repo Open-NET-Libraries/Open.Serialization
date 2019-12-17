@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.Text.Json;
 
 namespace Open.Serialization.Json.System.Converters
 {
 	public class JsonDoubleRoundingConverter : JsonValueConverterBase<double>
 	{
-		public readonly int Maximum;
+		public int Maximum { get; }
 		public JsonDoubleRoundingConverter(int maximum)
 		{
 			if (maximum < 0)
@@ -17,6 +18,11 @@ namespace Open.Serialization.Json.System.Converters
 			=> Math.Round(reader.GetDouble(), Maximum);
 
 		public override void Write(Utf8JsonWriter writer, double value, JsonSerializerOptions options)
-			=> writer.WriteNumberValue(Math.Round(value, Maximum));
+		{
+			if (writer is null) throw new ArgumentNullException(nameof(writer));
+			Contract.EndContractBlock();
+
+			writer.WriteNumberValue(Math.Round(value, Maximum));
+		}
 	}
 }
