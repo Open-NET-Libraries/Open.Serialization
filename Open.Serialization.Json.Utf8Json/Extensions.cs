@@ -1,8 +1,7 @@
-﻿using Open.Serialization.Json.Utf8Json;
-using System;
+﻿using System;
 using Utf8Json;
 
-namespace Open.Serialization.Json.System
+namespace Open.Serialization.Json.Utf8Json
 {
 	public static class Extensions
 	{
