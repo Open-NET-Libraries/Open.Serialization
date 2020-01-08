@@ -7,6 +7,6 @@ namespace Open.Serialization
 {
 	public interface IDeserializeObjectAsync
 	{
-		ValueTask<object?> DeserializeAsync<T>(Stream stream, Type type, CancellationToken cancellationToken = default);
+		ValueTask<object?> DeserializeAsync(Stream stream, Type type, CancellationToken cancellationToken = default);
 	}
 }
