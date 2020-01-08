@@ -17,7 +17,7 @@ Part of the "Open" set of libraries.
 		<RepositoryUrl>https://github.com/electricessence/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>serialization json</PackageTags>
-		<Version>1.4.0</Version>
+		<Version>1.5.0</Version>
 		<Nullable>enable</Nullable>
 		<PackageReleaseNotes>Improved nullable reference support.  FxCop inspections and fixes.</PackageReleaseNotes>
 	</PropertyGroup>
