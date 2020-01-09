@@ -12,7 +12,9 @@ namespace Open.Serialization
 	// But retained public for use externally.
 	public static class DefaultMethods
 	{
-		/// <inheritdoc cref="IDeserializeObjectAsync.DeserializeAsync(Stream, Type, CancellationToken))" />
+		/// <summary>
+		/// Deserializes a stream to the specified type.
+		/// </summary>
 		public static async ValueTask<object?> DeserializeAsync(IDeserializeObject deserializer, Stream source, Type type)
 		{
 			if (deserializer is null) throw new ArgumentNullException(nameof(deserializer));
@@ -24,7 +26,9 @@ namespace Open.Serialization
 			return deserializer.Deserialize(text, type);
 		}
 
-		/// <inheritdoc cref="ISerializeObjectAsync.SerializeAsync(Stream, object, Type, CancellationToken)"/>
+		/// <summary>
+		/// Serializes the provided item to a stream.
+		/// </summary>
 		public static async ValueTask SerializeAsync(ISerializeObject serializer, Stream target, object? item, Type type)
 		{
 			if (serializer is null) throw new ArgumentNullException(nameof(serializer));
@@ -35,7 +39,9 @@ namespace Open.Serialization
 			await writer.WriteAsync(text).ConfigureAwait(false);
 		}
 
-		/// <inheritdoc cref="IDeserializeAsync.DeserializeAsync{T}(Stream, CancellationToken)"/>
+		/// <summary>
+		/// Deserializes a stream to the specified type.
+		/// </summary>
 		public static async ValueTask<T> DeserializeAsync<T>(IDeserialize deserializer, Stream source)
 		{
 			if (deserializer is null) throw new ArgumentNullException(nameof(deserializer));
@@ -46,7 +52,9 @@ namespace Open.Serialization
 			return deserializer.Deserialize<T>(text);
 		}
 
-		/// <inheritdoc cref="ISerializeAsync.SerializeAsync{T}(Stream, T, CancellationToken)"/>
+		/// <summary>
+		/// Serializes the provided item to a stream.
+		/// </summary>
 		public static async ValueTask SerializeAsync<T>(ISerialize serializer, Stream target, T item)
 		{
 			if (serializer is null) throw new ArgumentNullException(nameof(serializer));
@@ -58,7 +66,9 @@ namespace Open.Serialization
 		}
 
 
-		/// <inheritdoc cref="IDeserializeAsync{T}.DeserializeAsync(Stream, CancellationToken)"/>
+		/// <summary>
+		/// Deserializes a stream to the specified type.
+		/// </summary>
 		public static async ValueTask<T> DeserializeAsync<T>(IDeserialize<T> deserializer, Stream source)
 		{
 			if (deserializer is null) throw new ArgumentNullException(nameof(deserializer));
@@ -69,7 +79,9 @@ namespace Open.Serialization
 			return deserializer.Deserialize(text);
 		}
 
-		/// <inheritdoc cref="ISerializeAsync{T}.SerializeAsync(Stream, T, CancellationToken)"/>
+		/// <summary>
+		/// Serializes the provided item to a stream.
+		/// </summary>
 		public static async ValueTask SerializeAsync<T>(ISerialize<T> serializer, Stream target, T item)
 		{
 			if (serializer is null) throw new ArgumentNullException(nameof(serializer));
