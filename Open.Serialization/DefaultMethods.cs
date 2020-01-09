@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -52,7 +50,7 @@ namespace Open.Serialization
 		public static async ValueTask SerializeAsync<T>(ISerialize serializer, Stream target, T item)
 		{
 			if (serializer is null) throw new ArgumentNullException(nameof(serializer));
-			if (target is null)	throw new ArgumentNullException(nameof(target));
+			if (target is null) throw new ArgumentNullException(nameof(target));
 
 			var text = serializer.Serialize(item);
 			using var writer = new StreamWriter(target);

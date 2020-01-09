@@ -27,7 +27,7 @@ namespace Open.Serialization
 		/// Creates a type specific serializer using this as the underlying serializer.
 		/// </summary>
 		/// <returns>A type specific serializer.</returns>
-		public ISerializer<T> Cast<T>()
+		public Serializer<T> Cast<T>()
 			=> new Serializer<T>(Deserialize<T>, Serialize, DeserializeAsync<T>, SerializeAsync);
 	}
 
