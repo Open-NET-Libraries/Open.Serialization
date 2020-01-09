@@ -17,21 +17,12 @@ namespace Open.Serialization
 		public abstract object? Deserialize(string? value, Type type);
 
 		/// <inheritdoc />
-		public virtual async ValueTask SerializeAsync(Stream target, object? item, Type type, CancellationToken cancellationToken = default)
-		{
-			var text = Serialize(item, type);
-			using var writer = new StreamWriter(target);
-			await writer.WriteAsync(text).ConfigureAwait(false);
-		}
+		public virtual ValueTask SerializeAsync(Stream target, object? item, Type type, CancellationToken cancellationToken = default)
+			=> DefaultMethods.SerializeAsync(this, target, item, type);
 
 		/// <inheritdoc />
-		public async virtual ValueTask<object?> DeserializeAsync(Stream source, Type type, CancellationToken cancellationToken = default)
-		{
-			string text;
-			using (var reader = new StreamReader(source))
-				text = await reader.ReadToEndAsync().ConfigureAwait(false);
-			return Deserialize(text, type);
-		}
+		public virtual ValueTask<object?> DeserializeAsync(Stream source, Type type, CancellationToken cancellationToken = default)
+			=> DefaultMethods.DeserializeAsync(this, source, type);
 
 		/// <inheritdoc />
 		public override string? Serialize<T>(T item)

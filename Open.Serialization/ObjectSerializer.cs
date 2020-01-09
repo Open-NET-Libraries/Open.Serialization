@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace Open.Serialization
 	/// </summary>
 	public abstract class ObjectSerializer : ObjectSerializerBase
 	{
-		private readonly Func<string?, Type, object?> _deserializer;
+		private readonly Func<string?, Type, object?>? _deserializer;
 		private readonly Func<object?, Type, string?>? _serializer;
 		private readonly Func<Stream, Type, CancellationToken, ValueTask<object?>> _deserializerAsync;
 		private readonly Func<Stream, object?, Type, CancellationToken, ValueTask> _serializerAsync;
@@ -19,12 +20,16 @@ namespace Open.Serialization
 		/// Constructs a serializer/deserializer using the provided serialization functions.
 		/// </summary>
 		public ObjectSerializer(
-			Func<string?, Type, object?> deserializer,
+			Func<string?, Type, object?>? deserializer,
 			Func<object?, Type, string?>? serializer = null,
 			Func<Stream, Type, CancellationToken, ValueTask<object?>>? deserializerAsync = null,
 			Func<Stream, object?, Type, CancellationToken, ValueTask>? serializerAsync = null)
 		{
-			_deserializer = deserializer ?? throw new ArgumentNullException(nameof(deserializer));
+			if (deserializer is null && serializer is null && deserializerAsync is null && serializerAsync is null)
+				throw new ArgumentNullException(nameof(deserializer), "At least one of the serialization or deserialization functions must not be null.");
+			Contract.EndContractBlock();
+
+			_deserializer = deserializer;
 			_serializer = serializer;
 			_deserializerAsync = deserializerAsync ?? base.DeserializeAsync;
 			_serializerAsync = serializerAsync ?? base.SerializeAsync;
@@ -32,7 +37,9 @@ namespace Open.Serialization
 
 		/// <inheritdoc />
 		public override object? Deserialize(string? value, Type type)
-			=> _deserializer(value, type);
+			=> _deserializer == null
+			? throw new NullReferenceException("No deserializer function was supplied.")
+			: _deserializer(value, type);
 
 		/// <inheritdoc />
 		public override ValueTask<object?> DeserializeAsync(Stream stream, Type type, CancellationToken cancellationToken = default)

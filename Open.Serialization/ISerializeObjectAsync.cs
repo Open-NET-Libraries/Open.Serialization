@@ -8,7 +8,7 @@ namespace Open.Serialization
 	/// <summary>
 	/// Interface for asynchronously serializing an object to a string when given a type.
 	/// </summary>
-	public interface ISerializeObjectAsync : ISerializeAsync
+	public interface ISerializeObjectAsync
 	{
 		/// <summary>
 		/// Serializes the provided item to a stream.
@@ -20,7 +20,8 @@ namespace Open.Serialization
 		ValueTask SerializeAsync(Stream target, object? item, Type type, CancellationToken cancellationToken = default);
 
 #if NETSTANDARD2_1
-		ValueTask ISerializeAsync.SerializeAsync<T>(Stream target, T item, CancellationToken cancellationToken)
+		/// <inheritdoc cref="ISerializeAsync.SerializeAsync{T}(Stream, T, CancellationToken)" />
+		virtual ValueTask SerializeAsync<T>(Stream target, T item, CancellationToken cancellationToken)
 			=> SerializeAsync(target, item, typeof(T), cancellationToken);
 #endif
 	}

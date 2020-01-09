@@ -4,6 +4,29 @@
         <name>Open.Serialization</name>
     </assembly>
     <members>
+        <member name="T:Open.Serialization.DefaultMethods">
+            <summary>
+            Default utiltiy methods for use with implementing interfaces/classes.
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.DefaultMethods.DeserializeAsync(Open.Serialization.IDeserializeObject,System.IO.Stream,System.Type)">
+            <inheritdoc cref="!:IDeserializeObjectAsync.DeserializeAsync(Stream, Type, CancellationToken))" />
+        </member>
+        <member name="M:Open.Serialization.DefaultMethods.SerializeAsync(Open.Serialization.ISerializeObject,System.IO.Stream,System.Object,System.Type)">
+            <inheritdoc cref="M:Open.Serialization.ISerializeObjectAsync.SerializeAsync(System.IO.Stream,System.Object,System.Type,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Open.Serialization.DefaultMethods.DeserializeAsync``1(Open.Serialization.IDeserialize,System.IO.Stream)">
+            <inheritdoc cref="M:Open.Serialization.IDeserializeAsync.DeserializeAsync``1(System.IO.Stream,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Open.Serialization.DefaultMethods.SerializeAsync``1(Open.Serialization.ISerialize,System.IO.Stream,``0)">
+            <inheritdoc cref="M:Open.Serialization.ISerializeAsync.SerializeAsync``1(System.IO.Stream,``0,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Open.Serialization.DefaultMethods.DeserializeAsync``1(Open.Serialization.IDeserialize{``0},System.IO.Stream)">
+            <inheritdoc cref="M:Open.Serialization.IDeserializeAsync`1.DeserializeAsync(System.IO.Stream,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Open.Serialization.DefaultMethods.SerializeAsync``1(Open.Serialization.ISerialize{``0},System.IO.Stream,``0)">
+            <inheritdoc cref="M:Open.Serialization.ISerializeAsync`1.SerializeAsync(System.IO.Stream,`0,System.Threading.CancellationToken)"/>
+        </member>
         <member name="T:Open.Serialization.IDeserialize">
             <summary>
             Interface for deserializing any given generic type.

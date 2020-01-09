@@ -8,7 +8,7 @@ namespace Open.Serialization
 	/// <summary>
 	/// Interface for asynchronously deserializing any string to an object when given a type.
 	/// </summary>
-	public interface IDeserializeObjectAsync : IDeserializeAsync
+	public interface IDeserializeObjectAsync
 	{
 		/// <summary>
 		/// Deserializes a stream to the specified type.
@@ -20,7 +20,8 @@ namespace Open.Serialization
 		ValueTask<object?> DeserializeAsync(Stream source, Type type, CancellationToken cancellationToken = default);
 
 #if NETSTANDARD2_1
-		async ValueTask<T> IDeserializeAsync.DeserializeAsync<T>(Stream source, CancellationToken cancellationToken)
+		/// <inheritdoc cref="IDeserializeAsync.DeserializeAsync{T}(Stream, CancellationToken)" />
+		async ValueTask<T> DeserializeAsync<T>(Stream source, CancellationToken cancellationToken)
 			=> (T)(await DeserializeAsync(source, typeof(T), cancellationToken))!;
 #endif
 	}

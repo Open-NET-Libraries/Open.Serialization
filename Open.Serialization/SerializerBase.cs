@@ -13,24 +13,15 @@ namespace Open.Serialization
 		public abstract T Deserialize<T>(string? value);
 
 		/// <inheritdoc />
-		public virtual async ValueTask<T> DeserializeAsync<T>(Stream stream, CancellationToken cancellationToken = default)
-		{
-			string text;
-			using (var reader = new StreamReader(stream))
-				text = await reader.ReadToEndAsync().ConfigureAwait(false);
-			return Deserialize<T>(text);
-		}
+		public virtual ValueTask<T> DeserializeAsync<T>(Stream source, CancellationToken cancellationToken = default)
+			=> DefaultMethods.DeserializeAsync<T>(this, source);
 
 		/// <inheritdoc />
 		public abstract string? Serialize<T>(T item);
 
 		/// <inheritdoc />
-		public virtual async ValueTask SerializeAsync<T>(Stream stream, T item, CancellationToken cancellationToken = default)
-		{
-			var text = Serialize(item);
-			using var writer = new StreamWriter(stream);
-			await writer.WriteAsync(text).ConfigureAwait(false);
-		}
+		public virtual ValueTask SerializeAsync<T>(Stream target, T item, CancellationToken cancellationToken = default)
+			=> DefaultMethods.SerializeAsync(this, target, item);
 
 		/// <summary>
 		/// Creates a type specific serializer using this as the underlying serializer.
@@ -49,23 +40,14 @@ namespace Open.Serialization
 		public abstract T Deserialize(string? value);
 
 		/// <inheritdoc />
-		public virtual async ValueTask<T> DeserializeAsync(Stream stream, CancellationToken cancellationToken = default)
-		{
-			string text;
-			using (var reader = new StreamReader(stream))
-				text = await reader.ReadToEndAsync().ConfigureAwait(false);
-			return Deserialize(text);
-		}
+		public virtual ValueTask<T> DeserializeAsync(Stream source, CancellationToken cancellationToken = default)
+			=> DefaultMethods.DeserializeAsync(this, source);
 
 		/// <inheritdoc />
 		public abstract string? Serialize(T item);
 
 		/// <inheritdoc />
-		public virtual async ValueTask SerializeAsync(Stream stream, T item, CancellationToken cancellationToken = default)
-		{
-			var text = Serialize(item);
-			using var writer = new StreamWriter(stream);
-			await writer.WriteAsync(text).ConfigureAwait(false);
-		}
+		public virtual ValueTask SerializeAsync(Stream target, T item, CancellationToken cancellationToken = default)
+			=> DefaultMethods.SerializeAsync(this, target, item);
 	}
 }
