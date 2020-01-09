@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Open.Serialization.Json</name>
+    </assembly>
+    <members>
+        <member name="T:Open.Serialization.Json.IJsonAsyncObjectSerializer">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonAsyncSerializer">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonAsyncSerializer`1">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonDeserialize">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonDeserialize`1">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonDeserializeAsync">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonDeserializeAsync`1">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonDeserializeObject">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonDeserializeObjectAsync">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonObjectSerializationFactory">
+            <summary>
+            Factory for generating JSON serializers and deserializers.
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.Json.IJsonObjectSerializationFactory.GetDeserializer(System.Boolean)">
+            <summary>
+            Returns the requested deserializer
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.Json.IJsonObjectSerializationFactory.GetAsyncDeserializer(System.Boolean)">
+            <summary>
+            Returns the requested deserializer
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.Json.IJsonObjectSerializationFactory.GetSerializer(Open.Serialization.Json.IJsonSerializationOptions)">
+            <summary>
+            Returns the requested serializer
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.Json.IJsonObjectSerializationFactory.GetAsyncSerializer(Open.Serialization.Json.IJsonSerializationOptions)">
+            <summary>
+            Returns the requested serializer
+            </summary>
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonObjectSerializer">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonObjectSerializerFactory">
+            <summary>
+            Factory for generating a JSON serializer/deserializer.
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.Json.IJsonObjectSerializerFactory.GetSerializer(Open.Serialization.Json.IJsonSerializationOptions,System.Boolean)">
+            <summary>
+            Returns the requested serializer
+            </summary>
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonSerializationFactory">
+            <summary>
+            Factory for generating JSON generic serializers and deserializers.
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.Json.IJsonSerializationFactory.GetDeserializer(System.Boolean)">
+            <summary>
+            Returns the requested deserializer
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.Json.IJsonSerializationFactory.GetAsyncDeserializer(System.Boolean)">
+            <summary>
+            Returns the requested deserializer
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.Json.IJsonSerializationFactory.GetSerializer(Open.Serialization.Json.IJsonSerializationOptions)">
+            <summary>
+            Returns the requested serializer
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.Json.IJsonSerializationFactory.GetAsyncSerializer(Open.Serialization.Json.IJsonSerializationOptions)">
+            <summary>
+            Returns the requested serializer
+            </summary>
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonSerializationOptions">
+            <summary>
+            Basic properties needed for modifying how JSON is written.
+            </summary>
+        </member>
+        <member name="P:Open.Serialization.Json.IJsonSerializationOptions.CamelCaseProperties">
+            <summary>
+            If true the serializer will format the JSON properties camelCase.
+            </summary>
+        </member>
+        <member name="P:Open.Serialization.Json.IJsonSerializationOptions.CamelCaseKeys">
+            <summary>
+            If true the serializer will format the JSON map keys camelCase.
+            </summary>
+        </member>
+        <member name="P:Open.Serialization.Json.IJsonSerializationOptions.OmitNull">
+            <summary>
+            If true the serializer will omit map entries with null values.
+            </summary>
+        </member>
+        <member name="P:Open.Serialization.Json.IJsonSerializationOptions.Indent">
+            <summary>
+            If true the serializer will format the JSON multi-line indented.
+            </summary>
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonSerialize">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonSerialize`1">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonSerializeAsync">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonSerializeAsync`1">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonSerializeObject">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonSerializeObjectAsync">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonSerializer">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonSerializer`1">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.IJsonSerializerFactory">
+            <summary>
+            Factory for generating a JSON generic serializer/deserializer.
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.Json.IJsonSerializerFactory.GetSerializer(Open.Serialization.Json.IJsonSerializationOptions,System.Boolean)">
+            <summary>
+            Returns the requested serializer
+            </summary>
+        </member>
+        <member name="T:Open.Serialization.Json.JsonObjectSerializer">
+            <inheritdoc />
+        </member>
+        <member name="M:Open.Serialization.Json.JsonObjectSerializer.#ctor(System.Func{System.String,System.Type,System.Object},System.Func{System.Object,System.Type,System.String},System.Func{System.IO.Stream,System.Type,System.Threading.CancellationToken,System.Threading.Tasks.ValueTask{System.Object}},System.Func{System.IO.Stream,System.Object,System.Type,System.Threading.CancellationToken,System.Threading.Tasks.ValueTask})">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.JsonObjectSerializerBase">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.JsonSerializationOptions">
+            <inheritdoc />
+        </member>
+        <member name="P:Open.Serialization.Json.JsonSerializationOptions.CamelCaseProperties">
+            <inheritdoc />
+        </member>
+        <member name="P:Open.Serialization.Json.JsonSerializationOptions.CamelCaseKeys">
+            <inheritdoc />
+        </member>
+        <member name="P:Open.Serialization.Json.JsonSerializationOptions.OmitNull">
+            <inheritdoc />
+        </member>
+        <member name="P:Open.Serialization.Json.JsonSerializationOptions.Indent">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.JsonSerializer`1">
+            <inheritdoc />
+        </member>
+        <member name="M:Open.Serialization.Json.JsonSerializer`1.#ctor(System.Func{System.String,`0},System.Func{`0,System.String},System.Func{System.IO.Stream,System.Threading.CancellationToken,System.Threading.Tasks.ValueTask{`0}},System.Func{System.IO.Stream,`0,System.Threading.CancellationToken,System.Threading.Tasks.ValueTask})">
+            <inheritdoc />
+        </member>
+        <member name="T:Open.Serialization.Json.JsonSerializerBase">
+            <inheritdoc />
+        </member>
+        <member name="M:Open.Serialization.Json.JsonSerializerBase.Cast``1">
+            <inheritdoc cref="M:Open.Serialization.SerializerBase.Cast``1" />
+        </member>
+        <member name="T:Open.Serialization.Json.JsonSerializerBase`1">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

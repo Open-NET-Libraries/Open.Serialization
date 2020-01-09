@@ -17,8 +17,12 @@
 		<RepositoryUrl>https://github.com/electricessence/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>serialization json</PackageTags>
-		<Version>1.4.0</Version>
+		<Version>2.1.0</Version>
 		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+	  <DocumentationFile>C:\Users\essence\Development\Open\Open.Serialization\Open.Serialization.Json\Open.Serialization.Json.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -26,7 +30,7 @@
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-	  <PackageReference Include="Open.Serialization" Version="1.5.0" />
+	  <PackageReference Include="Open.Serialization" Version="2.1.0" />
 	</ItemGroup>
 
 </Project>

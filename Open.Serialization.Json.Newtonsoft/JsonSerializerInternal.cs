@@ -2,7 +2,7 @@
 
 namespace Open.Serialization.Json.Newtonsoft
 {
-	internal class JsonSerializerInternal : SerializerBase, IJsonSerializer
+	internal class JsonSerializerInternal : JsonSerializerBase
 	{
 		readonly JsonSerializerSettings _settings;
 		internal JsonSerializerInternal(JsonSerializerSettings settings)
@@ -17,7 +17,7 @@ namespace Open.Serialization.Json.Newtonsoft
 			=> JsonConvert.SerializeObject(item, _settings);
 	}
 
-	internal class JsonSerializerInternal<T> : Serializer<T>, IJsonSerializer<T>
+	internal class JsonSerializerInternal<T> : JsonSerializer<T>, IJsonSerializer<T>, IJsonAsyncSerializer<T>
 	{
 		internal JsonSerializerInternal(JsonSerializerSettings settings)
 			: base(settings.GetDeserialize<T>(), settings.GetSerialize<T>())
