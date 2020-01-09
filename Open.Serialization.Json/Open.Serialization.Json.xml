@@ -64,7 +64,7 @@
             Factory for generating a JSON serializer/deserializer.
             </summary>
         </member>
-        <member name="M:Open.Serialization.Json.IJsonObjectSerializerFactory.GetSerializer(Open.Serialization.Json.IJsonSerializationOptions,System.Boolean)">
+        <member name="M:Open.Serialization.Json.IJsonObjectSerializerFactory.GetObjectSerializer(Open.Serialization.Json.IJsonSerializationOptions,System.Boolean)">
             <summary>
             Returns the requested serializer
             </summary>

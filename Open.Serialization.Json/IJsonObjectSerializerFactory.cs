@@ -8,6 +8,6 @@
 		/// <summary>
 		/// Returns the requested serializer
 		/// </summary>
-		IJsonObjectSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false);
+		IJsonObjectSerializer GetObjectSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false);
 	}
 }
