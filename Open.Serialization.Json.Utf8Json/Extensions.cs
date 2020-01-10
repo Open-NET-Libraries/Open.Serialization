@@ -26,7 +26,7 @@ namespace Open.Serialization.Json.Utf8Json
 			=> new JsonSerializerInternal(options, indent);
 
 		public static IJsonSerializer<T> GetSerializer<T>(this IJsonFormatterResolver options, bool indent = false)
-			=> new JsonSerializerInternal<T>(options, indent);
+			=> new JsonSerializerInternal(options, indent).Cast<T>();
 
 		public static IJsonSerializerFactory GetSerializerFactory(this IJsonFormatterResolver options)
 			=> new JsonSerializerFactory(options);

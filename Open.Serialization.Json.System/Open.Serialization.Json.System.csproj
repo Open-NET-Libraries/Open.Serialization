@@ -17,7 +17,7 @@ Part of the "Open" set of libraries.
 		<RepositoryUrl>https://github.com/electricessence/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>serialization json stj</PackageTags>
-		<Version>1.4.0</Version>
+		<Version>2.1.0</Version>
 
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
@@ -27,8 +27,8 @@ Part of the "Open" set of libraries.
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Open.Serialization.Json" Version="1.4.0" />
-    <PackageReference Include="System.Text.Json" Version="4.6.0" />
+    <PackageReference Include="Open.Serialization.Json" Version="2.1.1" />
+    <PackageReference Include="System.Text.Json" Version="4.7.0" />
   </ItemGroup>
 
 </Project>

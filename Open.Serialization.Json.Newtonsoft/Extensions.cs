@@ -22,7 +22,7 @@ namespace Open.Serialization.Json.Newtonsoft
 			=> new JsonSerializerInternal(settings);
 
 		public static IJsonSerializer<T> GetSerializer<T>(this JsonSerializerSettings settings)
-			=> new JsonSerializerInternal<T>(settings);
+			=> new JsonSerializerInternal(settings).Cast<T>();
 
 		public static IJsonSerializerFactory GetSerializerFactory(this JsonSerializerSettings settings)
 			=> new JsonSerializerFactory(settings);

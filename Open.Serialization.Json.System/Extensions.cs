@@ -23,7 +23,7 @@ namespace Open.Serialization.Json.System
 			=> new JsonSerializerInternal(options);
 
 		public static IJsonSerializer<T> GetSerializer<T>(this JsonSerializerOptions options)
-			=> new JsonSerializerInternal<T>(options);
+			=> new JsonSerializerInternal(options).Cast<T>();
 
 		public static IJsonSerializerFactory GetSerializerFactory(this JsonSerializerOptions options)
 			=> new JsonSerializerFactory(options);

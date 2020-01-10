@@ -5,7 +5,7 @@ using Utf8Json.Resolvers;
 
 namespace Open.Serialization.Json.Utf8Json
 {
-	public class JsonSerializerFactory : JsonSerializerFactoryBase
+	public class JsonSerializerFactory : IJsonSerializerFactory
 	{
 		readonly IJsonFormatterResolver _resolver;
 		readonly bool _indent;
@@ -20,7 +20,7 @@ namespace Open.Serialization.Json.Utf8Json
 		JsonSerializerInternal? _default;
 		JsonSerializerInternal Default => LazyInitializer.EnsureInitialized(ref _default, () => new JsonSerializerInternal(_resolver, _indent))!;
 
-		public override IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
+		public IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 		{
 			if (caseSensitive)
 				throw new NotSupportedException("Utf8Json does not support case-sensitive deserialization.");

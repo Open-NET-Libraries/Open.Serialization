@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace Open.Serialization.Json.Newtonsoft
 {
-	internal class JsonSerializerInternal : JsonSerializerBase
+	internal class JsonSerializerInternal : JsonObjectSerializerBase, IJsonSerializer
 	{
 		readonly JsonSerializerSettings _settings;
 		internal JsonSerializerInternal(JsonSerializerSettings settings)
@@ -15,13 +16,15 @@ namespace Open.Serialization.Json.Newtonsoft
 
 		public override string? Serialize<T>(T item)
 			=> JsonConvert.SerializeObject(item, _settings);
-	}
 
-	internal class JsonSerializerInternal<T> : JsonSerializer<T>, IJsonSerializer<T>, IJsonAsyncSerializer<T>
-	{
-		internal JsonSerializerInternal(JsonSerializerSettings settings)
-			: base(settings.GetDeserialize<T>(), settings.GetSerialize<T>())
-		{
-		}
+		public override object? Deserialize(string? value, Type type)
+			=> JsonConvert.DeserializeObject(value, type);
+
+		public override string? Serialize(object? item, Type type)
+			=> JsonConvert.SerializeObject(item, type, _settings);
+
+		public new JsonSerializer<T> Cast<T>()
+			=> new JsonSerializer<T>(Deserialize<T>, Serialize, DeserializeAsync<T>, SerializeAsync);
+
 	}
 }

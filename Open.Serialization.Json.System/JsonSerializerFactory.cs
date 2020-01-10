@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace Open.Serialization.Json.System
 {
-	public class JsonSerializerFactory : JsonSerializerFactoryBase
+	public class JsonSerializerFactory : IJsonSerializerFactory
 	{
 		static readonly JsonSerializerOptions DefaultOptions = RelaxedJson.Options();
 		readonly JsonSerializerOptions _options;
@@ -15,7 +15,7 @@ namespace Open.Serialization.Json.System
 		JsonSerializerInternal? _caseSensitive;
 		JsonSerializerInternal? _ignoreCase;
 
-		public override IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
+		public IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 		{
 			if (options == null)
 			{

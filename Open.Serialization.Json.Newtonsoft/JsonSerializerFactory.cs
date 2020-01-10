@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace Open.Serialization.Json.Newtonsoft
 {
-	public class JsonSerializerFactory : JsonSerializerFactoryBase
+	public class JsonSerializerFactory : IJsonSerializerFactory, IJsonObjectSerializerFactory
 	{
 		static readonly JsonSerializerSettings DefaultOptions = RelaxedJson.Options();
 		readonly JsonSerializerSettings _settings;
@@ -15,16 +15,17 @@ namespace Open.Serialization.Json.Newtonsoft
 		}
 
 		JsonSerializerInternal? _default;
-#pragma warning disable CS8603 // Possible null reference return.
-		JsonSerializerInternal Default => LazyInitializer.EnsureInitialized(ref _default, () => new JsonSerializerInternal(_settings));
-#pragma warning restore CS8603 // Possible null reference return.
+		JsonSerializerInternal Default => LazyInitializer.EnsureInitialized(ref _default, () => new JsonSerializerInternal(_settings))!;
 
-		public override IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
+#if NETSTANDARD2_1
+		[return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull("options")]
+#endif
+		public JsonSerializerSettings? GetJsonSerializerSettings(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 		{
 			if (caseSensitive)
 				throw new NotSupportedException("Newtonsoft does not support case-sensitive deserialization.");
 
-			if (options == null) return Default;
+			if (options == null) return null;
 
 			if (options.CamelCaseKeys == true && options.CamelCaseProperties != true)
 				throw new NotSupportedException("Camel casing keys but not properties is not supported.");
@@ -55,7 +56,19 @@ namespace Open.Serialization.Json.Newtonsoft
 			if (options.Indent.HasValue)
 				o.Formatting = options.Indent.Value ? Formatting.Indented : Formatting.None;
 
-			return new JsonSerializerInternal(o);
+			return o;
+		}
+
+		public IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
+		{
+			var o = GetJsonSerializerSettings(options, caseSensitive);
+			return o == null ? Default : new JsonSerializerInternal(o);
+		}
+
+		public IJsonObjectSerializer GetObjectSerializer(IJsonSerializationOptions? options, bool caseSensitive)
+		{
+			var o = GetJsonSerializerSettings(options, caseSensitive);
+			return o == null ? Default : new JsonSerializerInternal(o);
 		}
 	}
 }
