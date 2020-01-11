@@ -27,7 +27,7 @@ Part of the "Open" set of libraries.
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Open.Serialization.Json" Version="2.1.1" />
+    <PackageReference Include="Open.Serialization.Json" Version="2.2.1" />
     <PackageReference Include="System.Text.Json" Version="4.7.0" />
   </ItemGroup>
 

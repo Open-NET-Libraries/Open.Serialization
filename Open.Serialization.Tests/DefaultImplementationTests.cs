@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Open.Serialization.Extensions;
+using System;
 using Xunit;
 
 namespace Open.Serialization.Tests

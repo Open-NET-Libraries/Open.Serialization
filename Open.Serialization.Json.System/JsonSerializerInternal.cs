@@ -28,6 +28,6 @@ namespace Open.Serialization.Json.System
 
 		public override ValueTask<T> DeserializeAsync<T>(Stream stream, CancellationToken cancellationToken = default)
 			=> JsonSerializer.DeserializeAsync<T>(stream, _options);
-	
+
 	}
 }
