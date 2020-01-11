@@ -368,6 +368,12 @@
         <member name="M:Open.Serialization.SerializerBase.SerializeAsync``1(System.IO.Stream,``0,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:Open.Serialization.SerializerBase.Cast``1">
+            <summary>
+            Creates a type specific serializer using this as the underlying serializer.
+            </summary>
+            <returns>A type specific serializer.</returns>
+        </member>
         <member name="T:Open.Serialization.SerializerBase`1">
             <summary>
             Base calss for implementing a spedific generic type serializer/deserializer.
