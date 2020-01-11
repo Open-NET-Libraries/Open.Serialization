@@ -22,6 +22,13 @@ namespace Open.Serialization
 		/// <inheritdoc />
 		public virtual ValueTask SerializeAsync<T>(Stream target, T item, CancellationToken cancellationToken = default)
 			=> DefaultMethods.SerializeAsync(this, target, item);
+
+		/// <summary>
+		/// Creates a type specific serializer using this as the underlying serializer.
+		/// </summary>
+		/// <returns>A type specific serializer.</returns>
+		public virtual Serializer<T> Cast<T>()
+			=> new Serializer<T>(Deserialize<T>, Serialize, DeserializeAsync<T>, SerializeAsync);
 	}
 
 	/// <summary>
