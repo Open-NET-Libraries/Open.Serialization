@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace Open.Serialization.Json.System
 {
-	public static class Extensions
+	public static class SerializationsExtensions
 	{
 		public static Func<string?, T> GetDeserialize<T>(this JsonSerializerOptions options)
 			=> json => JsonSerializer.Deserialize<T>(json, options);

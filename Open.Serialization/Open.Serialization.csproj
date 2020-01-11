@@ -19,7 +19,6 @@ Part of the "Open" set of libraries.
 		<PackageTags>serialization</PackageTags>
 		<Version>2.2.1</Version>
 		<Nullable>enable</Nullable>
-		<PackageReleaseNotes></PackageReleaseNotes>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">

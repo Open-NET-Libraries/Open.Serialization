@@ -3,7 +3,7 @@ using Utf8Json;
 
 namespace Open.Serialization.Json.Utf8Json
 {
-	public static class Extensions
+	public static class SerializationExtensions
 	{
 		public static Func<string?, T> GetDeserialize<T>(this IJsonFormatterResolver options)
 			=> json => JsonSerializer.Deserialize<T>(json, options);

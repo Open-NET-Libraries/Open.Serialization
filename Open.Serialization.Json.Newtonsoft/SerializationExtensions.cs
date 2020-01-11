@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Open.Serialization.Json.Newtonsoft
 {
-	public static class Extensions
+	public static class SerializationExtensions
 	{
 		public static Func<string?, T> GetDeserialize<T>(this JsonSerializerSettings settings)
 			=> json => JsonConvert.DeserializeObject<T>(json, settings);
