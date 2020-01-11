@@ -91,5 +91,21 @@ namespace Open.Serialization
 			await writer.WriteAsync(text).ConfigureAwait(false);
 		}
 
+		/// <summary>
+		/// Creates a type specific serializer using this as the underlying serializer.
+		/// </summary>
+		/// <returns>A type specific serializer.</returns>
+		public static Serializer<T> Cast<T>(this ISerializer serializer)
+		{
+			if (serializer is null)
+				throw new ArgumentNullException(nameof(serializer));
+
+			return serializer is IAsyncSerializer a
+				? new Serializer<T>(
+					serializer.Deserialize<T>, serializer.Serialize<T>,
+					a.DeserializeAsync<T>, a.SerializeAsync<T>)
+				: new Serializer<T>(
+					serializer.Deserialize<T>, serializer.Serialize<T>);
+		}
 	}
 }

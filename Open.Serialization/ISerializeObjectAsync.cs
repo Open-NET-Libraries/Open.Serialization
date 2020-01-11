@@ -18,11 +18,5 @@ namespace Open.Serialization
 		/// <param name="type">The expected type.</param>
 		/// <param name="cancellationToken">An optional cancellation token.</param>
 		ValueTask SerializeAsync(Stream target, object? item, Type type, CancellationToken cancellationToken = default);
-
-#if NETSTANDARD2_1
-		/// <inheritdoc cref="ISerializeAsync.SerializeAsync{T}(Stream, T, CancellationToken)" />
-		virtual ValueTask SerializeAsync<T>(Stream target, T item, CancellationToken cancellationToken)
-			=> SerializeAsync(target, item, typeof(T), cancellationToken);
-#endif
 	}
 }

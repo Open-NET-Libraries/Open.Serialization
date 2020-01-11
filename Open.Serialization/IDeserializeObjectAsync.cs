@@ -18,11 +18,5 @@ namespace Open.Serialization
 		/// <param name="cancellationToken">An optional cancellation token.</param>
 		/// <returns>The deserialized result.</returns>
 		ValueTask<object?> DeserializeAsync(Stream source, Type type, CancellationToken cancellationToken = default);
-
-#if NETSTANDARD2_1
-		/// <inheritdoc cref="IDeserializeAsync.DeserializeAsync{T}(Stream, CancellationToken)" />
-		async ValueTask<T> DeserializeAsync<T>(Stream source, CancellationToken cancellationToken)
-			=> (T)(await DeserializeAsync(source, typeof(T), cancellationToken))!;
-#endif
 	}
 }

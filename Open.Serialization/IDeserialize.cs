@@ -1,8 +1,4 @@
-﻿using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Open.Serialization
+﻿namespace Open.Serialization
 {
 	/// <summary>
 	/// Interface for deserializing any given generic type.
@@ -15,11 +11,6 @@ namespace Open.Serialization
 		/// <param name="value">The string to deserialize.</param>
 		/// <returns>The deserialized result.</returns>
 		T Deserialize<T>(string? value);
-
-#if NETSTANDARD2_1
-		ValueTask<T> DeserializeAsync<T>(Stream source, CancellationToken cancellationToken = default)
-			=> DefaultMethods.DeserializeAsync<T>(this, source);
-#endif
 	}
 
 	/// <summary>

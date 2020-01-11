@@ -39,6 +39,59 @@
             Serializes the provided item to a stream.
             </summary>
         </member>
+        <member name="M:Open.Serialization.DefaultMethods.Cast``1(Open.Serialization.ISerializer)">
+            <summary>
+            Creates a type specific serializer using this as the underlying serializer.
+            </summary>
+            <returns>A type specific serializer.</returns>
+        </member>
+        <member name="T:Open.Serialization.Extensions.SerializationExtensions">
+            <summary>
+            Default extensions for pure serialization interfaces. 
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.Deserialize``1(Open.Serialization.IDeserializeObject,System.String)">
+            <inheritdoc cref="M:Open.Serialization.IDeserialize.Deserialize``1(System.String)" />
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.Serialize``1(Open.Serialization.ISerializeObject,``0)">
+            <inheritdoc cref="M:Open.Serialization.ISerialize.Serialize``1(``0)" />
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.DeserializeAsync``1(Open.Serialization.IDeserializeObject,System.IO.Stream,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Open.Serialization.IDeserializeAsync.DeserializeAsync``1(System.IO.Stream,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.DeserializeAsync(Open.Serialization.IDeserializeObject,System.IO.Stream,System.Type,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Open.Serialization.IDeserializeObjectAsync.DeserializeAsync(System.IO.Stream,System.Type,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.DeserializeAsync``1(Open.Serialization.IDeserializeObjectAsync,System.IO.Stream,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Open.Serialization.IDeserializeAsync.DeserializeAsync``1(System.IO.Stream,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.SerializeAsync``1(Open.Serialization.ISerialize,System.IO.Stream,``0,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Open.Serialization.ISerializeAsync.SerializeAsync``1(System.IO.Stream,``0,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.SerializeAsync(Open.Serialization.ISerializeObject,System.IO.Stream,System.Object,System.Type,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Open.Serialization.ISerializeObjectAsync.SerializeAsync(System.IO.Stream,System.Object,System.Type,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.SerializeAsync``1(Open.Serialization.ISerializeObject,System.IO.Stream,``0,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Open.Serialization.ISerializeAsync.SerializeAsync``1(System.IO.Stream,``0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.DeserializeAsync``1(Open.Serialization.IDeserialize,System.IO.Stream,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Open.Serialization.IDeserializeAsync.DeserializeAsync``1(System.IO.Stream,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.DeserializeAsync``1(Open.Serialization.IDeserialize{``0},System.IO.Stream,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Open.Serialization.IDeserializeAsync`1.DeserializeAsync(System.IO.Stream,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.SerializeAsync``1(Open.Serialization.ISerialize{``0},System.IO.Stream,``0,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Open.Serialization.ISerializeAsync`1.SerializeAsync(System.IO.Stream,`0,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.SerializeAsync``1(Open.Serialization.ISerializeObjectAsync,System.IO.Stream,``0,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Open.Serialization.ISerializeAsync.SerializeAsync``1(System.IO.Stream,``0,System.Threading.CancellationToken)" />
+        </member>
+        <member name="M:Open.Serialization.Extensions.SerializationExtensions.Cast``1(Open.Serialization.ISerializer)">
+            <summary>
+            Creates a type specific serializer using this as the underlying serializer.
+            </summary>
+            <returns>A type specific serializer.</returns>
+        </member>
         <member name="T:Open.Serialization.IDeserialize">
             <summary>
             Interface for deserializing any given generic type.
@@ -314,12 +367,6 @@
         </member>
         <member name="M:Open.Serialization.SerializerBase.SerializeAsync``1(System.IO.Stream,``0,System.Threading.CancellationToken)">
             <inheritdoc />
-        </member>
-        <member name="M:Open.Serialization.SerializerBase.Cast``1">
-            <summary>
-            Creates a type specific serializer using this as the underlying serializer.
-            </summary>
-            <returns>A type specific serializer.</returns>
         </member>
         <member name="T:Open.Serialization.SerializerBase`1">
             <summary>

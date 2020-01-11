@@ -17,7 +17,7 @@ Part of the "Open" set of libraries.
 		<RepositoryUrl>https://github.com/electricessence/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>serialization</PackageTags>
-		<Version>2.1.0</Version>
+		<Version>2.2.0</Version>
 		<Nullable>enable</Nullable>
 		<PackageReleaseNotes></PackageReleaseNotes>
 	</PropertyGroup>
