@@ -39,12 +39,6 @@
             Serializes the provided item to a stream.
             </summary>
         </member>
-        <member name="M:Open.Serialization.DefaultMethods.Cast``1(Open.Serialization.ISerializer)">
-            <summary>
-            Creates a type specific serializer using this as the underlying serializer.
-            </summary>
-            <returns>A type specific serializer.</returns>
-        </member>
         <member name="T:Open.Serialization.Extensions.SerializationExtensions">
             <summary>
             Default extensions for pure serialization interfaces. 

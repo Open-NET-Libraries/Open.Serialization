@@ -128,6 +128,9 @@ namespace Open.Serialization.Extensions
 			if (serializer is null)
 				throw new ArgumentNullException(nameof(serializer));
 
+			if (serializer is SerializerBase sb)
+				return sb.Cast<T>();
+
 			return serializer is IAsyncSerializer a
 				? new Serializer<T>(
 					serializer.Deserialize<T>, serializer.Serialize<T>,
