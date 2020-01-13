@@ -17,7 +17,7 @@
 		<RepositoryUrl>https://github.com/electricessence/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>serialization json newtonsoft</PackageTags>
-		<Version>2.2.1</Version>
+		<Version>2.2.2</Version>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
@@ -26,8 +26,9 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-		<PackageReference Include="Open.Serialization.Json" Version="2.2.1" />
+		<PackageReference Include="Open.Serialization.Json" Version="2.2.2" />
 	</ItemGroup>
 
 </Project>

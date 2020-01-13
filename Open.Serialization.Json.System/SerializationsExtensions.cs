@@ -1,4 +1,5 @@
-﻿using Open.Serialization.Json.System.Converters;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Open.Serialization.Json.System.Converters;
 using System;
 using System.Diagnostics.Contracts;
 using System.Linq;
@@ -10,6 +11,32 @@ namespace Open.Serialization.Json.System
 {
 	public static class SerializationsExtensions
 	{
+		/// <summary>
+		/// Adds a generic serializer (<code>IJsonSerializer</code>) to the service collection.
+		/// </summary>
+		/// <param name="services">The service collection.</param>
+		/// <param name="options">The options overrides.</param>
+		/// <returns>The service collection.</returns>
+		public static IServiceCollection AddJsonSerializer(this IServiceCollection services, IJsonSerializationOptions? options = null, bool caseSensitive = false)
+		{
+			var factory = JsonSerializerFactory.Default;
+			services.AddSingleton(factory.GetSerializer(options, caseSensitive));
+			return services;
+		}
+
+		/// <summary>
+		/// Adds a generic serializer (<code>IJsonSerializer<typeparamref name="T"/></code>) to the service collection.
+		/// </summary>
+		/// <param name="services">The service collection.</param>
+		/// <param name="options">The options overrides.</param>
+		/// <returns>The service collection.</returns>
+		public static IServiceCollection AddJsonSerializer<T>(this IServiceCollection services, IJsonSerializationOptions? options = null, bool caseSensitive = false)
+		{
+			var factory = JsonSerializerFactory.Default;
+			services.AddSingleton<IJsonSerializer<T>>(factory.GetSerializerInternal(options, caseSensitive).Cast<T>());
+			return services;
+		}
+
 		public static Func<string?, T> GetDeserialize<T>(this JsonSerializerOptions options)
 			=> json => JsonSerializer.Deserialize<T>(json, options);
 

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Open.Serialization.Json.Newtonsoft.Converters;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,34 @@ namespace Open.Serialization.Json.Newtonsoft
 {
 	public static class SerializationExtensions
 	{
+		/// <summary>
+		/// Adds a generic serializer (<code>IJsonSerializer</code>) and non-generic (<code>IJsonObjectSerializer</code>) to the service collection.
+		/// </summary>
+		/// <param name="services">The service collection.</param>
+		/// <param name="options">The options overrides.</param>
+		/// <returns>The service collection.</returns>
+		public static IServiceCollection AddJsonSerializer(this IServiceCollection services, IJsonSerializationOptions? options = null)
+		{
+			var factory = JsonSerializerFactory.Default;
+			var serializer = factory.GetSerializerInternal(options);
+			services.AddSingleton<IJsonSerializer>(serializer);
+			services.AddSingleton<IJsonObjectSerializer>(serializer);
+			return services;
+		}
+
+		/// <summary>
+		/// Adds a generic serializer (<code>IJsonSerializer<typeparamref name="T"/></code>) to the service collection.
+		/// </summary>
+		/// <param name="services">The service collection.</param>
+		/// <param name="options">The options overrides.</param>
+		/// <returns>The service collection.</returns>
+		public static IServiceCollection AddJsonSerializer<T>(this IServiceCollection services, IJsonSerializationOptions? options = null)
+		{
+			var factory = JsonSerializerFactory.Default;
+			services.AddSingleton<IJsonSerializer<T>>(factory.GetSerializerInternal(options).Cast<T>());
+			return services;
+		}
+
 		public static Func<string?, T> GetDeserialize<T>(this JsonSerializerSettings settings)
 			=> json => JsonConvert.DeserializeObject<T>(json, settings);
 

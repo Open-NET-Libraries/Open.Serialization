@@ -17,16 +17,21 @@ namespace Open.Serialization.Json.Utf8Json
 			_indent = indent;
 		}
 
-		JsonSerializerInternal? _default;
-		JsonSerializerInternal Default => LazyInitializer.EnsureInitialized(ref _default, () => new JsonSerializerInternal(_resolver, _indent))!;
+		JsonSerializerInternal? _defaultSerializer;
+		JsonSerializerInternal DefaultSerializer
+			=> LazyInitializer.EnsureInitialized(ref _defaultSerializer, () => new JsonSerializerInternal(_resolver, _indent))!;
 
-		public IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
+		static JsonSerializerFactory? _default;
+		public static JsonSerializerFactory Default
+			=> LazyInitializer.EnsureInitialized(ref _default)!;
+
+		internal JsonSerializerInternal GetSerializerInternal(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 		{
 			if (caseSensitive)
 				throw new NotSupportedException("Utf8Json does not support case-sensitive deserialization.");
 
 			if (options == null)
-				return Default;
+				return DefaultSerializer;
 
 			if (options.CamelCaseKeys == true)
 				throw new NotSupportedException("Utf8Json does not support camel casing keys.");
@@ -38,5 +43,11 @@ namespace Open.Serialization.Json.Utf8Json
 				? new JsonSerializerInternal(omitNull ? StandardResolver.ExcludeNullCamelCase : StandardResolver.CamelCase, options.Indent ?? _indent)
 				: new JsonSerializerInternal(omitNull ? StandardResolver.ExcludeNull : StandardResolver.Default, options.Indent ?? _indent);
 		}
+
+		public IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
+			=> GetSerializerInternal(options, caseSensitive);
+
+		public IJsonObjectSerializer GetObjectSerializer(IJsonSerializationOptions? options, bool caseSensitive = false)
+			=> GetSerializerInternal(options, caseSensitive);
 	}
 }

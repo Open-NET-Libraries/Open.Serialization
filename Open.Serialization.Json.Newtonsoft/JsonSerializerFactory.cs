@@ -14,8 +14,13 @@ namespace Open.Serialization.Json.Newtonsoft
 			_settings = defaultOptions?.Clone() ?? DefaultOptions;
 		}
 
-		JsonSerializerInternal? _default;
-		JsonSerializerInternal Default => LazyInitializer.EnsureInitialized(ref _default, () => new JsonSerializerInternal(_settings))!;
+		JsonSerializerInternal? _defaultSerializer;
+		internal JsonSerializerInternal DefaultSerializer
+			=> LazyInitializer.EnsureInitialized(ref _defaultSerializer, () => new JsonSerializerInternal(_settings))!;
+
+		static JsonSerializerFactory? _default;
+		public static JsonSerializerFactory Default
+			=> LazyInitializer.EnsureInitialized(ref _default)!;
 
 #if NETSTANDARD2_1
 		[return: System.Diagnostics.CodeAnalysis.NotNullIfNotNull("options")]
@@ -59,16 +64,16 @@ namespace Open.Serialization.Json.Newtonsoft
 			return o;
 		}
 
-		public IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
+		internal JsonSerializerInternal GetSerializerInternal(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 		{
 			var o = GetJsonSerializerSettings(options, caseSensitive);
-			return o == null ? Default : new JsonSerializerInternal(o);
+			return o == null ? DefaultSerializer : new JsonSerializerInternal(o);
 		}
 
-		public IJsonObjectSerializer GetObjectSerializer(IJsonSerializationOptions? options, bool caseSensitive)
-		{
-			var o = GetJsonSerializerSettings(options, caseSensitive);
-			return o == null ? Default : new JsonSerializerInternal(o);
-		}
+		public IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
+			=> GetSerializerInternal(options, caseSensitive);
+
+		public IJsonObjectSerializer GetObjectSerializer(IJsonSerializationOptions? options, bool caseSensitive = false)
+			=> GetSerializerInternal(options, caseSensitive);
 	}
 }
