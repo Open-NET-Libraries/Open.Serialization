@@ -26,7 +26,7 @@ Import any of these and you can use the above extension to inject default serial
 Extensions and DI for **Newtonsoft.Json**.
 
 [https://www.nuget.org/packages/Open.Serialization.Json.System](https://www.nuget.org/packages/Open.Serialization.Json.System/)  
-Extensions and DI for **System.Text.Json**.  *Note: There is no option for `IJsonObjectSerializer` for `System.Text.Json`.*
+Extensions and DI for **System.Text.Json**.  *Note: There is no `IJsonObjectSerializer` option for `System.Text.Json`.*
 
 [https://www.nuget.org/packages/Open.Serialization.Json.Utf8Json](https://www.nuget.org/packages/Open.Serialization.Json.Utf8Json/)  
 Extensions and DI for **Utf8Json**.
