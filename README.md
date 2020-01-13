@@ -7,7 +7,7 @@ With the following libraries, you can build other libraries that sever their dep
 
 ### Core Interfaces & Extensions
 
-[https://www.nuget.org/packages/Open.Serialization/](https://www.nuget.org/packages/Open.Serialization/) Core package for serializing anything.
+[https://www.nuget.org/packages/Open.Serialization/](https://www.nuget.org/packages/Open.Serialization) Core package for serializing anything.
 
 [https://www.nuget.org/packages/Open.Serialization.Json/](https://www.nuget.org/packages/Open.Serialization.Json/) Core package specific to JSON.
 
