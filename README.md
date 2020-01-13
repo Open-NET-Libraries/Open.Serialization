@@ -22,12 +22,14 @@ services.AddJsonSerializer();
 The following libs contain support for `Microsoft.Extensions.DependencyInjection`.  
 Import any of these and you can use the above extension to inject default serializers.
 
-[https://www.nuget.org/packages/Open.Serialization.Json.Newtonsoft](https://www.nuget.org/packages/Open.Serialization.Json.Newtonsoft/)   Extensions and DI for **Newtonsoft.Json**.
+[https://www.nuget.org/packages/Open.Serialization.Json.Newtonsoft](https://www.nuget.org/packages/Open.Serialization.Json.Newtonsoft/)  
+Extensions and DI for **Newtonsoft.Json**.
 
 [https://www.nuget.org/packages/Open.Serialization.Json.System](https://www.nuget.org/packages/Open.Serialization.Json.System/)  
 Extensions and DI for **System.Text.Json**.  Note: There is no option for `IJsonObjectSerializer` for `System.Text.Json`.
 
-[https://www.nuget.org/packages/Open.Serialization.Json.Utf8Json](https://www.nuget.org/packages/Open.Serialization.Json.Utf8Json/) Extensions and DI for **Utf8Json**.
+[https://www.nuget.org/packages/Open.Serialization.Json.Utf8Json](https://www.nuget.org/packages/Open.Serialization.Json.Utf8Json/)  
+Extensions and DI for **Utf8Json**.
 
 
 
