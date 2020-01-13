@@ -31,5 +31,22 @@ Extensions and DI for **System.Text.Json**.  *Note: There is no `IJsonObjectSeri
 [https://www.nuget.org/packages/Open.Serialization.Json.Utf8Json](https://www.nuget.org/packages/Open.Serialization.Json.Utf8Json/)  
 Extensions and DI for **Utf8Json**.
 
+## Interface & Methods Exposed
 
+```cs
+T IDeserialize.Deserialize<T>(string value);
+T IDeserialize<T>.Deserialize(string value);
+object IDeserializeObject.Deserialize(string value, Type type);
 
+ValueTask<T> IDeserializeAsync.DeserializeAsync<T>(Stream source, CancellationToken cancellationToken = default);
+ValueTask<T> IDeserializeAsync<T>.DeserializeAsync(Stream source, CancellationToken cancellationToken = default);
+ValueTask<object> IDeserializeObjectAsync.DeserializeAsync(Stream source, Type type, CancellationToken cancellationToken = default);
+
+string ISerialize.Serialize<T>(T item);
+string ISerialize<T>.Serialize(T item);
+string ISerializeObject.Serialize(object item, Type type);
+
+ValueTask ISerializeAsync.SerializeAsync<T>(Stream target, T item, CancellationToken cancellationToken = default);
+ValueTask ISerializeAsync<T>.SerializeAsync(Stream target, T item, CancellationToken cancellationToken = default);
+ValueTask ISerializeObjectAsync.SerializeAsync(Stream target, object item, Type type, CancellationToken cancellationToken = default);
+```
