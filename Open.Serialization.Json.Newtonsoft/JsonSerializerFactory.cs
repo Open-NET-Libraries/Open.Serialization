@@ -73,7 +73,7 @@ namespace Open.Serialization.Json.Newtonsoft
 		public IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 			=> GetSerializerInternal(options, caseSensitive);
 
-		public IJsonObjectSerializer GetObjectSerializer(IJsonSerializationOptions? options, bool caseSensitive = false)
+		public IJsonObjectSerializer GetObjectSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 			=> GetSerializerInternal(options, caseSensitive);
 	}
 }

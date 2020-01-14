@@ -47,7 +47,7 @@ namespace Open.Serialization.Json.Utf8Json
 		public IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 			=> GetSerializerInternal(options, caseSensitive);
 
-		public IJsonObjectSerializer GetObjectSerializer(IJsonSerializationOptions? options, bool caseSensitive = false)
+		public IJsonObjectSerializer GetObjectSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 			=> GetSerializerInternal(options, caseSensitive);
 	}
 }
