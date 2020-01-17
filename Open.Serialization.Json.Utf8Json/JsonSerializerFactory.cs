@@ -9,12 +9,16 @@ namespace Open.Serialization.Json.Utf8Json
 	{
 		readonly IJsonFormatterResolver _resolver;
 		readonly bool _indent;
-		public JsonSerializerFactory(IJsonFormatterResolver? defaultResolver = null, bool indent = false)
+		public JsonSerializerFactory(IJsonFormatterResolver? defaultResolver, bool indent = false)
 		{
 			_resolver = defaultResolver ?? StandardResolver.Default;
 			if (_resolver == StandardResolver.ExcludeNullSnakeCase || _resolver == StandardResolver.SnakeCase)
 				throw new ArgumentOutOfRangeException(nameof(defaultResolver), "Snake case is not supported.");
 			_indent = indent;
+		}
+
+		public JsonSerializerFactory() : this(null)
+		{
 		}
 
 		JsonSerializerInternal? _defaultSerializer;

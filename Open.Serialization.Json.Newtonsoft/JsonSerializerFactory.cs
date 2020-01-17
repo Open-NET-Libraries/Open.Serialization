@@ -9,9 +9,13 @@ namespace Open.Serialization.Json.Newtonsoft
 	{
 		static readonly JsonSerializerSettings DefaultOptions = RelaxedJson.Options();
 		readonly JsonSerializerSettings _settings;
-		public JsonSerializerFactory(JsonSerializerSettings? defaultOptions = null)
+		public JsonSerializerFactory(JsonSerializerSettings? defaultOptions)
 		{
 			_settings = defaultOptions?.Clone() ?? DefaultOptions;
+		}
+
+		public JsonSerializerFactory() : this(null)
+		{
 		}
 
 		JsonSerializerInternal? _defaultSerializer;

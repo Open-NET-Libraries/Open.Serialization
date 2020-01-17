@@ -7,9 +7,13 @@ namespace Open.Serialization.Json.System
 	{
 		static readonly JsonSerializerOptions DefaultOptions = RelaxedJson.Options();
 		readonly JsonSerializerOptions _options;
-		public JsonSerializerFactory(JsonSerializerOptions? defaultOptions = null)
+		public JsonSerializerFactory(JsonSerializerOptions? defaultOptions)
 		{
 			_options = defaultOptions?.Clone() ?? DefaultOptions;
+		}
+
+		public JsonSerializerFactory() : this(null)
+		{
 		}
 
 		JsonSerializerInternal? _caseSensitive;
