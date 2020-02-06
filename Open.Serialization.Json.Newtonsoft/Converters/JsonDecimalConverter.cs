@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Diagnostics.Contracts;
+using System.Numerics;
 
 namespace Open.Serialization.Json.Newtonsoft.Converters
 {
@@ -27,7 +28,7 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 			if (reader is null) throw new ArgumentNullException(nameof(reader));
 			Contract.EndContractBlock();
 
-			return Convert.ToDecimal(reader.Value);
+			return ConvertToDecimal(reader.Value);
 		}
 
 		public override void WriteJson(JsonWriter writer, decimal value, JsonSerializer serializer)
@@ -37,5 +38,7 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 
 			writer.WriteRawValue(Normalize(value));
 		}
+
+
 	}
 }

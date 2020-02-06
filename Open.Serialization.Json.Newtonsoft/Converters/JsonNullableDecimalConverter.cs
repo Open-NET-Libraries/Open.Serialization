@@ -23,7 +23,7 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 			{
 				JsonToken.Null => default,
 				JsonToken.Undefined => default,
-				_ => Convert.ToDecimal(reader.Value),
+				_ => ConvertToDecimal(reader.Value),
 			};
 		}
 

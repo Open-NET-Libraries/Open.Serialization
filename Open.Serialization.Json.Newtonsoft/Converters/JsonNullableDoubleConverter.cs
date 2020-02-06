@@ -24,7 +24,7 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 			{
 				JsonToken.Null => default,
 				JsonToken.Undefined => default,
-				_ => Convert.ToDouble(reader.Value)
+				_ => ConvertToDouble(reader.Value)
 			};
 		}
 

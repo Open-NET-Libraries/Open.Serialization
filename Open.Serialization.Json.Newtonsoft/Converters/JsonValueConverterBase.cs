@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Numerics;
 
 namespace Open.Serialization.Json.Newtonsoft.Converters
 {
@@ -12,6 +13,24 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 			=> Deserializer.Deserialize<T>(reader);
 
 		public override void WriteJson(JsonWriter writer, T value, JsonSerializer serializer)
+#pragma warning disable CA1062 // Validate arguments of public methods
 			=> writer.WriteRawValue(value?.ToString());
+#pragma warning restore CA1062 // Validate arguments of public methods
+
+		protected static decimal ConvertToDecimal(object value) => value switch
+		{
+			decimal d => d,
+			BigInteger i => (decimal)i,
+			IConvertible _ => Convert.ToDecimal(value),
+			_ => throw new ArgumentException("Unable to convert to decimal.", nameof(value)),
+		};
+
+		protected static double ConvertToDouble(object value) => value switch
+		{
+			double d => d,
+			BigInteger i => (double)i,
+			IConvertible _ => Convert.ToDouble(value),
+			_ => throw new ArgumentException("Unable to convert to double.", nameof(value)),
+		};
 	}
 }
