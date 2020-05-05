@@ -8,10 +8,10 @@ With the following libraries, you can build other libraries that sever their dep
 ### Core Interfaces & Extensions
 
 [https://www.nuget.org/packages/Open.Serialization](https://www.nuget.org/packages/Open.Serialization/)  
-Core package for serializing anything.
+[![NuGet](http://img.shields.io/nuget/v/Open.Serialization.svg)](https://www.nuget.org/packages/Open.Serialization/) Core package for serializing anything.
 
 [https://www.nuget.org/packages/Open.Serialization.Json](https://www.nuget.org/packages/Open.Serialization.Json/)  
-Core package specific to JSON.
+[![NuGet](http://img.shields.io/nuget/v/Open.Serialization.Json.svg)](https://www.nuget.org/packages/Open.Serialization.Json/) Core package specific to JSON.
 
 ### Library/Vendor Specific Implementations
 
@@ -23,13 +23,13 @@ The following libs contain support for `Microsoft.Extensions.DependencyInjection
 Import any of these and you can use the above extension to inject default serializers.
 
 [https://www.nuget.org/packages/Open.Serialization.Json.Newtonsoft](https://www.nuget.org/packages/Open.Serialization.Json.Newtonsoft/)  
-Extensions and DI for **Newtonsoft.Json**.
+[![NuGet](http://img.shields.io/nuget/v/Open.Serialization.Json.Newtonsoft.svg)](https://www.nuget.org/packages/Open.Serialization.Json.Newtonsoft/) Extensions and DI for **Newtonsoft.Json**.
 
 [https://www.nuget.org/packages/Open.Serialization.Json.System](https://www.nuget.org/packages/Open.Serialization.Json.System/)  
-Extensions and DI for **System.Text.Json**.  *Note: There is no `IJsonObjectSerializer` option for `System.Text.Json`.*
+[![NuGet](http://img.shields.io/nuget/v/Open.Serialization.Json.System.svg)](https://www.nuget.org/packages/Open.Serialization.Json.System/) Extensions and DI for **System.Text.Json**.  *Note: There is no `IJsonObjectSerializer` option for `System.Text.Json`.*
 
 [https://www.nuget.org/packages/Open.Serialization.Json.Utf8Json](https://www.nuget.org/packages/Open.Serialization.Json.Utf8Json/)  
-Extensions and DI for **Utf8Json**.
+[![NuGet](http://img.shields.io/nuget/v/Open.Serialization.Json.Utf8Json.svg)](https://www.nuget.org/packages/Open.Serialization.Json.Utf8Json/) Extensions and DI for **Utf8Json**.
 
 ## Interface & Methods Exposed
 
