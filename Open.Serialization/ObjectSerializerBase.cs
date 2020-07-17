@@ -38,6 +38,6 @@ namespace Open.Serialization
 
 		/// <inheritdoc />
 		public override async ValueTask<T> DeserializeAsync<T>(Stream source, CancellationToken cancellationToken = default)
-			=> (T)(await DeserializeAsync(source, typeof(T), cancellationToken))!;
+			=> (T)(await DeserializeAsync(source, typeof(T), cancellationToken).ConfigureAwait(false))!;
 	}
 }

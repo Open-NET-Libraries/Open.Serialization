@@ -33,8 +33,8 @@ namespace Open.Serialization.Extensions
 		{
 			if (deserializer is null) throw new ArgumentNullException(nameof(deserializer));
 			return deserializer is IDeserializeAsync d
-				? await d.DeserializeAsync<T>(source, cancellationToken)
-				: (T)(await DeserializeAsync(deserializer, source, typeof(T), cancellationToken))!;
+				? await d.DeserializeAsync<T>(source, cancellationToken).ConfigureAwait(false)
+				: (T)(await DeserializeAsync(deserializer, source, typeof(T), cancellationToken).ConfigureAwait(false))!;
 		}
 
 		/// <inheritdoc cref="IDeserializeObjectAsync.DeserializeAsync(Stream, Type, CancellationToken)" />
@@ -51,8 +51,8 @@ namespace Open.Serialization.Extensions
 		{
 			if (deserializer is null) throw new ArgumentNullException(nameof(deserializer));
 			return deserializer is IDeserializeAsync d
-				? await d.DeserializeAsync<T>(source, cancellationToken)
-				: (T)(await deserializer.DeserializeAsync(source, typeof(T), cancellationToken))!;
+				? await d.DeserializeAsync<T>(source, cancellationToken).ConfigureAwait(false)
+				: (T)(await deserializer.DeserializeAsync(source, typeof(T), cancellationToken).ConfigureAwait(false))!;
 		}
 
 		/// <inheritdoc cref="ISerializeAsync.SerializeAsync{T}(Stream, T, CancellationToken)"/>
