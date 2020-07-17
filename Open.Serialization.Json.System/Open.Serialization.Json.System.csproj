@@ -1,34 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0; netstandard2.1</TargetFrameworks>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0; netstandard2.1</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<LangVersion>latest</LangVersion>
-		<Authors>electricessence</Authors>
-		<Company>electricessence</Company>
-		<Description>
-Extentions and DI utilities for System.Text.Json.
-
-Part of the "Open" set of libraries.
-		</Description>
-		<Copyright>https://github.com/electricessence/Open.Serialization/blob/master/LICENSE</Copyright>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/electricessence/Open.Serialization</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/electricessence/Open.Serialization</RepositoryUrl>
-		<RepositoryType>git</RepositoryType>
-		<PackageTags>serialization json stj</PackageTags>
-		<Version>2.2.4</Version>
 		<Nullable>enable</Nullable>
+		<Authors>electricessence</Authors>
+		<Description>
+			Extentions and DI utilities for System.Text.Json.
+
+			Part of the "Open" set of libraries.
+		</Description>
+		<PackageTags>serialization;json;stj;System.Text.Json</PackageTags>
+		<Copyright>© electricessence (Oren F.) All rights reserved.</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/Open-NET-Libraries/Open.Serialization</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Open-NET-Libraries/Open.Serialization</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<Version>2.3.0</Version>
+		<PackageReleaseNotes></PackageReleaseNotes>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageIcon>logo.png</PackageIcon>
 	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
-    <PackageReference Include="Open.Serialization.Json" Version="2.2.2" />
-    <PackageReference Include="System.Text.Json" Version="4.7.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\logo.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
+		<PackageReference Include="Open.Serialization.Json" Version="2.2.2" />
+		<PackageReference Include="System.Text.Json" Version="4.7.0" />
+	</ItemGroup>
 
 </Project>
