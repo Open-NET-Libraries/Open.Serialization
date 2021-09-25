@@ -37,11 +37,11 @@ namespace Open.Serialization.Json.System
 			return services;
 		}
 
-		public static Func<string?, T> GetDeserialize<T>(this JsonSerializerOptions options)
-			=> json => JsonSerializer.Deserialize<T>(json, options);
+		public static Func<string, T> GetDeserialize<T>(this JsonSerializerOptions options)
+			=> json => JsonSerializer.Deserialize<T>(json, options)!;
 
 		public static Func<T, string?> GetSerialize<T>(this JsonSerializerOptions options)
-			=> item => JsonSerializer.Serialize(item, options);
+			=> item => JsonSerializer.Serialize(item, options)!;
 
 		public static Func<object?, string?> GetSerialize(this JsonSerializerOptions options)
 			=> item => JsonSerializer.Serialize(item, options);
@@ -59,10 +59,10 @@ namespace Open.Serialization.Json.System
 			=> JsonSerializer.Serialize(value, options);
 		public static string? Serialize(this JsonSerializerOptions options, object? value)
 			=> JsonSerializer.Serialize(value, options);
-		public static TValue Deserialize<TValue>(this JsonSerializerOptions options, string? value)
-			=> JsonSerializer.Deserialize<TValue>(value, options);
+		public static TValue Deserialize<TValue>(this JsonSerializerOptions options, string value)
+			=> JsonSerializer.Deserialize<TValue>(value, options)!;
 		public static TValue Deserialize<TValue>(this JsonSerializerOptions options, ReadOnlySpan<byte> value)
-			=> JsonSerializer.Deserialize<TValue>(value, options);
+			=> JsonSerializer.Deserialize<TValue>(value, options)!;
 
 		public static JsonSerializerOptions Clone(this JsonSerializerOptions options)
 		{

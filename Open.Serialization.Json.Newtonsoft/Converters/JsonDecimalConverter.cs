@@ -20,8 +20,8 @@ namespace Open.Serialization.Json.Newtonsoft.Converters
 
 		public static string? Normalize(string? decimalString)
 			=> decimalString == null || decimalString.IndexOf('.') == -1
-				? decimalString
-				: decimalString?.TrimEnd('0').TrimEnd('.');
+				? decimalString 
+				: decimalString.AsSpan().TrimEnd('0').TrimEnd('.').ToString();
 
 		public override decimal ReadJson(JsonReader reader, Type objectType, decimal existingValue, bool hasExistingValue, JsonSerializer serializer)
 		{

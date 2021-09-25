@@ -15,7 +15,7 @@ namespace Open.Serialization.Json.System
 		}
 
 		public override T Deserialize<T>(string? value)
-			=> JsonSerializer.Deserialize<T>(value, _options);
+			=> JsonSerializer.Deserialize<T>(value!, _options)!;
 
 		ValueTask ISerializeAsync.SerializeAsync<T>(Stream stream, T item, CancellationToken cancellationToken)
 			=> new ValueTask(JsonSerializer.SerializeAsync(stream, item, _options, cancellationToken));
@@ -27,7 +27,7 @@ namespace Open.Serialization.Json.System
 			=> JsonSerializer.Serialize(item, _options);
 
 		public override ValueTask<T> DeserializeAsync<T>(Stream stream, CancellationToken cancellationToken = default)
-			=> JsonSerializer.DeserializeAsync<T>(stream, _options);
+			=> JsonSerializer.DeserializeAsync<T>(stream, _options)!;
 
 	}
 }
