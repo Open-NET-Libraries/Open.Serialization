@@ -15,7 +15,7 @@ namespace Open.Serialization.Tests.System
 			Assert.NotNull(converter);
 
 			converter = basic.GetConverter(typeof(decimal?));
-			Assert.Null(converter);
+			Assert.NotNull(converter); // Was null in previous versions.
 
 			basic.Converters.Add(JsonDecimalConverter.Instance);
 			converter = basic.GetConverter(typeof(decimal));
