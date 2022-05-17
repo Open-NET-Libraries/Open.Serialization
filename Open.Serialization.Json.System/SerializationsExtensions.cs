@@ -84,7 +84,9 @@ namespace Open.Serialization.Json.System
 				PropertyNameCaseInsensitive = options.PropertyNameCaseInsensitive,
 				PropertyNamingPolicy = options.PropertyNamingPolicy,
 				ReadCommentHandling = options.ReadCommentHandling,
-				WriteIndented = options.WriteIndented
+				WriteIndented = options.WriteIndented,
+				DefaultIgnoreCondition = options.DefaultIgnoreCondition,
+				ReferenceHandler = options.ReferenceHandler
 			};
 
 			foreach (var converter in options.Converters)
