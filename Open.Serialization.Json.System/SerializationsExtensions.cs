@@ -114,7 +114,6 @@ public static class SerializationsExtensions
 			DefaultBufferSize = options.DefaultBufferSize,
 			DictionaryKeyPolicy = options.DictionaryKeyPolicy,
 			Encoder = options.Encoder,
-			IgnoreNullValues = options.IgnoreNullValues,
 			IgnoreReadOnlyFields = options.IgnoreReadOnlyFields,
 			IgnoreReadOnlyProperties = options.IgnoreReadOnlyProperties,
 			IncludeFields = options.IncludeFields,

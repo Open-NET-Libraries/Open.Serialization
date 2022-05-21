@@ -28,7 +28,7 @@ public class JsonSerializerFactory : IJsonSerializerFactory
 		if (options is null) return null;
 
 		var o = _options.Clone();
-		o.IgnoreNullValues = options.OmitNull ?? o.IgnoreNullValues;
+		if(options.OmitNull.HasValue) o.SetIgnoreNullValues(options.OmitNull.Value);
 		o.WriteIndented = options.Indent ?? o.WriteIndented;
 		o.DictionaryKeyPolicy = options.CamelCaseKeys == true ? JsonNamingPolicy.CamelCase : o.DictionaryKeyPolicy;
 		o.PropertyNamingPolicy = options.CamelCaseProperties == true ? JsonNamingPolicy.CamelCase : o.PropertyNamingPolicy;
