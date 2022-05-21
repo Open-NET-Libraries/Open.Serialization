@@ -9,6 +9,7 @@ public static class DefaultImplementationTests
 	class A : IDeserializeObject
 	{
 		public object Deserialize(string value, Type type) => 1;
+		public object Deserialize(ReadOnlySpan<char> value, Type type) => 1;
 	}
 
 	class B : A

@@ -14,4 +14,12 @@ public interface IDeserializeObject
 	/// <param name="type">The expected type.</param>
 	/// <returns>The deserialized result.</returns>
 	object? Deserialize(string? value, Type type);
+
+	/// <summary>
+	/// Deserializes a span of characters to the specified type.
+	/// </summary>
+	/// <param name="value">The span to deserialize.</param>
+	/// <param name="type">The expected type.</param>
+	/// <returns>The deserialized result.</returns>
+	object? Deserialize(ReadOnlySpan<char> value, Type type);
 }

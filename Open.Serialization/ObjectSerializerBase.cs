@@ -17,6 +17,9 @@ public abstract class ObjectSerializerBase : SerializerBase, IObjectSerializer, 
 	public abstract object? Deserialize(string? value, Type type);
 
 	/// <inheritdoc />
+	public abstract object? Deserialize(ReadOnlySpan<char> value, Type type);
+
+	/// <inheritdoc />
 	public virtual ValueTask SerializeAsync(Stream target, object? item, Type type, CancellationToken cancellationToken = default)
 		=> DefaultMethods.SerializeAsync(this, target, item, type);
 

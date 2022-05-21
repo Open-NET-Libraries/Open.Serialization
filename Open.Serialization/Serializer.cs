@@ -11,6 +11,7 @@ namespace Open.Serialization;
 /// </summary>
 public class Serializer<T> : SerializerBase<T>
 {
+	private readonly IDeserialize<T>? _deserializerInstance;
 	private readonly Func<string?, T>? _deserializer;
 	private readonly Func<T, string?>? _serializer;
 	private readonly Func<Stream, CancellationToken, ValueTask<T>> _deserializerAsync;
@@ -35,11 +36,30 @@ public class Serializer<T> : SerializerBase<T>
 		_serializerAsync = serializerAsync ?? base.SerializeAsync;
 	}
 
+	/// <inheritdoc cref="Serializer{T}.Serializer(Func{string?, T}?, Func{T, string?}?, Func{Stream, CancellationToken, ValueTask{T}}?, Func{Stream, T, CancellationToken, ValueTask}?)" />
+	public Serializer(
+		IDeserialize<T> deserializer,
+		Func<T, string?>? serializer = null,
+		Func<Stream, CancellationToken, ValueTask<T>>? deserializerAsync = null,
+		Func<Stream, T, CancellationToken, ValueTask>? serializerAsync = null)
+		: this(deserializer.Deserialize, serializer, deserializerAsync, serializerAsync)
+	{
+		_deserializerInstance = deserializer;
+	}
+
 	/// <inheritdoc />
 	public override T Deserialize(string? value)
 		=> _deserializer is null
 		? throw new NullReferenceException("No deserializer function was supplied.")
 		: _deserializer(value);
+
+	/// <inheritdoc />
+	public override T Deserialize(ReadOnlySpan<char> value) // Should override if possible.
+		=> _deserializerInstance is not null
+			? _deserializerInstance.Deserialize(value)
+			: _deserializer is null
+			   ? throw new NullReferenceException("No deserializer function was supplied.")
+			   : _deserializer(value.ToString());
 
 	/// <inheritdoc />
 	public override ValueTask<T> DeserializeAsync(Stream source, CancellationToken cancellationToken = default)

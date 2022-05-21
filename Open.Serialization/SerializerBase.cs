@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,6 +12,9 @@ public abstract class SerializerBase : ISerializer, IAsyncSerializer
 {
 	/// <inheritdoc />
 	public abstract T Deserialize<T>(string? value);
+
+	/// <inheritdoc />
+	public abstract T Deserialize<T>(ReadOnlySpan<char> value);
 
 	/// <inheritdoc />
 	public virtual ValueTask<T> DeserializeAsync<T>(Stream source, CancellationToken cancellationToken = default)
@@ -38,6 +42,9 @@ public abstract class SerializerBase<T> : ISerializer<T>, IAsyncSerializer<T>
 {
 	/// <inheritdoc />
 	public abstract T Deserialize(string? value);
+
+	/// <inheritdoc />
+	public abstract T Deserialize(ReadOnlySpan<char> value);
 
 	/// <inheritdoc />
 	public virtual ValueTask<T> DeserializeAsync(Stream source, CancellationToken cancellationToken = default)

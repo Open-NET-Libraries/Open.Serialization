@@ -18,7 +18,7 @@
 		<PackageProjectUrl>https://github.com/Open-NET-Libraries/Open.Serialization</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Open-NET-Libraries/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Version>2.3.1</Version>
+		<Version>3.0.0-beta01</Version>
 		<PackageReleaseNotes></PackageReleaseNotes>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -49,8 +49,8 @@
 	</PropertyGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+		<PackageReference Include="System.Memory" Version="4.5.4" />
 		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-		<!--<PackageReference Include="System.Memory" Version="4.5.3" />-->
 	</ItemGroup>
 
 </Project>

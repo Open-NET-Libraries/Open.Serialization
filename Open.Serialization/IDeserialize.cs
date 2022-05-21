@@ -1,4 +1,6 @@
-﻿namespace Open.Serialization;
+﻿using System;
+
+namespace Open.Serialization;
 
 /// <summary>
 /// Interface for deserializing any given generic type.
@@ -11,6 +13,13 @@ public interface IDeserialize
 	/// <param name="value">The string to deserialize.</param>
 	/// <returns>The deserialized result.</returns>
 	T Deserialize<T>(string? value);
+
+	/// <summary>
+	/// Deserializes a span of characters to the specified type.
+	/// </summary>
+	/// <param name="value">The span to deserialize.</param>
+	/// <inheritdoc cref="Deserialize{T}(string?)"/>
+	T Deserialize<T>(ReadOnlySpan<char> value);
 }
 
 /// <summary>
@@ -24,4 +33,11 @@ public interface IDeserialize<out T>
 	/// <param name="value">The string to deserialize.</param>
 	/// <returns>The deserialized result.</returns>
 	T Deserialize(string? value);
+
+	/// <summary>
+	/// Deserializes a span of characters to the specified type.
+	/// </summary>
+	/// <param name="value">The span to deserialize.</param>
+	/// <inheritdoc cref="Deserialize(string?)"/>
+	T Deserialize(ReadOnlySpan<char> value);
 }
