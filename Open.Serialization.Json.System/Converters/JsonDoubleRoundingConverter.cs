@@ -14,9 +14,11 @@ public class JsonDoubleRoundingConverter : JsonValueConverterBase<double>
 		Maximum = maximum;
 	}
 
+	/// <inheritdoc />
 	public override double Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> Math.Round(reader.GetDouble(), Maximum);
 
+	/// <inheritdoc />
 	public override void Write(Utf8JsonWriter writer, double value, JsonSerializerOptions options)
 	{
 		if (writer is null) throw new ArgumentNullException(nameof(writer));

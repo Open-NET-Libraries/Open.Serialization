@@ -15,9 +15,11 @@ public class JsonNullableDecimalConverter : JsonConverter<decimal?>
 	public static readonly JsonNullableDecimalConverter Instance
 		= new();
 
+	/// <inheritdoc />
 	public override bool CanConvert(Type objectType)
 		=> objectType == typeof(decimal?) || objectType == typeof(decimal);
 
+	/// <inheritdoc />
 	public override decimal? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> reader.TokenType switch
 		{
@@ -26,6 +28,7 @@ public class JsonNullableDecimalConverter : JsonConverter<decimal?>
 			_ => throw new JsonException("Unexpected token type."),
 		};
 
+	/// <inheritdoc />
 	public override void Write(Utf8JsonWriter writer, decimal? value, JsonSerializerOptions options)
 	{
 		if (writer is null) throw new ArgumentNullException(nameof(writer));

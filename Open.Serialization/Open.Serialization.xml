@@ -41,7 +41,7 @@
         </member>
         <member name="T:Open.Serialization.Extensions.SerializationExtensions">
             <summary>
-            Default extensions for pure serialization interfaces. 
+            Default extensions for pure serialization interfaces.
             </summary>
         </member>
         <member name="M:Open.Serialization.Extensions.SerializationExtensions.Deserialize``1(Open.Serialization.IDeserializeObject,System.String)">

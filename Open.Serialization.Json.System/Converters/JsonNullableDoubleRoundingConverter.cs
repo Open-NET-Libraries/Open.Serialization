@@ -13,11 +13,13 @@ public class JsonNullableDoubleRoundingConverter : JsonNullableDoubleConverter
 		Maximum = maximum;
 	}
 
+	/// <inheritdoc />
 	public override double? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> reader.TokenType == JsonTokenType.Number
 			? Math.Round(reader.GetDouble(), Maximum)
 			: base.Read(ref reader, typeToConvert, options);
 
+	/// <inheritdoc />
 	public override void Write(Utf8JsonWriter writer, double? value, JsonSerializerOptions options)
 	{
 		if (value.HasValue)

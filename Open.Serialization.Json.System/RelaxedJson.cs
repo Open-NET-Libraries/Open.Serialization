@@ -23,10 +23,13 @@ public static class RelaxedJson
 
 	public static IJsonDeserialize<TValue> GetDeserializer<TValue>()
 		=> DeserializerOptions.GetSerializer<TValue>();
+
 	public static IJsonDeserialize GetDeserializer()
 		=> DeserializerOptions.GetSerializer();
+
 	public static TValue Deserialize<TValue>(string? value)
 		=> DeserializerOptions.Deserialize<TValue>(value!);
+
 	public static TValue Deserialize<TValue>(ReadOnlySpan<byte> value)
 		=> DeserializerOptions.Deserialize<TValue>(value);
 }

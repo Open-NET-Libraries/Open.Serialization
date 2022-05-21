@@ -8,6 +8,9 @@ using System.Linq;
 
 namespace Open.Serialization.Json.Newtonsoft;
 
+/// <summary>
+/// Extensions for Newtonsof.Json serialization with Open.Serialization.Json.
+/// </summary>
 public static class SerializationExtensions
 {
 	/// <summary>

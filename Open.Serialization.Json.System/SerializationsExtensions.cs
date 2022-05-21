@@ -9,6 +9,9 @@ using System.Text.Json.Serialization;
 
 namespace Open.Serialization.Json.System;
 
+/// <summary>
+/// Extensions for System.Text.Json serialization with Open.Serialization.Json.
+/// </summary>
 public static class SerializationsExtensions
 {
 	/// <summary>
@@ -36,33 +39,70 @@ public static class SerializationsExtensions
 		return services;
 	}
 
+	/// <summary>
+	/// Returns a delegate that can deserialize <typeparamref name="T"/> with the given options.
+	/// </summary>
 	public static Func<string, T> GetDeserialize<T>(this JsonSerializerOptions options)
 		=> json => JsonSerializer.Deserialize<T>(json, options)!;
 
+	/// <summary>
+	/// Returns a delegate that can serialze a <see cref="string"/> to <typeparamref name="T"/> with the given options.
+	/// </summary>
 	public static Func<T, string?> GetSerialize<T>(this JsonSerializerOptions options)
 		=> item => JsonSerializer.Serialize(item, options)!;
 
+	/// <summary>
+	/// Returns a delegate that can serialze a <see cref="string"/> to an <see cref="object"/> with the given options.
+	/// </summary>
 	public static Func<object?, string?> GetSerialize(this JsonSerializerOptions options)
 		=> item => JsonSerializer.Serialize(item, options);
 
+	/// <summary>
+	/// Returns a <see cref="IJsonSerializer"/> with the given options.
+	/// </summary>
 	public static IJsonSerializer GetSerializer(this JsonSerializerOptions options)
 		=> new JsonSerializerInternal(options);
 
+	/// <summary>
+	/// Returns a <see cref="IJsonSerializer{T}"/> with the given options.
+	/// </summary>
 	public static IJsonSerializer<T> GetSerializer<T>(this JsonSerializerOptions options)
 		=> new JsonSerializerInternal(options).Cast<T>();
 
+	/// <summary>
+	/// Returns a <see cref="IJsonSerializerFactory"/> with the given options.
+	/// </summary>
 	public static IJsonSerializerFactory GetSerializerFactory(this JsonSerializerOptions options)
 		=> new JsonSerializerFactory(options);
 
+	/// <summary>
+	/// Serializes <paramref name="value"/> to a <see cref="string"/> using the given options.
+	/// </summary>
 	public static string? Serialize<TValue>(this JsonSerializerOptions options, TValue value)
 		=> JsonSerializer.Serialize(value, options);
+
+	/// <summary>
+	/// Serializes <paramref name="value"/> to a <see cref="string"/> using the given options.
+	/// </summary>
 	public static string? Serialize(this JsonSerializerOptions options, object? value)
 		=> JsonSerializer.Serialize(value, options);
+
+	/// <summary>
+	/// Deserializes <paramref name="value"/> to a <typeparamref name="TValue"/> using the given options.
+	/// </summary>
 	public static TValue Deserialize<TValue>(this JsonSerializerOptions options, string value)
 		=> JsonSerializer.Deserialize<TValue>(value, options)!;
+
+	/// <summary>
+	/// Deserializes <paramref name="value"/> to a <typeparamref name="TValue"/> using the given options.
+	/// </summary>
 	public static TValue Deserialize<TValue>(this JsonSerializerOptions options, ReadOnlySpan<byte> value)
 		=> JsonSerializer.Deserialize<TValue>(value, options)!;
 
+	/// <summary>
+	/// Returns a shallow copy of the options.
+	/// </summary>
+	/// <exception cref="ArgumentNullException">If <paramref name="options"/> is null.</exception>
 	public static JsonSerializerOptions Clone(this JsonSerializerOptions options)
 	{
 		if (options is null) throw new ArgumentNullException(nameof(options));
@@ -94,6 +134,10 @@ public static class SerializationsExtensions
 		return clone;
 	}
 
+	/// <summary>
+	/// Sets the <see cref="JsonSerializerOptions.PropertyNameCaseInsensitive"/> value.
+	/// </summary>
+	/// <exception cref="ArgumentNullException">If <paramref name="options"/> is null.</exception>
 	public static JsonSerializerOptions SetPropertyNameCaseInsensitive(this JsonSerializerOptions options, bool value)
 	{
 		if (options is null) throw new ArgumentNullException(nameof(options));
@@ -103,15 +147,32 @@ public static class SerializationsExtensions
 		return options;
 	}
 
-	public static JsonSerializerOptions SetIgnoreNullValues(this JsonSerializerOptions options, bool value = true)
+	/// <summary>
+	/// <para>Sets the <see cref="JsonSerializerOptions.DefaultIgnoreCondition"/> value.</para>
+	/// A <paramref name="value"/> of <see langword="true"/> sets the condtion to <see cref="JsonIgnoreCondition.WhenWritingNull"/>.<br/>
+	/// A <paramref name="value"/> of <see langword="false"/> sets the condtion to <see cref="JsonIgnoreCondition.Never"/>.
+	/// </summary>
+	/// <exception cref="ArgumentNullException">If <paramref name="options"/> is null.</exception>
+	public static JsonSerializerOptions SetIgnoreNullValues(this JsonSerializerOptions options, bool value)
+		=> SetIgnoreNullValues(options, value ? JsonIgnoreCondition.WhenWritingNull : JsonIgnoreCondition.Never);
+
+	/// <summary>
+	/// Sets the <see cref="JsonSerializerOptions.DefaultIgnoreCondition"/> value, defaulting to ignore nulls.
+	/// </summary>
+	/// <exception cref="ArgumentNullException">If <paramref name="options"/> is null.</exception>
+	public static JsonSerializerOptions SetIgnoreNullValues(this JsonSerializerOptions options, JsonIgnoreCondition value = JsonIgnoreCondition.WhenWritingNull)
 	{
 		if (options is null) throw new ArgumentNullException(nameof(options));
 		Contract.EndContractBlock();
 
-		options.IgnoreNullValues = value;
+		options.DefaultIgnoreCondition = value;
 		return options;
 	}
 
+	/// <summary>
+	/// Sets the <see cref="JsonSerializerOptions.Encoder"/> value to <see cref="JavaScriptEncoder.UnsafeRelaxedJsonEscaping"/>.
+	/// </summary>
+	/// <exception cref="ArgumentNullException">If <paramref name="options"/> is null.</exception>
 	public static JsonSerializerOptions UseUnsafeEncoding(this JsonSerializerOptions options)
 	{
 		if (options is null) throw new ArgumentNullException(nameof(options));
@@ -121,6 +182,10 @@ public static class SerializationsExtensions
 		return options;
 	}
 
+	/// <summary>
+	/// Adds a converter to the options.
+	/// </summary>
+	/// <exception cref="ArgumentNullException">If <paramref name="options"/> is null.</exception>
 	public static JsonSerializerOptions AddConverter(this JsonSerializerOptions options, JsonConverter converter)
 	{
 		if (options is null) throw new ArgumentNullException(nameof(options));
@@ -155,6 +220,10 @@ public static class SerializationsExtensions
 		};
 	}
 
+	/// <summary>
+	/// Adds a special converter that rounds double values to the <paramref name="maxDecimals"/> level.
+	/// </summary>
+	/// <exception cref="ArgumentNullException">If <paramref name="options"/> is null.</exception>
 	public static JsonSerializerOptions RoundDoubles(this JsonSerializerOptions options, int maxDecimals)
 	{
 		if (options is null) throw new ArgumentNullException(nameof(options));
@@ -165,6 +234,10 @@ public static class SerializationsExtensions
 			.RoundNullableDoublesCore(maxDecimals);
 	}
 
+	/// <summary>
+	/// Adds a special converter that normalizes decimals so they are consistent regardless of trailing zeros.
+	/// </summary>
+	/// <exception cref="ArgumentNullException">If <paramref name="options"/> is null.</exception>
 	public static JsonSerializerOptions NormalizeDecimals(this JsonSerializerOptions options)
 	{
 		if (options is null) throw new ArgumentNullException(nameof(options));
@@ -223,6 +296,10 @@ public static class SerializationsExtensions
 		};
 	}
 
+	/// <summary>
+	/// Adds a special converter that rounds decimal values to the <paramref name="maxDecimals"/> level.
+	/// </summary>
+	/// <exception cref="ArgumentNullException">If <paramref name="options"/> is null.</exception>
 	public static JsonSerializerOptions RoundDecimals(this JsonSerializerOptions options, int maxDecimals)
 	{
 		if (options is null) throw new ArgumentNullException(nameof(options));
