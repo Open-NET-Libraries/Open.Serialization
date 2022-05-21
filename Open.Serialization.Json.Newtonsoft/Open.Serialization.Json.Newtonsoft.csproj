@@ -18,7 +18,7 @@
 		<PackageProjectUrl>https://github.com/Open-NET-Libraries/Open.Serialization</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Open-NET-Libraries/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Version>2.3.1</Version>
+		<Version>3.0.0</Version>
 		<PackageReleaseNotes></PackageReleaseNotes>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -31,6 +31,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -45,10 +47,7 @@
 	</ItemGroup>
 		
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-		<PackageReference Include="Open.Serialization.Json" Version="2.3.1" />
-		<PackageReference Include="System.Memory" Version="4.5.4" />
+	  <ProjectReference Include="..\Open.Serialization.Json\Open.Serialization.Json.csproj" />
 	</ItemGroup>
 
 </Project>

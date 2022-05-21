@@ -40,7 +40,7 @@ public static class SerializationExtensions
 	}
 
 	public static Func<string?, T> GetDeserialize<T>(this JsonSerializerSettings settings)
-		=> json => JsonConvert.DeserializeObject<T>(json, settings);
+		=> json => JsonConvert.DeserializeObject<T>(json!, settings)!;
 
 	public static Func<T, string?> GetSerialize<T>(this JsonSerializerSettings settings)
 		=> item => JsonConvert.SerializeObject(item, settings);
@@ -59,10 +59,12 @@ public static class SerializationExtensions
 
 	public static string? Serialize<TValue>(this JsonSerializerSettings settings, TValue value)
 		=> JsonConvert.SerializeObject(value, settings);
+
 	public static string? Serialize(this JsonSerializerSettings settings, object? value)
 		=> JsonConvert.SerializeObject(value, settings);
+
 	public static TValue Deserialize<TValue>(this JsonSerializerSettings settings, string? value)
-		=> JsonConvert.DeserializeObject<TValue>(value, settings);
+		=> JsonConvert.DeserializeObject<TValue>(value!, settings)!;
 
 	public static JsonSerializerSettings Clone(this JsonSerializerSettings settings)
 	{

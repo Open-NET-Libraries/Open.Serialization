@@ -49,7 +49,7 @@ internal class JsonSerializerInternal : JsonObjectSerializerBase, IJsonSerialize
 	public override object? Deserialize(string? value, Type type)
 		=> JsonSerializer.NonGeneric.Deserialize(type, value, _resolver);
 
-	public override string? Serialize(object? item, Type type)
+	public override string Serialize(object? item, Type type)
 	{
 		var json = JsonSerializer.NonGeneric.ToJsonString(type, item, _resolver);
 		return _indent ? JsonSerializer.PrettyPrint(json) : json;

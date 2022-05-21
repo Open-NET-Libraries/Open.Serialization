@@ -98,7 +98,12 @@
             <param name="value">The string to deserialize.</param>
             <returns>The deserialized result.</returns>
         </member>
-        <member name="M:Open.Serialization.IDeserialize.Deserialize``1(System.ReadOnlySpan{System.Char})">
+        <member name="T:Open.Serialization.IDeserializeSpan">
+            <summary>
+            Interface for deserializing any given generic type from a <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.IDeserializeSpan.Deserialize``1(System.ReadOnlySpan{System.Char})">
             <summary>
             Deserializes a span of characters to the specified type.
             </summary>
@@ -117,7 +122,12 @@
             <param name="value">The string to deserialize.</param>
             <returns>The deserialized result.</returns>
         </member>
-        <member name="M:Open.Serialization.IDeserialize`1.Deserialize(System.ReadOnlySpan{System.Char})">
+        <member name="T:Open.Serialization.IDeserializeSpan`1">
+            <summary>
+            Interface for deserializing a predefined specific generic type.
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.IDeserializeSpan`1.Deserialize(System.ReadOnlySpan{System.Char})">
             <summary>
             Deserializes a span of characters to the specified type.
             </summary>
@@ -152,7 +162,7 @@
         </member>
         <member name="T:Open.Serialization.IDeserializeObject">
             <summary>
-            Interface for deserializing any string to an object when given a type.
+            Interface for deserializing any <see cref="T:System.String"/> to an <see cref="T:System.Object"/> when given a type.
             </summary>
         </member>
         <member name="M:Open.Serialization.IDeserializeObject.Deserialize(System.String,System.Type)">
@@ -163,7 +173,12 @@
             <param name="type">The expected type.</param>
             <returns>The deserialized result.</returns>
         </member>
-        <member name="M:Open.Serialization.IDeserializeObject.Deserialize(System.ReadOnlySpan{System.Char},System.Type)">
+        <member name="T:Open.Serialization.IDeserializeSpanToObject">
+            <summary>
+            Interface for deserializing a <see cref="T:System.ReadOnlySpan`1"/> to an <see cref="T:System.Object"/> when given a type.
+            </summary>
+        </member>
+        <member name="M:Open.Serialization.IDeserializeSpanToObject.Deserialize(System.ReadOnlySpan{System.Char},System.Type)">
             <summary>
             Deserializes a span of characters to the specified type.
             </summary>
@@ -204,7 +219,7 @@
             <summary>
             Serializes the provided item to a string.
             </summary>
-            <param name="item">The item to deserialze.</param>
+            <param name="item">The item to serialze.</param>
             <returns>The serialized string.</returns>
         </member>
         <member name="T:Open.Serialization.ISerialize`1">
@@ -216,7 +231,7 @@
             <summary>
             Serializes the provided item to a string.
             </summary>
-            <param name="item">The item to deserialze.</param>
+            <param name="item">The item to serialze.</param>
             <returns>The serialized string.</returns>
         </member>
         <member name="T:Open.Serialization.ISerializeAsync">
@@ -327,9 +342,6 @@
         <member name="M:Open.Serialization.ObjectSerializerBase.Deserialize(System.String,System.Type)">
             <inheritdoc />
         </member>
-        <member name="M:Open.Serialization.ObjectSerializerBase.Deserialize(System.ReadOnlySpan{System.Char},System.Type)">
-            <inheritdoc />
-        </member>
         <member name="M:Open.Serialization.ObjectSerializerBase.SerializeAsync(System.IO.Stream,System.Object,System.Type,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
@@ -358,13 +370,7 @@
             Constructs a serializer/deserializer using the provided serialization functions.
             </summary>
         </member>
-        <member name="M:Open.Serialization.Serializer`1.#ctor(Open.Serialization.IDeserialize{`0},System.Func{`0,System.String},System.Func{System.IO.Stream,System.Threading.CancellationToken,System.Threading.Tasks.ValueTask{`0}},System.Func{System.IO.Stream,`0,System.Threading.CancellationToken,System.Threading.Tasks.ValueTask})">
-            <inheritdoc cref="M:Open.Serialization.Serializer`1.#ctor(System.Func{System.String,`0},System.Func{`0,System.String},System.Func{System.IO.Stream,System.Threading.CancellationToken,System.Threading.Tasks.ValueTask{`0}},System.Func{System.IO.Stream,`0,System.Threading.CancellationToken,System.Threading.Tasks.ValueTask})" />
-        </member>
         <member name="M:Open.Serialization.Serializer`1.Deserialize(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:Open.Serialization.Serializer`1.Deserialize(System.ReadOnlySpan{System.Char})">
             <inheritdoc />
         </member>
         <member name="M:Open.Serialization.Serializer`1.DeserializeAsync(System.IO.Stream,System.Threading.CancellationToken)">
@@ -382,9 +388,6 @@
             </summary>
         </member>
         <member name="M:Open.Serialization.SerializerBase.Deserialize``1(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:Open.Serialization.SerializerBase.Deserialize``1(System.ReadOnlySpan{System.Char})">
             <inheritdoc />
         </member>
         <member name="M:Open.Serialization.SerializerBase.DeserializeAsync``1(System.IO.Stream,System.Threading.CancellationToken)">

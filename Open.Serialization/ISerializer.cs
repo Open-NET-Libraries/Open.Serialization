@@ -14,6 +14,7 @@ public interface ISerializer : ISerialize, IDeserialize
 public interface ISerializer<T> : ISerialize<T>, IDeserialize<T>
 {
 }
+
 /// <summary>
 /// Interface for serializing any object asyncronously.
 /// </summary>

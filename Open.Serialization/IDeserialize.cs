@@ -13,12 +13,18 @@ public interface IDeserialize
 	/// <param name="value">The string to deserialize.</param>
 	/// <returns>The deserialized result.</returns>
 	T Deserialize<T>(string? value);
+}
 
+/// <summary>
+/// Interface for deserializing any given generic type from a <see cref="ReadOnlySpan{T}"/>.
+/// </summary>
+public interface IDeserializeSpan
+{
 	/// <summary>
 	/// Deserializes a span of characters to the specified type.
 	/// </summary>
 	/// <param name="value">The span to deserialize.</param>
-	/// <inheritdoc cref="Deserialize{T}(string?)"/>
+	/// <inheritdoc cref="IDeserialize.Deserialize{T}(string?)"/>
 	T Deserialize<T>(ReadOnlySpan<char> value);
 }
 
@@ -33,11 +39,17 @@ public interface IDeserialize<out T>
 	/// <param name="value">The string to deserialize.</param>
 	/// <returns>The deserialized result.</returns>
 	T Deserialize(string? value);
+}
 
+/// <summary>
+/// Interface for deserializing a predefined specific generic type.
+/// </summary>
+public interface IDeserializeSpan<out T>
+{
 	/// <summary>
 	/// Deserializes a span of characters to the specified type.
 	/// </summary>
 	/// <param name="value">The span to deserialize.</param>
-	/// <inheritdoc cref="Deserialize(string?)"/>
+	/// <inheritdoc cref="IDeserialize{T}.Deserialize(string?)"/>
 	T Deserialize(ReadOnlySpan<char> value);
 }

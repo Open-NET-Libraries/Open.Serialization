@@ -33,7 +33,7 @@ public class JsonDoubleRoundingConverter : JsonValueConverterBase<double>
 			long i => i,
 			ulong i => i,
 			BigInteger i => (double)i,
-			_ => Math.Round(ConvertToDouble(reader.Value), Maximum),
+			_ => Math.Round(ConvertToDouble(reader.Value!), Maximum),
 		};
 	}
 

@@ -11,13 +11,10 @@ namespace Open.Serialization;
 public abstract class ObjectSerializerBase : SerializerBase, IObjectSerializer, IAsyncObjectSerializer
 {
 	/// <inheritdoc />
-	public abstract string? Serialize(object? item, Type type);
+	public abstract string Serialize(object? item, Type type);
 
 	/// <inheritdoc />
 	public abstract object? Deserialize(string? value, Type type);
-
-	/// <inheritdoc />
-	public abstract object? Deserialize(ReadOnlySpan<char> value, Type type);
 
 	/// <inheritdoc />
 	public virtual ValueTask SerializeAsync(Stream target, object? item, Type type, CancellationToken cancellationToken = default)
@@ -28,7 +25,7 @@ public abstract class ObjectSerializerBase : SerializerBase, IObjectSerializer, 
 		=> DefaultMethods.DeserializeAsync(this, source, type);
 
 	/// <inheritdoc />
-	public override string? Serialize<T>(T item)
+	public override string Serialize<T>(T item)
 		=> Serialize(item, typeof(T));
 
 	/// <inheritdoc />

@@ -13,5 +13,5 @@ public interface ISerializeObject
 	/// <param name="item">The item to deserialze.</param>
 	/// <param name="type">The expected type.</param>
 	/// <returns>The serialized string.</returns>
-	string? Serialize(object? item, Type type);
+	string Serialize(object? item, Type type);
 }

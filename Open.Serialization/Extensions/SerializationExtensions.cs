@@ -18,7 +18,7 @@ public static class SerializationExtensions
 		Contract.EndContractBlock();
 
 		return deserializer is IDeserialize d
-			? d.Deserialize<T>(value)
+			? d.Deserialize<T>(value)!
 			: (T)deserializer.Deserialize(value, typeof(T))!;
 	}
 

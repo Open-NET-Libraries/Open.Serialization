@@ -23,7 +23,7 @@ public class JsonNullableDoubleConverter : JsonValueConverterBase<double?>
 		{
 			JsonToken.Null => default,
 			JsonToken.Undefined => default,
-			_ => ConvertToDouble(reader.Value)
+			_ => ConvertToDouble(reader.Value!)
 		};
 	}
 

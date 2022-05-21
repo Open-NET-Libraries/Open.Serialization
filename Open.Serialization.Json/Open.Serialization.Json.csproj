@@ -18,7 +18,7 @@
 		<PackageProjectUrl>https://github.com/Open-NET-Libraries/Open.Serialization</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Open-NET-Libraries/Open.Serialization</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<Version>2.3.1</Version>
+		<Version>3.0.0</Version>
 		<PackageReleaseNotes></PackageReleaseNotes>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -44,12 +44,12 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Open.Serialization\Open.Serialization.csproj" />
+	</ItemGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
 	  <DocumentationFile>C:\Users\essence\Development\Open\Open.Serialization\Open.Serialization.Json\Open.Serialization.Json.xml</DocumentationFile>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="Open.Serialization" Version="2.3.1" />
-	</ItemGroup>
 
 </Project>

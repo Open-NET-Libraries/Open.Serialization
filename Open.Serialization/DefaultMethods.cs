@@ -48,7 +48,7 @@ public static class DefaultMethods
 		string text;
 		using (var reader = new StreamReader(source))
 			text = await reader.ReadToEndAsync().ConfigureAwait(false);
-		return deserializer.Deserialize<T>(text);
+		return deserializer.Deserialize<T>(text)!;
 	}
 
 	/// <summary>
@@ -74,7 +74,7 @@ public static class DefaultMethods
 		string text;
 		using (var reader = new StreamReader(source))
 			text = await reader.ReadToEndAsync().ConfigureAwait(false);
-		return deserializer.Deserialize(text);
+		return deserializer.Deserialize(text)!;
 	}
 
 	/// <summary>

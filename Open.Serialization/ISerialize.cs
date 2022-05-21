@@ -8,9 +8,9 @@ public interface ISerialize
 	/// <summary>
 	/// Serializes the provided item to a string.
 	/// </summary>
-	/// <param name="item">The item to deserialze.</param>
+	/// <param name="item">The item to serialze.</param>
 	/// <returns>The serialized string.</returns>
-	string? Serialize<T>(T item);
+	string Serialize<T>(T item);
 }
 
 /// <summary>
@@ -21,7 +21,7 @@ public interface ISerialize<in T>
 	/// <summary>
 	/// Serializes the provided item to a string.
 	/// </summary>
-	/// <param name="item">The item to deserialze.</param>
+	/// <param name="item">The item to serialze.</param>
 	/// <returns>The serialized string.</returns>
-	string? Serialize(T item);
+	string Serialize(T item);
 }

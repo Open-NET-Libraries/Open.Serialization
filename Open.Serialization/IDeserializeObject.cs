@@ -3,7 +3,7 @@
 namespace Open.Serialization;
 
 /// <summary>
-/// Interface for deserializing any string to an object when given a type.
+/// Interface for deserializing any <see cref="string"/> to an <see cref="object"/> when given a type.
 /// </summary>
 public interface IDeserializeObject
 {
@@ -14,7 +14,13 @@ public interface IDeserializeObject
 	/// <param name="type">The expected type.</param>
 	/// <returns>The deserialized result.</returns>
 	object? Deserialize(string? value, Type type);
+}
 
+/// <summary>
+/// Interface for deserializing a <see cref="ReadOnlySpan{T}"/> to an <see cref="object"/> when given a type.
+/// </summary>
+public interface IDeserializeSpanToObject
+{
 	/// <summary>
 	/// Deserializes a span of characters to the specified type.
 	/// </summary>

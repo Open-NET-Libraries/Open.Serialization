@@ -14,6 +14,7 @@ public class JsonNullableDecimalConverter : JsonValueConverterBase<decimal?>
 	public static readonly JsonNullableDecimalConverter Instance
 		= new();
 
+	/// <inheritdoc />
 	public override decimal? ReadJson(JsonReader reader, Type objectType, decimal? existingValue, bool hasExistingValue, JsonSerializer serializer)
 	{
 		if (reader is null) throw new ArgumentNullException(nameof(reader));
@@ -23,10 +24,11 @@ public class JsonNullableDecimalConverter : JsonValueConverterBase<decimal?>
 		{
 			JsonToken.Null => default,
 			JsonToken.Undefined => default,
-			_ => ConvertToDecimal(reader.Value),
+			_ => ConvertToDecimal(reader.Value!),
 		};
 	}
 
+	/// <inheritdoc />
 	public override void WriteJson(JsonWriter writer, decimal? value, JsonSerializer serializer)
 	{
 		if (writer is null) throw new ArgumentNullException(nameof(writer));
