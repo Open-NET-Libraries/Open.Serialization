@@ -1,7 +1,6 @@
-﻿namespace Open.Serialization.Json
+﻿namespace Open.Serialization.Json;
+
+/// <inheritdoc />
+public abstract class JsonObjectSerializerBase : ObjectSerializerBase, IJsonObjectSerializer, IJsonAsyncObjectSerializer
 {
-	/// <inheritdoc />
-	public abstract class JsonObjectSerializerBase : ObjectSerializerBase, IJsonObjectSerializer, IJsonAsyncObjectSerializer
-	{
-	}
 }

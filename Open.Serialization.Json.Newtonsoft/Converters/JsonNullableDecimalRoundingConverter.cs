@@ -1,30 +1,29 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Open.Serialization.Json.Newtonsoft.Converters
+namespace Open.Serialization.Json.Newtonsoft.Converters;
+
+public class JsonNullableDecimalRoundingConverter : JsonNullableDecimalConverter
 {
-	public class JsonNullableDecimalRoundingConverter : JsonNullableDecimalConverter
+	public int Maximum { get; }
+	public JsonNullableDecimalRoundingConverter(int maximum)
 	{
-		public int Maximum { get; }
-		public JsonNullableDecimalRoundingConverter(int maximum)
-		{
-			if (maximum < 0)
-				throw new ArgumentOutOfRangeException(nameof(maximum), maximum, "Must be at least zero.");
-			Maximum = maximum;
-		}
+		if (maximum < 0)
+			throw new ArgumentOutOfRangeException(nameof(maximum), maximum, "Must be at least zero.");
+		Maximum = maximum;
+	}
 
-		public override decimal? ReadJson(JsonReader reader, Type objectType, decimal? existingValue, bool hasExistingValue, JsonSerializer serializer)
-		{
-			var value = base.ReadJson(reader, objectType, existingValue, hasExistingValue, serializer);
-			return value.HasValue ? Math.Round(value.Value, Maximum) : value;
-		}
+	public override decimal? ReadJson(JsonReader reader, Type objectType, decimal? existingValue, bool hasExistingValue, JsonSerializer serializer)
+	{
+		var value = base.ReadJson(reader, objectType, existingValue, hasExistingValue, serializer);
+		return value.HasValue ? Math.Round(value.Value, Maximum) : value;
+	}
 
-		public override void WriteJson(JsonWriter writer, decimal? value, JsonSerializer serializer)
-		{
-			if (value.HasValue)
-				value = Math.Round(value.Value, Maximum);
+	public override void WriteJson(JsonWriter writer, decimal? value, JsonSerializer serializer)
+	{
+		if (value.HasValue)
+			value = Math.Round(value.Value, Maximum);
 
-			base.WriteJson(writer, value, serializer);
-		}
+		base.WriteJson(writer, value, serializer);
 	}
 }

@@ -1,29 +1,27 @@
-﻿namespace Open.Serialization
+﻿namespace Open.Serialization;
+
+/// <summary>
+/// Interface for serializing a given generic type.
+/// </summary>
+public interface ISerialize
 {
 	/// <summary>
-	/// Interface for serializing a given generic type.
+	/// Serializes the provided item to a string.
 	/// </summary>
-	public interface ISerialize
-	{
-		/// <summary>
-		/// Serializes the provided item to a string.
-		/// </summary>
-		/// <param name="item">The item to deserialze.</param>
-		/// <returns>The serialized string.</returns>
-		string? Serialize<T>(T item);
-	}
+	/// <param name="item">The item to deserialze.</param>
+	/// <returns>The serialized string.</returns>
+	string? Serialize<T>(T item);
+}
 
-
+/// <summary>
+/// Interface for serializing a predefined specific generic type.
+/// </summary>
+public interface ISerialize<in T>
+{
 	/// <summary>
-	/// Interface for serializing a predefined specific generic type.
+	/// Serializes the provided item to a string.
 	/// </summary>
-	public interface ISerialize<in T>
-	{
-		/// <summary>
-		/// Serializes the provided item to a string.
-		/// </summary>
-		/// <param name="item">The item to deserialze.</param>
-		/// <returns>The serialized string.</returns>
-		string? Serialize(T item);
-	}
+	/// <param name="item">The item to deserialze.</param>
+	/// <returns>The serialized string.</returns>
+	string? Serialize(T item);
 }

@@ -8,23 +8,16 @@ namespace Open.Serialization.Tests
 	{
 		class A : IDeserializeObject
 		{
-			public object Deserialize(string value, Type type)
-			{
-				return 1;
-			}
+			public object Deserialize(string value, Type type) => 1;
 		}
 
 		class B : A
 		{
-			public T Deserialize<T>(string _)
-			{
-				return default;
-			}
+			public T Deserialize<T>(string _) => default;
 		}
 
 		class C : B, IDeserializeObject
 		{
-
 		}
 
 		[Fact]

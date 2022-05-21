@@ -109,7 +109,7 @@ namespace Open.Serialization.Tests.Newtonsoft
 					.Default()
 					.GetSerializer();
 
-				var sample3 = 1;
+				const int sample3 = 1;
 
 				{
 					var model = new SampleModel
@@ -129,8 +129,6 @@ namespace Open.Serialization.Tests.Newtonsoft
 					Assert.Equal(sample3, serializer.Deserialize<SampleModel>(json).NullableDecimalValue);
 				}
 			}
-
 		}
-
 	}
 }

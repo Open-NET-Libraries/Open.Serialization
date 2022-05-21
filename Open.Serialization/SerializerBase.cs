@@ -2,52 +2,51 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Open.Serialization
+namespace Open.Serialization;
+
+/// <summary>
+/// Base class for implementing a serializer/deserializer.
+/// </summary>
+public abstract class SerializerBase : ISerializer, IAsyncSerializer
 {
-	/// <summary>
-	/// Base class for implementing a serializer/deserializer.
-	/// </summary>
-	public abstract class SerializerBase : ISerializer, IAsyncSerializer
-	{
-		/// <inheritdoc />
-		public abstract T Deserialize<T>(string? value);
+	/// <inheritdoc />
+	public abstract T Deserialize<T>(string? value);
 
-		/// <inheritdoc />
-		public virtual ValueTask<T> DeserializeAsync<T>(Stream source, CancellationToken cancellationToken = default)
-			=> DefaultMethods.DeserializeAsync<T>(this, source);
+	/// <inheritdoc />
+	public virtual ValueTask<T> DeserializeAsync<T>(Stream source, CancellationToken cancellationToken = default)
+		=> DefaultMethods.DeserializeAsync<T>(this, source);
 
-		/// <inheritdoc />
-		public abstract string? Serialize<T>(T item);
+	/// <inheritdoc />
+	public abstract string? Serialize<T>(T item);
 
-		/// <inheritdoc />
-		public virtual ValueTask SerializeAsync<T>(Stream target, T item, CancellationToken cancellationToken = default)
-			=> DefaultMethods.SerializeAsync(this, target, item);
-
-		/// <summary>
-		/// Creates a type specific serializer using this as the underlying serializer.
-		/// </summary>
-		/// <returns>A type specific serializer.</returns>
-		public virtual Serializer<T> Cast<T>()
-			=> new Serializer<T>(Deserialize<T>, Serialize, DeserializeAsync<T>, SerializeAsync);
-	}
+	/// <inheritdoc />
+	public virtual ValueTask SerializeAsync<T>(Stream target, T item, CancellationToken cancellationToken = default)
+		=> DefaultMethods.SerializeAsync(this, target, item);
 
 	/// <summary>
-	/// Base calss for implementing a spedific generic type serializer/deserializer.
+	/// Creates a type specific serializer using this as the underlying serializer.
 	/// </summary>
-	public abstract class SerializerBase<T> : ISerializer<T>, IAsyncSerializer<T>
-	{
-		/// <inheritdoc />
-		public abstract T Deserialize(string? value);
+	/// <returns>A type specific serializer.</returns>
+	public virtual Serializer<T> Cast<T>()
+		=> new(Deserialize<T>, Serialize, DeserializeAsync<T>, SerializeAsync);
+}
 
-		/// <inheritdoc />
-		public virtual ValueTask<T> DeserializeAsync(Stream source, CancellationToken cancellationToken = default)
-			=> DefaultMethods.DeserializeAsync(this, source);
+/// <summary>
+/// Base calss for implementing a spedific generic type serializer/deserializer.
+/// </summary>
+public abstract class SerializerBase<T> : ISerializer<T>, IAsyncSerializer<T>
+{
+	/// <inheritdoc />
+	public abstract T Deserialize(string? value);
 
-		/// <inheritdoc />
-		public abstract string? Serialize(T item);
+	/// <inheritdoc />
+	public virtual ValueTask<T> DeserializeAsync(Stream source, CancellationToken cancellationToken = default)
+		=> DefaultMethods.DeserializeAsync(this, source);
 
-		/// <inheritdoc />
-		public virtual ValueTask SerializeAsync(Stream target, T item, CancellationToken cancellationToken = default)
-			=> DefaultMethods.SerializeAsync(this, target, item);
-	}
+	/// <inheritdoc />
+	public abstract string? Serialize(T item);
+
+	/// <inheritdoc />
+	public virtual ValueTask SerializeAsync(Stream target, T item, CancellationToken cancellationToken = default)
+		=> DefaultMethods.SerializeAsync(this, target, item);
 }

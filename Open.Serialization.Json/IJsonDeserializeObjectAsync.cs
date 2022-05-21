@@ -1,7 +1,6 @@
-﻿namespace Open.Serialization.Json
+﻿namespace Open.Serialization.Json;
+
+/// <inheritdoc />
+public interface IJsonDeserializeObjectAsync : IDeserializeObjectAsync
 {
-	/// <inheritdoc />
-	public interface IJsonDeserializeObjectAsync : IDeserializeObjectAsync
-	{
-	}
 }
