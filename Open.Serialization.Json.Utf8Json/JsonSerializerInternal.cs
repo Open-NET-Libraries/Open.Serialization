@@ -16,7 +16,7 @@ internal class JsonSerializerInternal : JsonObjectSerializerBase, IJsonSerialize
 		_indent = indent;
 	}
 
-	public override T Deserialize<T>(string? value)
+	public override T Deserialize<T>(string value)
 		=> JsonSerializer.Deserialize<T>(value, _resolver);
 
 	public new Task<T> DeserializeAsync<T>(Stream stream, CancellationToken cancellationToken = default)
@@ -46,7 +46,7 @@ internal class JsonSerializerInternal : JsonObjectSerializerBase, IJsonSerialize
 	ValueTask ISerializeAsync.SerializeAsync<T>(Stream stream, T item, CancellationToken cancellationToken)
 		=> new(SerializeAsync(stream, item, cancellationToken));
 
-	public override object? Deserialize(string? value, Type type)
+	public override object? Deserialize(string value, Type type)
 		=> JsonSerializer.NonGeneric.Deserialize(type, value, _resolver);
 
 	public override string Serialize(object? item, Type type)

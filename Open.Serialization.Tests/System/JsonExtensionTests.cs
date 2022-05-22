@@ -1,5 +1,7 @@
+using FluentAssertions;
 using Open.Serialization.Json.System;
 using Open.Serialization.Json.System.Converters;
+using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Xunit;
@@ -63,5 +65,13 @@ public static class JsonExtensionTests
 			var json = serializer.Serialize(model);
 			Assert.Equal(sample, serializer.Deserialize<SampleModel>(json).NullableDecimalValue);
 		}
+	}
+
+	[Fact]
+	public static void ValidateNulls()
+	{
+		Assert.Throws<ArgumentNullException>(() => RelaxedJson.Deserialize<double?>(default(string)!));
+		RelaxedJson.Deserialize<double?>("null").Should().BeNull();
+		Assert.Throws<JsonException>(() => RelaxedJson.Deserialize<double>("null"));
 	}
 }

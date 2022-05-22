@@ -12,7 +12,7 @@ public interface IDeserialize
 	/// </summary>
 	/// <param name="value">The string to deserialize.</param>
 	/// <returns>The deserialized result.</returns>
-	T Deserialize<T>(string? value);
+	T Deserialize<T>(string value);
 }
 
 /// <summary>
@@ -24,7 +24,7 @@ public interface IDeserializeSpan
 	/// Deserializes a span of characters to the specified type.
 	/// </summary>
 	/// <param name="value">The span to deserialize.</param>
-	/// <inheritdoc cref="IDeserialize.Deserialize{T}(string?)"/>
+	/// <inheritdoc cref="IDeserialize.Deserialize{T}(string)"/>
 	T Deserialize<T>(ReadOnlySpan<char> value);
 }
 
@@ -38,7 +38,7 @@ public interface IDeserialize<out T>
 	/// </summary>
 	/// <param name="value">The string to deserialize.</param>
 	/// <returns>The deserialized result.</returns>
-	T Deserialize(string? value);
+	T Deserialize(string value);
 }
 
 /// <summary>
@@ -50,6 +50,6 @@ public interface IDeserializeSpan<out T>
 	/// Deserializes a span of characters to the specified type.
 	/// </summary>
 	/// <param name="value">The span to deserialize.</param>
-	/// <inheritdoc cref="IDeserialize{T}.Deserialize(string?)"/>
+	/// <inheritdoc cref="IDeserialize{T}.Deserialize(string)"/>
 	T Deserialize(ReadOnlySpan<char> value);
 }

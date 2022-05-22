@@ -5,9 +5,21 @@ using System.Numerics;
 
 namespace Open.Serialization.Json.Newtonsoft.Converters;
 
+/// <summary>
+/// Converter for doubles that rounds to a maximum number of digits after the decimal.
+/// </summary>
 public class JsonDoubleRoundingConverter : JsonValueConverterBase<double>
 {
+	/// <summary>
+	/// The maximum number of digits after the decimal.
+	/// </summary>
 	public int Maximum { get; }
+
+	/// <summary>
+	/// Constructs a <see cref="JsonDoubleRoundingConverter"/>.
+	/// </summary>
+	/// <param name="maximum">The maximum number of digits after the decimal.</param>
+	/// <exception cref="ArgumentOutOfRangeException">If the maximum is less than zero.</exception>
 	public JsonDoubleRoundingConverter(int maximum)
 	{
 		if (maximum < 0)

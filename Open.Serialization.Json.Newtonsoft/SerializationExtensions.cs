@@ -39,13 +39,13 @@ public static class SerializationExtensions
 		return services;
 	}
 
-	public static Func<string?, T> GetDeserialize<T>(this JsonSerializerSettings settings)
-		=> json => JsonConvert.DeserializeObject<T>(json!, settings)!;
+	public static Func<string, T> GetDeserialize<T>(this JsonSerializerSettings settings)
+		=> json => JsonConvert.DeserializeObject<T>(json, settings)!;
 
-	public static Func<T, string?> GetSerialize<T>(this JsonSerializerSettings settings)
+	public static Func<T, string> GetSerialize<T>(this JsonSerializerSettings settings)
 		=> item => JsonConvert.SerializeObject(item, settings);
 
-	public static Func<object?, string?> GetSerialize(this JsonSerializerSettings settings)
+	public static Func<object?, string> GetSerialize(this JsonSerializerSettings settings)
 		=> item => JsonConvert.SerializeObject(item, settings);
 
 	public static IJsonSerializer GetSerializer(this JsonSerializerSettings settings)
@@ -57,14 +57,14 @@ public static class SerializationExtensions
 	public static IJsonSerializerFactory GetSerializerFactory(this JsonSerializerSettings settings)
 		=> new JsonSerializerFactory(settings);
 
-	public static string? Serialize<TValue>(this JsonSerializerSettings settings, TValue value)
+	public static string Serialize<TValue>(this JsonSerializerSettings settings, TValue value)
 		=> JsonConvert.SerializeObject(value, settings);
 
-	public static string? Serialize(this JsonSerializerSettings settings, object? value)
+	public static string Serialize(this JsonSerializerSettings settings, object? value)
 		=> JsonConvert.SerializeObject(value, settings);
 
-	public static TValue Deserialize<TValue>(this JsonSerializerSettings settings, string? value)
-		=> JsonConvert.DeserializeObject<TValue>(value!, settings)!;
+	public static TValue Deserialize<TValue>(this JsonSerializerSettings settings, string value)
+		=> JsonConvert.DeserializeObject<TValue>(value, settings)!;
 
 	public static JsonSerializerSettings Clone(this JsonSerializerSettings settings)
 	{

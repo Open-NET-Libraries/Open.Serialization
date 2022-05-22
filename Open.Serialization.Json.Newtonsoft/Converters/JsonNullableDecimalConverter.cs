@@ -22,8 +22,8 @@ public class JsonNullableDecimalConverter : JsonValueConverterBase<decimal?>
 
 		return reader.TokenType switch
 		{
-			JsonToken.Null => default,
-			JsonToken.Undefined => default,
+			JsonToken.Null => null,
+			JsonToken.Undefined => null,
 			_ => ConvertToDecimal(reader.Value!),
 		};
 	}

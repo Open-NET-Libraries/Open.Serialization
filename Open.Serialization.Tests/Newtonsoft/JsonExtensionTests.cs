@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using Open.Serialization.Json.Newtonsoft;
 using System;
 using Xunit;
+using FluentAssertions;
 
 namespace Open.Serialization.Tests.Newtonsoft;
 
@@ -129,5 +130,13 @@ public static class JsonExtensionTests
 				Assert.Equal(sample3, serializer.Deserialize<SampleModel>(json).NullableDecimalValue);
 			}
 		}
+	}
+
+	[Fact]
+	public static void ValidateNulls()
+	{
+		Assert.Throws<ArgumentNullException>(()=>RelaxedJson.Deserialize<double?>(null));
+		RelaxedJson.Deserialize<double?>("null").Should().BeNull();
+		Assert.Throws<NullReferenceException>(()=>RelaxedJson.Deserialize<double>("null"));
 	}
 }

@@ -14,7 +14,7 @@ internal class JsonSerializerInternal : JsonSerializerBase, IJsonSerializer, IDe
 		_options = options ?? throw new ArgumentNullException(nameof(options));
 	}
 
-	public override T Deserialize<T>(string? value)
+	public override T Deserialize<T>(string value)
 		=> JsonSerializer.Deserialize<T>(value!, _options)!;
 
 	public T Deserialize<T>(ReadOnlySpan<char> value)

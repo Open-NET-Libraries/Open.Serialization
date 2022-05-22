@@ -10,7 +10,7 @@ public class JsonSerializer<T> : Serializer<T>, IJsonSerializer<T>, IJsonAsyncSe
 {
 	/// <inheritdoc />
 	public JsonSerializer(
-		Func<string?, T>? deserializer,
+		Func<string, T>? deserializer,
 		Func<T, string>? serializer = null,
 		Func<Stream, CancellationToken, ValueTask<T>>? deserializerAsync = null,
 		Func<Stream, T, CancellationToken, ValueTask>? serializerAsync = null)

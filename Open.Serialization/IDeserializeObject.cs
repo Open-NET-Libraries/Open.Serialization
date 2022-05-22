@@ -13,7 +13,7 @@ public interface IDeserializeObject
 	/// <param name="value">The string to deserialize.</param>
 	/// <param name="type">The expected type.</param>
 	/// <returns>The deserialized result.</returns>
-	object? Deserialize(string? value, Type type);
+	object? Deserialize(string value, Type type);
 }
 
 /// <summary>

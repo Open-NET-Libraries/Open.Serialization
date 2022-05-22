@@ -14,7 +14,7 @@ public abstract class ObjectSerializerBase : SerializerBase, IObjectSerializer, 
 	public abstract string Serialize(object? item, Type type);
 
 	/// <inheritdoc />
-	public abstract object? Deserialize(string? value, Type type);
+	public abstract object? Deserialize(string value, Type type);
 
 	/// <inheritdoc />
 	public virtual ValueTask SerializeAsync(Stream target, object? item, Type type, CancellationToken cancellationToken = default)
@@ -29,7 +29,7 @@ public abstract class ObjectSerializerBase : SerializerBase, IObjectSerializer, 
 		=> Serialize(item, typeof(T));
 
 	/// <inheritdoc />
-	public override T Deserialize<T>(string? value)
+	public override T Deserialize<T>(string value)
 		=> (T)Deserialize(value, typeof(T))!;
 
 	/// <inheritdoc />

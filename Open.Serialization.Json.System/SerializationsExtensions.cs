@@ -48,13 +48,13 @@ public static class SerializationsExtensions
 	/// <summary>
 	/// Returns a delegate that can serialze a <see cref="string"/> to <typeparamref name="T"/> with the given options.
 	/// </summary>
-	public static Func<T, string?> GetSerialize<T>(this JsonSerializerOptions options)
+	public static Func<T, string> GetSerialize<T>(this JsonSerializerOptions options)
 		=> item => JsonSerializer.Serialize(item, options)!;
 
 	/// <summary>
 	/// Returns a delegate that can serialze a <see cref="string"/> to an <see cref="object"/> with the given options.
 	/// </summary>
-	public static Func<object?, string?> GetSerialize(this JsonSerializerOptions options)
+	public static Func<object?, string> GetSerialize(this JsonSerializerOptions options)
 		=> item => JsonSerializer.Serialize(item, options);
 
 	/// <summary>
@@ -78,19 +78,25 @@ public static class SerializationsExtensions
 	/// <summary>
 	/// Serializes <paramref name="value"/> to a <see cref="string"/> using the given options.
 	/// </summary>
-	public static string? Serialize<TValue>(this JsonSerializerOptions options, TValue value)
+	public static string Serialize<TValue>(this JsonSerializerOptions options, TValue value)
 		=> JsonSerializer.Serialize(value, options);
 
 	/// <summary>
 	/// Serializes <paramref name="value"/> to a <see cref="string"/> using the given options.
 	/// </summary>
-	public static string? Serialize(this JsonSerializerOptions options, object? value)
+	public static string Serialize(this JsonSerializerOptions options, object? value)
 		=> JsonSerializer.Serialize(value, options);
 
 	/// <summary>
 	/// Deserializes <paramref name="value"/> to a <typeparamref name="TValue"/> using the given options.
 	/// </summary>
 	public static TValue Deserialize<TValue>(this JsonSerializerOptions options, string value)
+		=> JsonSerializer.Deserialize<TValue>(value, options)!;
+
+	/// <summary>
+	/// Deserializes <paramref name="value"/> to a <typeparamref name="TValue"/> using the given options.
+	/// </summary>
+	public static TValue Deserialize<TValue>(this JsonSerializerOptions options, ReadOnlySpan<char> value)
 		=> JsonSerializer.Deserialize<TValue>(value, options)!;
 
 	/// <summary>

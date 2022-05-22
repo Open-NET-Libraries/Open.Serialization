@@ -38,13 +38,13 @@ public static class SerializationExtensions
 	/// <summary>
 	/// Returns a delegate for deserializing a <see cref="string"/> to <typeparamref name="T"/>.
 	/// </summary>
-	public static Func<string?, T> GetDeserialize<T>(this IJsonFormatterResolver options)
+	public static Func<string, T> GetDeserialize<T>(this IJsonFormatterResolver options)
 		=> json => JsonSerializer.Deserialize<T>(json, options);
 
 	/// <summary>
 	/// Returns a delegate for serializing <typeparamref name="T"/> to a <see cref="string"/>.
 	/// </summary>
-	public static Func<T, string?> GetSerialize<T>(this IJsonFormatterResolver options, bool indent = false)
+	public static Func<T, string> GetSerialize<T>(this IJsonFormatterResolver options, bool indent = false)
 		=> item =>
 		{
 			var result = JsonSerializer.ToJsonString(item, options);
@@ -54,7 +54,7 @@ public static class SerializationExtensions
 	/// <summary>
 	/// Returns a delegate for serializing <see cref="object"/> to <see cref="string"/>.
 	/// </summary>
-	public static Func<object?, string?> GetSerialize(this IJsonFormatterResolver options, bool indent = false)
+	public static Func<object?, string> GetSerialize(this IJsonFormatterResolver options, bool indent = false)
 		=> item =>
 		{
 			var result = JsonSerializer.ToJsonString(item, options);
@@ -82,18 +82,18 @@ public static class SerializationExtensions
 	/// <summary>
 	/// Serializes a <typeparamref name="TValue"/> to a <see cref="string"/> using the provided options.
 	/// </summary>
-	public static string? Serialize<TValue>(this IJsonFormatterResolver options, TValue value)
+	public static string Serialize<TValue>(this IJsonFormatterResolver options, TValue value)
 		=> JsonSerializer.ToJsonString(value, options);
 
 	/// <summary>
 	/// Serializes an <see cref="object"/> to a <see cref="string"/> using the provided options.
 	/// </summary>
-	public static string? Serialize(this IJsonFormatterResolver options, object? value)
+	public static string Serialize(this IJsonFormatterResolver options, object? value)
 		=> JsonSerializer.ToJsonString(value, options);
 
 	/// <summary>
 	/// Deserializes a <see cref="string"/> to <typeparamref name="TValue"/> using the provided options.
 	/// </summary>
-	public static TValue Deserialize<TValue>(this IJsonFormatterResolver options, string? value)
+	public static TValue Deserialize<TValue>(this IJsonFormatterResolver options, string value)
 		=> JsonSerializer.Deserialize<TValue>(value, options);
 }

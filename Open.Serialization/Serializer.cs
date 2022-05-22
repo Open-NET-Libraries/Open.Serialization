@@ -11,7 +11,7 @@ namespace Open.Serialization;
 /// </summary>
 public class Serializer<T> : SerializerBase<T>
 {
-	private readonly Func<string?, T>? _deserializer;
+	private readonly Func<string, T>? _deserializer;
 	private readonly Func<T, string>? _serializer;
 	private readonly Func<Stream, CancellationToken, ValueTask<T>> _deserializerAsync;
 	private readonly Func<Stream, T, CancellationToken, ValueTask> _serializerAsync;
@@ -20,7 +20,7 @@ public class Serializer<T> : SerializerBase<T>
 	/// Constructs a serializer/deserializer using the provided serialization functions.
 	/// </summary>
 	public Serializer(
-		Func<string?, T>? deserializer,
+		Func<string, T>? deserializer,
 		Func<T, string>? serializer = null,
 		Func<Stream, CancellationToken, ValueTask<T>>? deserializerAsync = null,
 		Func<Stream, T, CancellationToken, ValueTask>? serializerAsync = null)
@@ -36,7 +36,7 @@ public class Serializer<T> : SerializerBase<T>
 	}
 
 	/// <inheritdoc />
-	public override T Deserialize(string? value)
+	public override T Deserialize(string value)
 		=> _deserializer is null
 		? throw new NullReferenceException("No deserializer function was supplied.")
 		: _deserializer(value);

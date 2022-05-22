@@ -5,10 +5,16 @@ using Utf8Json.Resolvers;
 
 namespace Open.Serialization.Json.Utf8Json;
 
+/// <summary>
+/// The <see cref="IJsonSerializerFactory"/> for Utf8Json.
+/// </summary>
 public class JsonSerializerFactory : IJsonSerializerFactory
 {
 	readonly IJsonFormatterResolver _resolver;
 	readonly bool _indent;
+
+	/// <exception cref="ArgumentOutOfRangeException">Snake case is not supported.</exception>
+	/// <inheritdoc cref="JsonSerializerFactory()"/>
 	public JsonSerializerFactory(IJsonFormatterResolver? defaultResolver, bool indent = false)
 	{
 		_resolver = defaultResolver ?? StandardResolver.Default;
@@ -17,6 +23,9 @@ public class JsonSerializerFactory : IJsonSerializerFactory
 		_indent = indent;
 	}
 
+	/// <summary>
+	/// Constructs a <see cref="JsonSerializerFactory"/>.
+	/// </summary>
 	public JsonSerializerFactory() : this(null)
 	{
 	}
@@ -26,6 +35,10 @@ public class JsonSerializerFactory : IJsonSerializerFactory
 		=> LazyInitializer.EnsureInitialized(ref _defaultSerializer, () => new JsonSerializerInternal(_resolver, _indent))!;
 
 	static JsonSerializerFactory? _default;
+
+	/// <summary>
+	/// The default instance (with default settings) of this <see cref="JsonSerializerFactory"/>.
+	/// </summary>
 	public static JsonSerializerFactory Default
 		=> LazyInitializer.EnsureInitialized(ref _default)!;
 
@@ -48,9 +61,15 @@ public class JsonSerializerFactory : IJsonSerializerFactory
 			: new JsonSerializerInternal(omitNull ? StandardResolver.ExcludeNull : StandardResolver.Default, options.Indent ?? _indent);
 	}
 
+	/// <summary>
+	/// Returns an <see cref="IJsonSerializer"/>.
+	/// </summary>
 	public IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 		=> GetSerializerInternal(options, caseSensitive);
 
+	/// <summary>
+	/// Returns an <see cref="IJsonObjectSerializer"/>.
+	/// </summary>
 	public IJsonObjectSerializer GetObjectSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 		=> GetSerializerInternal(options, caseSensitive);
 }

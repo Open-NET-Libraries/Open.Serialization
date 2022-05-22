@@ -12,18 +12,18 @@ namespace Open.Serialization.Extensions;
 public static class SerializationExtensions
 {
 	/// <inheritdoc cref="IDeserialize.Deserialize{T}(string)" />
-	public static T Deserialize<T>(this IDeserializeObject deserializer, string? value)
+	public static T Deserialize<T>(this IDeserializeObject deserializer, string value)
 	{
 		if (deserializer is null) throw new ArgumentNullException(nameof(deserializer));
 		Contract.EndContractBlock();
 
 		return deserializer is IDeserialize d
-			? d.Deserialize<T>(value)!
+			? d.Deserialize<T>(value)
 			: (T)deserializer.Deserialize(value, typeof(T))!;
 	}
 
 	/// <inheritdoc cref="ISerialize.Serialize{T}(T)" />
-	public static string? Serialize<T>(this ISerializeObject serializer, T item)
+	public static string Serialize<T>(this ISerializeObject serializer, T item)
 	{
 		if (serializer is null) throw new ArgumentNullException(nameof(serializer));
 		Contract.EndContractBlock();

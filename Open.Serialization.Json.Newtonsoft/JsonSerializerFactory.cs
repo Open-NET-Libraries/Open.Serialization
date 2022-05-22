@@ -74,9 +74,15 @@ public class JsonSerializerFactory : IJsonSerializerFactory, IJsonObjectSerializ
 		return o is null ? DefaultSerializer : new JsonSerializerInternal(o);
 	}
 
+	/// <summary>
+	/// Returns an <see cref="IJsonSerializer"/>.
+	/// </summary>
 	public IJsonSerializer GetSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 		=> GetSerializerInternal(options, caseSensitive);
 
+	/// <summary>
+	/// Returns an <see cref="IJsonObjectSerializer"/>.
+	/// </summary>
 	public IJsonObjectSerializer GetObjectSerializer(IJsonSerializationOptions? options = null, bool caseSensitive = false)
 		=> GetSerializerInternal(options, caseSensitive);
 }

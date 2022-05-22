@@ -12,7 +12,7 @@ namespace Open.Serialization;
 public abstract class SerializerBase : ISerializer, IAsyncSerializer
 {
 	/// <inheritdoc />
-	public abstract T Deserialize<T>(string? value);
+	public abstract T Deserialize<T>(string value);
 
 	/// <inheritdoc />
 	public virtual ValueTask<T> DeserializeAsync<T>(Stream source, CancellationToken cancellationToken = default)
@@ -39,7 +39,7 @@ public abstract class SerializerBase : ISerializer, IAsyncSerializer
 public abstract class SerializerBase<T> : ISerializer<T>, IAsyncSerializer<T>
 {
 	/// <inheritdoc />
-	public abstract T Deserialize(string? value);
+	public abstract T Deserialize(string value);
 
 	/// <inheritdoc />
 	public virtual T Deserialize(ReadOnlySpan<char> value)
