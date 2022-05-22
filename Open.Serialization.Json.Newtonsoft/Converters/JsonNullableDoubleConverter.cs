@@ -21,8 +21,8 @@ public class JsonNullableDoubleConverter : JsonValueConverterBase<double?>
 
 		return reader.TokenType switch
 		{
-			JsonToken.Null => default,
-			JsonToken.Undefined => default,
+			JsonToken.Null => null,
+			JsonToken.Undefined => null,
 			_ => ConvertToDouble(reader.Value)
 		};
 	}

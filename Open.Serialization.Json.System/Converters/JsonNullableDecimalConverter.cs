@@ -23,7 +23,7 @@ public class JsonNullableDecimalConverter : JsonConverter<decimal?>
 	public override decimal? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> reader.TokenType switch
 		{
-			JsonTokenType.Null => default,
+			JsonTokenType.Null => null,
 			JsonTokenType.Number => reader.GetDecimal(),
 			_ => throw new JsonException("Unexpected token type."),
 		};
