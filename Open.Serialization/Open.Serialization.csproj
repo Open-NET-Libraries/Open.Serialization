@@ -44,10 +44,6 @@
 		</None>
 	</ItemGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-		<DocumentationFile>C:\Users\essence\Development\Open\Open.Serialization\Open.Serialization\Open.Serialization.xml</DocumentationFile>
-	</PropertyGroup>
-
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
 		<PackageReference Include="System.Memory" Version="4.5.4" />
 		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />

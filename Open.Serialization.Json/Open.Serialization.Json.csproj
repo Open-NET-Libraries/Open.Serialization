@@ -48,8 +48,4 @@
 	  <ProjectReference Include="..\Open.Serialization\Open.Serialization.csproj" />
 	</ItemGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-	  <DocumentationFile>C:\Users\essence\Development\Open\Open.Serialization\Open.Serialization.Json\Open.Serialization.Json.xml</DocumentationFile>
-	</PropertyGroup>
-
 </Project>
