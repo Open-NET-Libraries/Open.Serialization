@@ -19,7 +19,7 @@ public class JsonSerializerFactory : IJsonSerializerFactory
 		_options = defaultOptions?.Clone() ?? DefaultOptions;
 	}
 
-	/// <inheritdoc cref="JsonSerializerFactory.JsonSerializerFactory(JsonSerializerOptions?)"/>
+	/// <inheritdoc cref="JsonSerializerFactory(JsonSerializerOptions?)"/>
 	public JsonSerializerFactory() : this(null)
 	{
 	}

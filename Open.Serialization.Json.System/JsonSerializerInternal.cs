@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Open.Serialization.Json.System;
 
-internal class JsonSerializerInternal : JsonSerializerBase, IJsonSerializer, IDeserializeSpan
+internal class JsonSerializerInternal : JsonSerializerBase, IJsonSerializer
 {
 	readonly JsonSerializerOptions _options;
 	internal JsonSerializerInternal(JsonSerializerOptions options)
@@ -16,9 +16,6 @@ internal class JsonSerializerInternal : JsonSerializerBase, IJsonSerializer, IDe
 
 	public override T Deserialize<T>(string value)
 		=> JsonSerializer.Deserialize<T>(value!, _options)!;
-
-	public T Deserialize<T>(ReadOnlySpan<char> value)
-		=> JsonSerializer.Deserialize<T>(value, _options)!;
 
 	ValueTask ISerializeAsync.SerializeAsync<T>(Stream stream, T item, CancellationToken cancellationToken)
 		=> new(JsonSerializer.SerializeAsync(stream, item, _options, cancellationToken));
